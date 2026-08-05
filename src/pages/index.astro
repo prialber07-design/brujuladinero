@@ -1,0 +1,49 @@
+---
+import { SITE, CATEGORIAS } from '../../site.config';
+import Base from '../layouts/Base.astro';
+import TarjetaArticulo from '../components/TarjetaArticulo.astro';
+import { articulosPublicados } from '../lib/articulos';
+
+const articulos = await articulosPublicados();
+---
+
+<Base titulo={SITE.nombre} descripcion={SITE.descripcion}>
+  <section class="estrecho" style="margin-bottom:3rem">
+    <h1>{SITE.nombre}</h1>
+    <p style="font-size:1.15rem;color:var(--texto-suave)">{SITE.descripcion}</p>
+    <p>
+      Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
+      Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto cuesta de
+      verdad y qué pasos dar, contado por alguien que lo está aprendiendo y lo documenta.
+    </p>
+  </section>
+
+  {articulos.length === 0 ? (
+    <p style="color:var(--texto-suave)">
+      Todavía no hay artículos publicados. Los primeros llegan pronto.
+    </p>
+  ) : (
+    <ul class="lista-articulos estrecho" style="padding:0">
+      {articulos.map((a) => (
+        <TarjetaArticulo
+          slug={a.id}
+          titulo={a.data.titulo}
+          descripcion={a.data.descripcion}
+          categoria={a.data.categoria}
+          fecha={a.data.fecha}
+        />
+      ))}
+    </ul>
+  )}
+
+  <section class="estrecho" style="margin-top:4rem">
+    <h2>Por dónde empezar</h2>
+    <ul>
+      {CATEGORIAS.map((c) => (
+        <li style="margin-bottom:0.5rem">
+          <a href={`/categoria/${c.slug}/`}><strong>{c.nombre}</strong></a> — {c.descripcion}
+        </li>
+      ))}
+    </ul>
+  </section>
+</Base>

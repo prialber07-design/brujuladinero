@@ -1,0 +1,20 @@
+---
+import { SITE, CATEGORIAS } from '../../site.config';
+
+const ruta = Astro.url.pathname;
+const esActual = (href: string) => ruta === href || ruta === href + '/';
+---
+
+<header class="cabecera">
+  <div class="contenedor cabecera-inner">
+    <a class="marca" href="/">{SITE.nombre}</a>
+    <nav class="nav" aria-label="Principal">
+      {CATEGORIAS.map((c) => (
+        <a href={`/categoria/${c.slug}/`} aria-current={esActual(`/categoria/${c.slug}/`) ? 'page' : undefined}>
+          {c.nombre}
+        </a>
+      ))}
+      <a href="/sobre-mi/" aria-current={esActual('/sobre-mi/') ? 'page' : undefined}>Sobre mí</a>
+    </nav>
+  </div>
+</header>

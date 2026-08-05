@@ -1,0 +1,88 @@
+---
+import { SITE } from '../../site.config';
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Política de cookies" descripcion={`Qué cookies usa ${SITE.nombre}, para qué sirven y cómo gestionarlas.`}>
+  <div class="estrecho">
+    <h1>Política de cookies</h1>
+
+    <div class="aviso-borrador">
+      <strong>PLANTILLA — actualízala cuando actives Analytics o AdSense.</strong> La tabla debe
+      reflejar las cookies que realmente se cargan. Revísala también si añades cualquier
+      servicio externo.
+    </div>
+
+    <h2>Qué es una cookie</h2>
+    <p>
+      Un archivo pequeño que un sitio web guarda en tu navegador para recordar información
+      entre visitas.
+    </p>
+
+    <h2>Cookies que usa este sitio</h2>
+
+    <h3>Necesarias (no requieren consentimiento)</h3>
+    <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>Nombre</th><th>Finalidad</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><code>consentimiento-cookies</code></td>
+            <td>Recordar si aceptaste o rechazaste las cookies opcionales</td>
+            <td>Permanente hasta que la borres</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Se almacena en el <em>localStorage</em> de tu navegador y no se envía a ningún servidor.
+    </p>
+
+    <h3>Analíticas (requieren tu consentimiento)</h3>
+    <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Google Analytics</td>
+            <td>Medir visitas y páginas más leídas, con IP anonimizada</td>
+            <td>Hasta 2 años</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Publicitarias (requieren tu consentimiento)</h3>
+    <div class="tabla-scroll">
+      <table>
+        <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Google AdSense</td>
+            <td>Mostrar publicidad y medir su rendimiento</td>
+            <td>Hasta 2 años</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cómo gestionarlas</h2>
+    <p>
+      Al entrar por primera vez puedes <strong>aceptar o rechazar</strong> las cookies
+      opcionales. Rechazarlas no limita ninguna funcionalidad.
+    </p>
+    <p>
+      Puedes cambiar tu decisión cuando quieras desde
+      <strong>«Preferencias de cookies»</strong>, en el pie de página. También puedes
+      bloquearlas o eliminarlas desde la configuración de tu navegador.
+    </p>
+
+    <h2>Más información</h2>
+    <p>
+      Consulta también la <a href="/politica-de-privacidad/">política de privacidad</a> o
+      escribe a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>.
+    </p>
+
+    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+  </div>
+</Base>

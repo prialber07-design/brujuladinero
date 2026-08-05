@@ -1,0 +1,62 @@
+---
+import { SITE } from '../../site.config';
+import Cabecera from '../components/Cabecera.astro';
+import Pie from '../components/Pie.astro';
+import BannerCookies from '../components/BannerCookies.astro';
+import '../styles/global.css';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+  tipo?: 'website' | 'article';
+  noIndexar?: boolean;
+  publicado?: Date;
+  modificado?: Date;
+}
+
+const {
+  titulo,
+  descripcion,
+  tipo = 'website',
+  noIndexar = false,
+  publicado,
+  modificado,
+} = Astro.props;
+
+const canonica = new URL(Astro.url.pathname, Astro.site ?? SITE.url).href;
+const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nombre}`;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloCompleto}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {noIndexar && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content={tipo} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:site_name" content={SITE.nombre} />
+    <meta property="og:locale" content="es_ES" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {publicado && <meta property="article:published_time" content={publicado.toISOString()} />}
+    {modificado && <meta property="article:modified_time" content={modificado.toISOString()} />}
+
+    <link rel="alternate" type="application/rss+xml" title={SITE.nombre} href="/rss.xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <Cabecera />
+    <main class="contenedor">
+      <slot />
+    </main>
+    <Pie />
+    <BannerCookies />
+  </body>
+</html>

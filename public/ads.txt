@@ -1,0 +1,8 @@
+# Archivo ads.txt — lo pide Google AdSense para verificar que eres el dueño del inventario.
+#
+# CUANDO ADSENSE TE APRUEBE, sustituye esta línea por la que te den en el panel.
+# Tendrá exactamente este formato (el ID es el tuyo):
+#
+# google.com, pub-0000000000000000, DIRECT, f08c47fec0942fa0
+#
+# Hasta entonces este archivo no hace nada. Déjalo aquí para no olvidarlo.

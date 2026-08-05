@@ -1,0 +1,29 @@
+---
+import { SITE } from '../../site.config';
+const anio = new Date().getFullYear();
+---
+
+<footer class="pie">
+  <div class="contenedor">
+    <nav class="pie-enlaces" aria-label="Legal">
+      <a href="/aviso-legal/">Aviso legal</a>
+      <a href="/politica-de-privacidad/">Política de privacidad</a>
+      <a href="/politica-de-cookies/">Política de cookies</a>
+      <a href="/sobre-mi/">Sobre mí</a>
+      <a href="/rss.xml">RSS</a>
+      <button class="boton" type="button" data-abrir-cookies>Preferencias de cookies</button>
+    </nav>
+    <p>
+      © {anio} {SITE.nombre}. Contenido informativo y divulgativo.
+      <strong>No es asesoramiento financiero ni de inversión.</strong>
+      Verifica siempre la información con fuentes oficiales antes de tomar decisiones con tu dinero.
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.querySelector('[data-abrir-cookies]')?.addEventListener('click', () => {
+    localStorage.removeItem('consentimiento-cookies');
+    document.querySelector('.cookies')?.removeAttribute('hidden');
+  });
+</script>

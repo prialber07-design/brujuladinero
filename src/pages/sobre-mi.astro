@@ -1,0 +1,61 @@
+---
+import { SITE } from '../../site.config';
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  titulo="Sobre mí"
+  descripcion={`Quién está detrás de ${SITE.nombre} y por qué escribo sobre finanzas personales y criptomonedas desde cero.`}
+>
+  <div class="estrecho">
+    <h1>Sobre mí</h1>
+
+    <div class="aviso-borrador">
+      <strong>Pendiente de completar.</strong> Esta página es de las más importantes del sitio:
+      en finanzas, Google evalúa activamente quién firma el contenido. Sustituye el texto de
+      abajo por el tuyo real, añade una foto y tu nombre completo.
+    </div>
+
+    <p>
+      Me llamo <strong>{SITE.autor.nombre}</strong> y escribo aquí sobre finanzas personales
+      y criptomonedas.
+    </p>
+
+    <h2>Por qué existe esta web</h2>
+    <p>
+      No soy asesor financiero ni trabajo en banca. Soy alguien que decidió entender de una vez
+      cómo funciona su propio dinero y que va documentando el proceso: lo que aprendo, lo que me
+      cuesta entender y los errores que cometo por el camino.
+    </p>
+    <p>
+      Escribo lo que me habría gustado encontrar cuando empecé: explicaciones sin jerga, con los
+      costes reales, y sin nadie intentando venderme nada.
+    </p>
+
+    <h2>Qué no vas a encontrar aquí</h2>
+    <ul>
+      <li>Recomendaciones de qué comprar o vender.</li>
+      <li>Promesas de rentabilidad.</li>
+      <li>Contenido copiado de otras webs.</li>
+    </ul>
+
+    <h2>Cómo trabajo</h2>
+    <p>
+      Antes de escribir sobre algo, lo hago. Si explico cómo abrir una cuenta, es porque la abrí
+      yo. Si hablo de comisiones, son las que pagué. Cuando algo no lo he probado en primera
+      persona, lo digo expresamente.
+    </p>
+    <p>
+      Contrasto los datos con fuentes oficiales y actualizo los artículos cuando la normativa
+      cambia. Si detectas un error, escríbeme a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>
+      y lo corrijo.
+    </p>
+
+    <h2>Transparencia</h2>
+    <p>
+      Esta web se financia con publicidad y, en algunos artículos, con enlaces de afiliado
+      —si contratas algo a través de ellos, yo recibo una comisión sin coste adicional para ti.
+      Siempre están señalados. Nunca recomiendo algo por su comisión.
+    </p>
+  </div>
+</Base>

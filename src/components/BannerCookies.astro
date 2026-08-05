@@ -1,0 +1,62 @@
+---
+// Banner de consentimiento conforme al RGPD y a la LSSI-CE española.
+// Clave: los scripts de medición y publicidad NO se cargan hasta que el
+// usuario acepta. Rechazar debe ser tan fácil como aceptar.
+import { SITE } from '../../site.config';
+---
+
+<div class="cookies" role="dialog" aria-label="Consentimiento de cookies" hidden>
+  <p>
+    Uso cookies propias necesarias y, si lo aceptas, cookies de terceros para medir visitas
+    y mostrar publicidad. Puedes rechazarlas sin perder ninguna funcionalidad.
+    Más detalle en la <a href="/politica-de-cookies/">política de cookies</a>.
+  </p>
+  <div class="cookies-botones">
+    <button class="boton boton-principal" type="button" data-cookies="aceptar">Aceptar</button>
+    <button class="boton" type="button" data-cookies="rechazar">Rechazar</button>
+    <a class="boton" href="/politica-de-cookies/">Más información</a>
+  </div>
+</div>
+
+<script define:vars={{ gaId: SITE.analytics.gaId, adsense: SITE.adsense }}>
+  const CLAVE = 'consentimiento-cookies';
+  const banner = document.querySelector('.cookies');
+
+  function cargarScriptsOpcionales() {
+    if (gaId) {
+      const s = document.createElement('script');
+      s.async = true;
+      s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+      document.head.appendChild(s);
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { window.dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', gaId, { anonymize_ip: true });
+    }
+
+    if (adsense.activo && adsense.publisherId) {
+      const a = document.createElement('script');
+      a.async = true;
+      a.crossOrigin = 'anonymous';
+      a.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense.publisherId}`;
+      document.head.appendChild(a);
+    }
+  }
+
+  function decidir(valor) {
+    localStorage.setItem(CLAVE, valor);
+    banner?.setAttribute('hidden', '');
+    if (valor === 'aceptar') cargarScriptsOpcionales();
+  }
+
+  const guardado = localStorage.getItem(CLAVE);
+  if (guardado === 'aceptar') {
+    cargarScriptsOpcionales();
+  } else if (guardado !== 'rechazar') {
+    banner?.removeAttribute('hidden');
+  }
+
+  document.querySelectorAll('[data-cookies]').forEach((b) => {
+    b.addEventListener('click', () => decidir(b.getAttribute('data-cookies')));
+  });
+</script>

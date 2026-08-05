@@ -1,0 +1,71 @@
+---
+import { SITE } from '../../site.config';
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Aviso legal" descripcion={`Aviso legal y condiciones de uso de ${SITE.nombre}.`} noIndexar={false}>
+  <div class="estrecho">
+    <h1>Aviso legal</h1>
+
+    <div class="aviso-borrador">
+      <strong>PLANTILLA — no publiques esto tal cual.</strong> Rellena los campos marcados con
+      <code>[...]</code> con tus datos reales. La LSSI-CE exige identificar al titular del sitio.
+      Si tienes dudas, usa un generador especializado o consulta con un profesional: yo no soy
+      fuente legal fiable y un aviso legal incorrecto puede acarrear sanción.
+    </div>
+
+    <h2>1. Titular del sitio</h2>
+    <ul>
+      <li><strong>Titular:</strong> [NOMBRE Y APELLIDOS COMPLETOS]</li>
+      <li><strong>NIF:</strong> [TU NIF]</li>
+      <li><strong>Domicilio:</strong> [DIRECCIÓN]</li>
+      <li><strong>Correo de contacto:</strong> {SITE.autor.email}</li>
+      <li><strong>Sitio web:</strong> {SITE.url}</li>
+    </ul>
+
+    <h2>2. Objeto</h2>
+    <p>
+      Este sitio tiene finalidad exclusivamente informativa y divulgativa sobre finanzas
+      personales y criptomonedas. El acceso es gratuito, salvo el coste de conexión del usuario.
+    </p>
+
+    <h2>3. Exención de responsabilidad</h2>
+    <p>
+      <strong>El contenido no constituye asesoramiento financiero, fiscal, legal ni de inversión.</strong>
+      El titular no está registrado como asesor financiero ante la CNMV ni ante ningún otro
+      organismo regulador, y no presta servicios de inversión.
+    </p>
+    <p>
+      La información se ofrece de buena fe y se procura mantener actualizada, pero la normativa
+      y las condiciones de los productos cambian. El usuario es responsable de contrastar la
+      información con fuentes oficiales antes de tomar cualquier decisión económica. El titular
+      no responde de las decisiones adoptadas a partir del contenido publicado.
+    </p>
+    <p>
+      La inversión en criptoactivos y otros productos financieros conlleva riesgo de pérdida
+      total o parcial del capital.
+    </p>
+
+    <h2>4. Propiedad intelectual</h2>
+    <p>
+      Los contenidos originales de este sitio pertenecen a su titular. Se permite citar
+      fragmentos breves indicando la fuente y enlazando al artículo original. No se autoriza
+      la reproducción íntegra sin permiso.
+    </p>
+
+    <h2>5. Enlaces de afiliado y publicidad</h2>
+    <p>
+      Este sitio puede incluir publicidad de terceros y enlaces de afiliado, señalados como
+      tales. Su uso no supone coste adicional para el usuario. El titular no se responsabiliza
+      de los contenidos, productos o servicios de terceros enlazados.
+    </p>
+
+    <h2>6. Legislación aplicable</h2>
+    <p>
+      Este aviso legal se rige por la legislación española. Para cualquier controversia serán
+      competentes los juzgados y tribunales que correspondan conforme a la normativa vigente.
+    </p>
+
+    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+  </div>
+</Base>

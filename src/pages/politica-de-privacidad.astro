@@ -1,0 +1,89 @@
+---
+import { SITE } from '../../site.config';
+import Base from '../layouts/Base.astro';
+---
+
+<Base titulo="Política de privacidad" descripcion={`Cómo trata ${SITE.nombre} tus datos personales, conforme al RGPD.`}>
+  <div class="estrecho">
+    <h1>Política de privacidad</h1>
+
+    <div class="aviso-borrador">
+      <strong>PLANTILLA — revísala antes de publicar.</strong> Rellena los <code>[...]</code> y
+      ajusta los apartados a lo que realmente uses. Si añades formulario de contacto o
+      newsletter, hay que documentarlo aquí. Ante la duda, consulta con un profesional.
+    </div>
+
+    <h2>1. Responsable del tratamiento</h2>
+    <ul>
+      <li><strong>Responsable:</strong> [NOMBRE Y APELLIDOS]</li>
+      <li><strong>NIF:</strong> [TU NIF]</li>
+      <li><strong>Contacto:</strong> {SITE.autor.email}</li>
+    </ul>
+
+    <h2>2. Qué datos se tratan y con qué finalidad</h2>
+    <table>
+      <thead>
+        <tr><th>Dato</th><th>Finalidad</th><th>Base legal</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Datos de navegación (cookies analíticas)</td>
+          <td>Medir visitas y entender qué contenido resulta útil</td>
+          <td>Consentimiento</td>
+        </tr>
+        <tr>
+          <td>Datos de navegación (cookies publicitarias)</td>
+          <td>Mostrar publicidad y financiar el sitio</td>
+          <td>Consentimiento</td>
+        </tr>
+        <tr>
+          <td>Correo electrónico, si escribes</td>
+          <td>Responder a tu consulta</td>
+          <td>Consentimiento</td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      <strong>Sin tu consentimiento no se carga ninguna cookie de terceros.</strong> Si rechazas,
+      la web funciona igual.
+    </p>
+
+    <h2>3. Destinatarios</h2>
+    <p>
+      Si aceptas las cookies opcionales, tus datos de navegación son tratados por
+      <strong>Google Ireland Limited</strong> (Google Analytics y Google AdSense), que puede
+      transferirlos fuera del Espacio Económico Europeo amparándose en las cláusulas
+      contractuales tipo de la Comisión Europea.
+    </p>
+    <p>
+      El alojamiento del sitio corre a cargo de <strong>[TU PROVEEDOR DE HOSTING]</strong>.
+    </p>
+
+    <h2>4. Conservación</h2>
+    <p>
+      Los datos se conservan mientras sean necesarios para la finalidad indicada o hasta que
+      retires tu consentimiento. Los plazos de las cookies figuran en la
+      <a href="/politica-de-cookies/">política de cookies</a>.
+    </p>
+
+    <h2>5. Tus derechos</h2>
+    <p>
+      Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y
+      portabilidad escribiendo a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>,
+      acreditando tu identidad.
+    </p>
+    <p>
+      Si consideras que el tratamiento no se ajusta a la normativa, puedes reclamar ante la
+      <a href="https://www.aepd.es" rel="nofollow noopener" target="_blank">Agencia Española de
+      Protección de Datos</a>.
+    </p>
+
+    <h2>6. Retirar el consentimiento</h2>
+    <p>
+      Puedes cambiar tu decisión en cualquier momento desde el enlace
+      <strong>«Preferencias de cookies»</strong> del pie de página.
+    </p>
+
+    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+  </div>
+</Base>
