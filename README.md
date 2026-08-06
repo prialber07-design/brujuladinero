@@ -103,9 +103,20 @@ Ya está resuelto en el código, no hay que tocarlo por artículo:
 Lo que sí depende de ti en cada artículo: escribir un buen `resumen` y unas
 `faq` que respondan de verdad. Es lo que decide si te citan a ti o a otro.
 
+## Imagen para redes sociales
+
+`public/og-default.png` (1200×630) se genera con:
+
+```bash
+npm run og
+```
+
+Es un script manual, no parte del build: la imagen es estática y no tiene
+sentido re-renderizarla en cada despliegue. Si cambias el nombre del sitio o
+el lema, vuelve a lanzarlo. El texto está al final de `scripts/generar-og.mjs`.
+
 ## Pendiente
 
-- [ ] Crear `/public/og-default.png` (1200×630) para las tarjetas sociales
 - [ ] Rellenar los `[...]` de las tres páginas legales
 - [ ] Escribir la página «Sobre mí» con datos reales y foto
 - [ ] Conectar el repositorio a Cloudflare Pages
