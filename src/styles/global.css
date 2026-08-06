@@ -274,6 +274,38 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 .puntos-clave ul { margin: 0; padding-left: var(--e6); font-family: var(--sans); font-size: 16px; }
 .puntos-clave li { margin: var(--e2) 0; color: var(--texto-suave); }
 
+/* ── Resumen (respuesta directa, clave para GEO) ─────────── */
+.resumen {
+  background: var(--acento-suave);
+  border-radius: var(--radio);
+  padding: var(--e4) var(--e6);
+  margin: var(--e8) 0;
+}
+.resumen h2 {
+  margin: 0 0 var(--e2); font-family: var(--sans);
+  font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase;
+  font-weight: 700; color: var(--acento-fuerte);
+}
+.resumen p {
+  margin: 0; font-family: var(--serif);
+  font-size: 19px; line-height: 1.6; color: var(--texto);
+}
+
+/* ── Preguntas frecuentes ────────────────────────────────── */
+.faq { margin: var(--e12) 0; padding-top: var(--e6); border-top: 1px solid var(--borde); }
+.faq h2 { margin: 0 0 var(--e4); font-size: 24px; }
+.faq dl { margin: 0; }
+.faq-item { padding: var(--e4) 0; border-bottom: 1px solid var(--borde-sutil); }
+.faq-item:last-child { border-bottom: none; }
+.faq dt {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--texto); margin-bottom: var(--e2);
+}
+.faq dd {
+  margin: 0; font-family: var(--serif); font-size: 17px;
+  line-height: 1.65; color: var(--texto-suave);
+}
+
 /* ── Índice de contenidos ────────────────────────────────── */
 .indice {
   border: 1px solid var(--borde); border-radius: var(--radio);

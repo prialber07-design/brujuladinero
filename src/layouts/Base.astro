@@ -3,6 +3,7 @@ import { SITE } from '../../site.config';
 import Cabecera from '../components/Cabecera.astro';
 import Pie from '../components/Pie.astro';
 import BannerCookies from '../components/BannerCookies.astro';
+import EsquemaSitio from '../components/EsquemaSitio.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -32,7 +33,15 @@ const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nom
     <title>{tituloCompleto}</title>
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={canonica} />
-    {noIndexar && <meta name="robots" content="noindex, nofollow" />}
+
+    {noIndexar ? (
+      <meta name="robots" content="noindex, nofollow" />
+    ) : (
+      /* max-snippet:-1 autoriza fragmentos largos: es lo que permite que
+         Google y los motores de IA citen un párrafo entero en vez de dos
+         líneas sueltas. max-image-preview:large da tarjeta grande. */
+      <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    )}
 
     <meta property="og:type" content={tipo} />
     <meta property="og:title" content={titulo} />
@@ -40,8 +49,18 @@ const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nom
     <meta property="og:url" content={canonica} />
     <meta property="og:site_name" content={SITE.nombre} />
     <meta property="og:locale" content="es_ES" />
+    <meta property="og:image" content={new URL(SITE.imagenSocial, SITE.url).href} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={titulo} />
+    <meta name="twitter:description" content={descripcion} />
+    <meta name="twitter:image" content={new URL(SITE.imagenSocial, SITE.url).href} />
     <meta name="theme-color" content="#1f6f5c" />
+
+    <meta name="author" content={SITE.autor.nombre} />
+    <link rel="author" href={`${SITE.url}/sobre-mi/`} />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="Resumen del sitio para motores de IA" />
 
     {publicado && <meta property="article:published_time" content={publicado.toISOString()} />}
     {modificado && <meta property="article:modified_time" content={modificado.toISOString()} />}
@@ -60,6 +79,7 @@ const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nom
     </script>
   </head>
   <body>
+    <EsquemaSitio />
     {conProgreso && <div class="progreso" id="barra-progreso"></div>}
     <Cabecera />
     <main class="contenedor">

@@ -32,8 +32,29 @@ fecha: 2026-08-05
 autor: 'Alberto'
 borrador: true            # true = no se publica
 faltaAporteReal: true     # true = todavía no lleva nada tuyo
+
+# --- Opcional, pero es lo que hace que te citen ---
+resumen: >-
+  Respuesta directa en 2-3 frases. Sale en una caja al principio del artículo
+  y es el fragmento que ChatGPT, Perplexity y Google extraen para responder.
+  Escríbelo como si fuera la única frase que alguien va a leer.
+temas: ['sinónimo uno', 'sinónimo dos']
+faq:
+  - pregunta: '¿Pregunta tal y como la escribiría alguien en Google?'
+    respuesta: >-
+      Respuesta completa y autónoma, que se entienda sin haber leído el
+      artículo. Genera FAQPage en datos estructurados.
+fuentes:
+  - texto: 'Agencia Tributaria — nombre de la página'
+    url: 'https://sede.agenciatributaria.gob.es'
+tieneAfiliados: false
 ---
 ```
+
+**Regla que no puedes saltarte con las FAQ:** el texto de la respuesta debe ser
+idéntico al que ve el usuario. Google aplica acción manual si marcas contenido
+que no está visible en la página. Aquí se genera automáticamente de la misma
+fuente, así que se cumple solo — pero no lo cambies.
 
 Si te equivocas en algo (categoría inventada, descripción muy corta), la web
 avisa con un error al arrancar. Es a propósito: mejor fallar en local que
@@ -65,8 +86,26 @@ menos de un minuto.
 
 Todo está en `site.config.ts`. Es el único archivo que hay que tocar.
 
+## SEO y GEO
+
+Ya está resuelto en el código, no hay que tocarlo por artículo:
+
+- **Datos estructurados**: `Organization`, `Person` y `WebSite` en todas las
+  páginas; `Article`, `BreadcrumbList` y `FAQPage` en los artículos.
+- **`/robots.txt`**: permite explícitamente a los rastreadores de IA (GPTBot,
+  ClaudeBot, PerplexityBot, Google-Extended…). Se apaga con
+  `permitirRastreadoresIA: false` en `site.config.ts`.
+- **`/llms.txt`**: mapa del sitio en texto plano para motores de IA, con cómo
+  citarte y la advertencia de que no es asesoramiento financiero.
+- **`max-snippet:-1`**: autoriza fragmentos largos, necesario para que te citen
+  un párrafo entero en vez de dos líneas.
+
+Lo que sí depende de ti en cada artículo: escribir un buen `resumen` y unas
+`faq` que respondan de verdad. Es lo que decide si te citan a ti o a otro.
+
 ## Pendiente
 
+- [ ] Crear `/public/og-default.png` (1200×630) para las tarjetas sociales
 - [ ] Rellenar los `[...]` de las tres páginas legales
 - [ ] Escribir la página «Sobre mí» con datos reales y foto
 - [ ] Conectar el repositorio a Cloudflare Pages

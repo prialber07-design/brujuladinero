@@ -21,6 +21,12 @@ export const SITE = {
     // ID de Google Analytics 4, formato G-XXXXXXXXXX
     gaId: '',
   },
+  // Imagen para redes sociales. Colócala en /public/og-default.png (1200x630).
+  imagenSocial: '/og-default.png',
+  // GEO: si los rastreadores de IA (ChatGPT, Claude, Perplexity, Gemini)
+  // pueden leer el sitio. En true te pueden citar; en false proteges el
+  // contenido pero desapareces de las respuestas generadas.
+  permitirRastreadoresIA: true,
 } as const;
 
 export const CATEGORIAS = [

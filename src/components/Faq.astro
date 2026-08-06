@@ -1,0 +1,34 @@
+---
+// Preguntas frecuentes visibles + FAQPage en datos estructurados.
+// Requisito de Google: la respuesta del esquema debe ser EXACTAMENTE la
+// misma que ve el usuario. Marcar contenido oculto es motivo de acción manual.
+interface Props {
+  faq: readonly { pregunta: string; respuesta: string }[];
+}
+const { faq } = Astro.props;
+
+const esquema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.pregunta,
+    acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+  })),
+};
+---
+
+{faq.length > 0 && (
+  <section class="faq" aria-labelledby="faq-titulo">
+    <h2 id="faq-titulo">Preguntas frecuentes</h2>
+    <dl>
+      {faq.map((f) => (
+        <div class="faq-item">
+          <dt>{f.pregunta}</dt>
+          <dd>{f.respuesta}</dd>
+        </div>
+      ))}
+    </dl>
+    <script type="application/ld+json" set:html={JSON.stringify(esquema)} is:inline />
+  </section>
+)}

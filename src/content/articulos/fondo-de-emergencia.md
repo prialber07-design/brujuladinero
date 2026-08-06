@@ -16,6 +16,41 @@ fuentes:
   - texto: 'Banco de España — Portal del Cliente Bancario'
     url: 'https://clientebancario.bde.es'
 tieneAfiliados: false
+resumen: >-
+  Un fondo de emergencia son entre 3 y 12 meses de tus gastos mensuales
+  (no de tus ingresos), guardados en una cuenta separada, líquida y sin
+  invertir. Cuántos meses depende de tu estabilidad laboral: 3 con contrato
+  indefinido, 6 si es temporal y hasta 12 si eres autónomo.
+temas:
+  - fondo de emergencia
+  - colchón financiero
+  - ahorro de emergencia
+  - finanzas personales
+faq:
+  - pregunta: '¿Cuánto dinero debe tener un fondo de emergencia?'
+    respuesta: >-
+      Entre 3 y 12 meses de tus gastos mensuales, según tu estabilidad laboral:
+      3 meses con contrato indefinido y sin cargas, entre 4 y 6 con hipoteca o
+      hijos, 6 con contrato temporal y de 6 a 12 si eres autónomo. Se calcula
+      sobre los gastos, no sobre los ingresos.
+  - pregunta: '¿Dónde debo guardar el fondo de emergencia?'
+    respuesta: >-
+      En una cuenta de ahorro o remunerada separada de tu cuenta corriente,
+      idealmente en otro banco. Debe estar disponible en 24 o 48 horas y no
+      debe invertirse: las emergencias suelen coincidir con los malos momentos
+      de mercado, y venderías con pérdidas justo cuando lo necesitas.
+  - pregunta: '¿Ahorro primero o pago primero mis deudas?'
+    respuesta: >-
+      Si tienes deuda con intereses altos, junta primero un colchón mínimo de
+      unos 1.000 euros, después amortiza la deuda cara y solo entonces completa
+      el fondo. Ahorrar al 2% mientras pagas un 20% de interés es perder dinero
+      cada mes.
+  - pregunta: '¿Qué se considera una emergencia real?'
+    respuesta: >-
+      Perder el trabajo, una avería del coche que necesitas para trabajar, una
+      reparación urgente en casa o un gasto médico no cubierto. La prueba es
+      sencilla: si puede esperar tres meses, no es una emergencia, es un gasto
+      que toca planificar.
 ---
 
 Si solo vas a hacer una cosa con tu dinero este año, que sea esta. El fondo de

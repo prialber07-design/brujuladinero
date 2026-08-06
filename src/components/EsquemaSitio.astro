@@ -1,0 +1,53 @@
+---
+// Datos estructurados de sitio, presentes en todas las páginas.
+// Definen la ENTIDAD: quién publica y quién firma. En un nicho YMYL como
+// finanzas es lo que más pesa, y es también lo que permite a un motor de IA
+// atribuirte la información en vez de citarla sin fuente.
+import { SITE } from '../../site.config';
+
+const idOrg = `${SITE.url}/#organizacion`;
+const idAutor = `${SITE.url}/#autor`;
+
+const esquema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': idOrg,
+      name: SITE.nombre,
+      url: SITE.url,
+      description: SITE.descripcion,
+      founder: { '@id': idAutor },
+      areaServed: { '@type': 'Country', name: 'España' },
+      knowsLanguage: 'es-ES',
+    },
+    {
+      '@type': 'Person',
+      '@id': idAutor,
+      name: SITE.autor.nombre,
+      url: `${SITE.url}/sobre-mi/`,
+      description: SITE.autor.bio,
+      // Honesto a propósito: no se declaran credenciales que no existen.
+      // Inventar titulaciones en YMYL es exactamente lo que Google penaliza.
+      knowsAbout: [
+        'finanzas personales',
+        'ahorro',
+        'presupuesto doméstico',
+        'criptomonedas',
+        'fiscalidad de criptomonedas en España',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#web`,
+      url: SITE.url,
+      name: SITE.nombre,
+      description: SITE.descripcion,
+      publisher: { '@id': idOrg },
+      inLanguage: 'es-ES',
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(esquema)} is:inline />

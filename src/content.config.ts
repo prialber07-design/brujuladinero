@@ -34,6 +34,19 @@ const articulos = defineCollection({
 
     // Activa el aviso legal de enlaces de afiliado. Obligatorio si los usas.
     tieneAfiliados: z.boolean().default(false),
+
+    // GEO: respuesta directa de 2-3 frases al inicio. Es el fragmento que los
+    // motores de IA extraen y citan, y el que Google usa para el snippet.
+    resumen: z.string().min(120).max(400).optional(),
+
+    // Preguntas frecuentes. Generan FAQPage en datos estructurados, que es
+    // de lo que más se apoya la IA para responder y citar la fuente.
+    faq: z
+      .array(z.object({ pregunta: z.string(), respuesta: z.string() }))
+      .optional(),
+
+    // Sinónimos y términos que cubre el artículo. Alimenta `keywords` y `about`.
+    temas: z.array(z.string()).optional(),
   }),
 });
 

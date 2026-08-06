@@ -24,7 +24,31 @@ function envolverTablas() {
 
 export default defineConfig({
   site: 'https://brujuladinero.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      i18n: { defaultLocale: 'es', locales: { es: 'es-ES' } },
+      serialize(item) {
+        const ruta = new URL(item.url).pathname;
+
+        if (ruta === '/') {
+          item.priority = 1.0;
+          item.changefreq = 'weekly';
+        } else if (/^\/(aviso-legal|politica-de-)/.test(ruta)) {
+          // Obligatorias pero irrelevantes para el posicionamiento.
+          item.priority = 0.2;
+          item.changefreq = 'yearly';
+        } else if (ruta.startsWith('/categoria/')) {
+          item.priority = 0.7;
+          item.changefreq = 'weekly';
+        } else {
+          // Artículos y "Sobre mí": son el activo del sitio.
+          item.priority = 0.9;
+          item.changefreq = 'monthly';
+        }
+        return item;
+      },
+    }),
+  ],
   markdown: {
     rehypePlugins: [envolverTablas],
     shikiConfig: { theme: 'github-light', wrap: true },

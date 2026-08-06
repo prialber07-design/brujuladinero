@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://brujuladinero.com/sitemap-index.xml

@@ -1,0 +1,13 @@
+---
+// GEO: respuesta directa, arriba del todo y en texto plano.
+// Los motores de IA extraen el primer bloque que responde a la consulta de
+// forma autónoma. Si la respuesta está enterrada en el cuarto párrafo, te
+// resumen mal o citan a otro.
+interface Props { texto: string; }
+const { texto } = Astro.props;
+---
+
+<section class="resumen" aria-labelledby="resumen-titulo">
+  <h2 id="resumen-titulo">En resumen</h2>
+  <p>{texto}</p>
+</section>
