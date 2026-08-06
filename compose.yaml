@@ -1,0 +1,24 @@
+services:
+  web:
+    build: .
+    image: brujuladinero:latest
+    container_name: brujuladinero
+    restart: unless-stopped
+    ports:
+      # Solo se expone en local: delante debe ir un proxy inverso que
+      # se encargue del HTTPS (Caddy, Traefik o nginx en el host).
+      - '127.0.0.1:8080:8080'
+    read_only: true
+    # Modo 1777 explícito: por defecto el tmpfs pertenece a root y nginx,
+    # que corre sin privilegios, no podría escribir ni el pid ni la caché.
+    tmpfs:
+      - /tmp:mode=1777
+      - /var/cache/nginx:mode=1777
+    security_opt:
+      - no-new-privileges:true
+    healthcheck:
+      test: ['CMD', 'wget', '-q', '--spider', 'http://localhost:8080/']
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

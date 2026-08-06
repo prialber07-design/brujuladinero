@@ -1,0 +1,26 @@
+---
+import { SITE, CATEGORIAS } from '../../site.config';
+import Base from '../layouts/Base.astro';
+---
+
+<Base
+  titulo="Página no encontrada"
+  descripcion={`La página que buscas no existe en ${SITE.nombre}. Vuelve al inicio o explora las categorías.`}
+  noIndexar
+>
+  <div class="lectura" style="margin: 64px 0">
+    <p class="etiqueta">Error 404</p>
+    <h1>Esta página no existe</h1>
+    <p class="entradilla">
+      Puede que el enlace esté mal, o que el artículo haya cambiado de dirección.
+    </p>
+
+    <h2>Por dónde seguir</h2>
+    <ul>
+      <li><a href="/">Volver al inicio</a></li>
+      {CATEGORIAS.map((c) => (
+        <li><a href={`/categoria/${c.slug}/`}>{c.nombre}</a></li>
+      ))}
+    </ul>
+  </div>
+</Base>

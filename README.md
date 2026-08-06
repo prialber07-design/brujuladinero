@@ -82,6 +82,35 @@ git push
 Cuando esté conectado Cloudflare Pages, el `push` despliega la web solo en
 menos de un minuto.
 
+## Despliegue con Docker
+
+Alternativa a Cloudflare Pages, para servirlo tú desde un VPS.
+
+```bash
+docker compose up -d --build
+```
+
+Queda escuchando en `127.0.0.1:8080`. **Delante tiene que ir un proxy inverso**
+(Caddy, Traefik o nginx en el host) que se encargue del HTTPS: el contenedor
+solo sirve HTTP y a propósito no se expone al exterior.
+
+Cómo está montado:
+
+- **Dos fases**: Node compila el sitio, y la imagen final solo lleva nginx y el
+  HTML. Ni Node, ni `node_modules`, ni código fuente. Unos 50 MB.
+- **Sin privilegios**: corre como usuario `nginx`, sistema de archivos en solo
+  lectura y `no-new-privileges`.
+- **Caché**: los assets con hash se cachean un año; el HTML nunca, para que un
+  despliegue se vea al instante.
+- **404 real**: sin fallback a `index.html`. Es un sitio estático, no una SPA,
+  y Google necesita que un 404 sea un 404.
+
+Para actualizar tras escribir artículos: `docker compose up -d --build`.
+
+Antes de activar HSTS en `nginx.conf`, comprueba que todo carga por HTTPS: si
+lo activas antes de tiempo, los navegadores recordarán la cabecera durante un
+año.
+
 ## Cambiar el nombre o el dominio
 
 Todo está en `site.config.ts`. Es el único archivo que hay que tocar.
