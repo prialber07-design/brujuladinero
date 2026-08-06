@@ -1,0 +1,17 @@
+---
+import Icono from './Icono.astro';
+
+interface Props { puntos: readonly string[]; }
+const { puntos } = Astro.props;
+---
+
+{puntos.length > 0 && (
+  <section class="puntos-clave" aria-labelledby="puntos-clave-titulo">
+    <h2 id="puntos-clave-titulo">
+      <Icono nombre="bombilla" tam={16} /> Puntos clave
+    </h2>
+    <ul>
+      {puntos.map((p) => <li>{p}</li>)}
+    </ul>
+  </section>
+)}

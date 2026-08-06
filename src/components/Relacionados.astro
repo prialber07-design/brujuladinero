@@ -1,0 +1,29 @@
+---
+import { CATEGORIAS } from '../../site.config';
+import { articulosPublicados } from '../lib/articulos';
+
+interface Props { actual: string; categoria: string; }
+const { actual, categoria } = Astro.props;
+
+const todos = (await articulosPublicados()).filter((a) => a.id !== actual);
+// Primero los de la misma categoría; se completa con el resto si faltan.
+const mismos = todos.filter((a) => a.data.categoria === categoria);
+const otros = todos.filter((a) => a.data.categoria !== categoria);
+const relacionados = [...mismos, ...otros].slice(0, 3);
+
+const nombreCat = (slug: string) => CATEGORIAS.find((c) => c.slug === slug)?.nombre ?? '';
+---
+
+{relacionados.length > 0 && (
+  <section class="relacionados" aria-labelledby="relacionados-titulo">
+    <h2 id="relacionados-titulo">Te puede interesar</h2>
+    <ul class="rejilla">
+      {relacionados.map((a) => (
+        <li class="rejilla-tarjeta">
+          <span class="cat">{nombreCat(a.data.categoria)}</span>
+          <h3><a href={`/${a.id}/`}>{a.data.titulo}</a></h3>
+        </li>
+      ))}
+    </ul>
+  </section>
+)}

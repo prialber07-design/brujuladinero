@@ -1,0 +1,34 @@
+---
+// Hueco publicitario conforme a las políticas de AdSense:
+//  · Etiquetado "PUBLICIDAD", en español
+//  · Delimitado y separado del contenido, para que no se confunda con el texto
+//  · Altura reservada, de modo que el texto no salte al cargar (CLS)
+//  · Nunca junto a menús ni enlaces, para evitar clics accidentales
+import { SITE } from '../../site.config';
+
+interface Props {
+  formato?: 'rectangulo' | 'banner' | 'lateral';
+  slot?: string;
+}
+const { formato = 'rectangulo', slot } = Astro.props;
+const activo = SITE.adsense.activo && SITE.adsense.publisherId && slot;
+---
+
+<aside class={`anuncio anuncio-${formato}`} aria-label="Publicidad">
+  <span class="anuncio-etiqueta">Publicidad</span>
+  {activo ? (
+    <Fragment>
+      <ins
+        class="adsbygoogle anuncio-hueco"
+        style="display:block"
+        data-ad-client={SITE.adsense.publisherId}
+        data-ad-slot={slot}
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      />
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </Fragment>
+  ) : (
+    <div class="anuncio-hueco">Espacio publicitario</div>
+  )}
+</aside>

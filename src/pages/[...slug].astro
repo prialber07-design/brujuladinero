@@ -12,10 +12,15 @@ export async function getStaticPaths() {
 }
 
 const { articulo } = Astro.props;
-const { Content } = await render(articulo);
+const { Content, headings } = await render(articulo);
+
+// Tiempo de lectura: ~200 palabras por minuto en castellano.
+const palabras = articulo.body?.split(/\s+/).filter(Boolean).length ?? 0;
+const minutos = Math.max(1, Math.round(palabras / 200));
 ---
 
 <Articulo
+  slug={articulo.id}
   titulo={articulo.data.titulo}
   descripcion={articulo.data.descripcion}
   categoria={articulo.data.categoria}
@@ -24,6 +29,11 @@ const { Content } = await render(articulo);
   autor={articulo.data.autor}
   borrador={articulo.data.borrador}
   faltaAporteReal={articulo.data.faltaAporteReal}
+  puntosClave={articulo.data.puntosClave}
+  fuentes={articulo.data.fuentes}
+  tieneAfiliados={articulo.data.tieneAfiliados}
+  encabezados={headings}
+  minutos={minutos}
 >
   <Content />
 </Articulo>

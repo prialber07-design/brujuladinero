@@ -1,0 +1,42 @@
+---
+import Icono from './Icono.astro';
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  encabezados: MarkdownHeading[];
+  variante?: 'plegable' | 'lateral';
+}
+const { encabezados, variante = 'plegable' } = Astro.props;
+
+// Solo h2 y h3: más profundidad convierte el índice en ruido.
+const items = encabezados.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{items.length >= 3 && (
+  variante === 'lateral' ? (
+    <nav class="lateral-caja" aria-labelledby="indice-lateral-titulo">
+      <h2 id="indice-lateral-titulo">Índice del artículo</h2>
+      <ol>
+        {items.map((h) => (
+          <li class={h.depth === 3 ? 'nivel-3' : ''}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  ) : (
+    <details class="indice" open>
+      <summary>
+        Índice de contenidos
+        <Icono nombre="chevron-abajo" tam={18} />
+      </summary>
+      <ol>
+        {items.map((h) => (
+          <li class={h.depth === 3 ? 'nivel-3' : ''}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </details>
+  )
+)}

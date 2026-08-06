@@ -1,0 +1,19 @@
+---
+import { SITE } from '../../site.config';
+
+interface Props { autor: string; }
+const { autor } = Astro.props;
+
+// Cuando tengas foto, ponla en /public/autor.jpg y descomenta la etiqueta img.
+const inicial = autor.trim().charAt(0).toUpperCase();
+---
+
+<aside class="caja-autor">
+  {/* <img src="/autor.jpg" alt={autor} width="64" height="64" loading="lazy" /> */}
+  <div class="avatar" aria-hidden="true">{inicial}</div>
+  <div class="caja-autor-texto">
+    <h2>{autor}</h2>
+    <p>{SITE.autor.bio}</p>
+    <a href="/sobre-mi/">Más sobre el autor →</a>
+  </div>
+</aside>

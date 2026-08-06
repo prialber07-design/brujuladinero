@@ -2,46 +2,84 @@
 import { SITE, CATEGORIAS } from '../../site.config';
 import Base from '../layouts/Base.astro';
 import TarjetaArticulo from '../components/TarjetaArticulo.astro';
+import Anuncio from '../components/Anuncio.astro';
+import Icono from '../components/Icono.astro';
 import { articulosPublicados } from '../lib/articulos';
 
 const articulos = await articulosPublicados();
+const primeros = articulos.slice(0, 3);
+const resto = articulos.slice(3);
+
+const iconos = {
+  'finanzas-personales': 'cartera',
+  'cripto-desde-cero': 'bitcoin',
+  'fiscalidad-y-seguridad': 'escudo',
+  'actualidad-explicada': 'periodico',
+} as const;
 ---
 
 <Base titulo={SITE.nombre} descripcion={SITE.descripcion}>
-  <section class="estrecho" style="margin-bottom:3rem">
+  <section class="presentacion">
     <h1>{SITE.nombre}</h1>
-    <p style="font-size:1.15rem;color:var(--texto-suave)">{SITE.descripcion}</p>
+    <p class="lema">Tu guía serena en finanzas personales y criptomonedas</p>
     <p>
       Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
-      Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto cuesta de
-      verdad y qué pasos dar, contado por alguien que lo está aprendiendo y lo documenta.
+      Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto cuesta
+      de verdad y qué pasos dar, contado por alguien que lo está aprendiendo y lo documenta.
     </p>
   </section>
 
   {articulos.length === 0 ? (
-    <p style="color:var(--texto-suave)">
-      Todavía no hay artículos publicados. Los primeros llegan pronto.
-    </p>
+    <div class="vacio">
+      <h2>Todavía no hay artículos publicados</h2>
+      <p>Los primeros llegan pronto. La educación financiera requiere tiempo y pausa.</p>
+    </div>
   ) : (
-    <ul class="lista-articulos estrecho" style="padding:0">
-      {articulos.map((a) => (
-        <TarjetaArticulo
-          slug={a.id}
-          titulo={a.data.titulo}
-          descripcion={a.data.descripcion}
-          categoria={a.data.categoria}
-          fecha={a.data.fecha}
-        />
-      ))}
-    </ul>
+    <section aria-labelledby="recientes-titulo">
+      <div class="seccion-titulo">
+        <h2 id="recientes-titulo">Artículos recientes</h2>
+      </div>
+
+      <ul class="lista-articulos">
+        {primeros.map((a) => (
+          <TarjetaArticulo
+            slug={a.id}
+            titulo={a.data.titulo}
+            descripcion={a.data.descripcion}
+            categoria={a.data.categoria}
+            fecha={a.data.fecha}
+          />
+        ))}
+      </ul>
+
+      {articulos.length > 3 && <Anuncio formato="banner" />}
+
+      {resto.length > 0 && (
+        <ul class="lista-articulos">
+          {resto.map((a) => (
+            <TarjetaArticulo
+              slug={a.id}
+              titulo={a.data.titulo}
+              descripcion={a.data.descripcion}
+              categoria={a.data.categoria}
+              fecha={a.data.fecha}
+            />
+          ))}
+        </ul>
+      )}
+    </section>
   )}
 
-  <section class="estrecho" style="margin-top:4rem">
-    <h2>Por dónde empezar</h2>
-    <ul>
+  <section class="bloque-empezar" aria-labelledby="empezar-titulo">
+    <h2 id="empezar-titulo">Por dónde empezar</h2>
+    <ul class="tarjetas-categoria">
       {CATEGORIAS.map((c) => (
-        <li style="margin-bottom:0.5rem">
-          <a href={`/categoria/${c.slug}/`}><strong>{c.nombre}</strong></a> — {c.descripcion}
+        <li>
+          <a href={`/categoria/${c.slug}/`}>
+            <span class="icono-categoria"><Icono nombre={iconos[c.slug]} tam={20} /></span>
+            <h3>{c.nombre}</h3>
+            <p>{c.descripcion}</p>
+          </a>
         </li>
       ))}
     </ul>

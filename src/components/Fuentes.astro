@@ -1,0 +1,23 @@
+---
+interface Props {
+  fuentes: readonly { texto: string; url?: string }[];
+}
+const { fuentes } = Astro.props;
+---
+
+{fuentes.length > 0 && (
+  <section class="fuentes" aria-labelledby="fuentes-titulo">
+    <h2 id="fuentes-titulo">Fuentes</h2>
+    <ol>
+      {fuentes.map((f) => (
+        <li>
+          {f.url ? (
+            <a href={f.url} rel="nofollow noopener" target="_blank">{f.texto}</a>
+          ) : (
+            f.texto
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+)}

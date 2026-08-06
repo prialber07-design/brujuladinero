@@ -1,62 +1,115 @@
 ---
-// Banner de consentimiento conforme al RGPD y a la LSSI-CE española.
-// Clave: los scripts de medición y publicidad NO se cargan hasta que el
-// usuario acepta. Rechazar debe ser tan fácil como aceptar.
+// Consentimiento conforme al RGPD y a la LSSI-CE:
+//  · Nada de "al continuar navegando aceptas": el consentimiento es explícito.
+//  · Aceptar, Rechazar y Configurar tienen el mismo peso visual.
+//  · Los interruptores del panel vienen DESACTIVADOS por defecto.
+//  · Ningún script de terceros se carga antes de la aceptación.
 import { SITE } from '../../site.config';
 ---
 
 <div class="cookies" role="dialog" aria-label="Consentimiento de cookies" hidden>
-  <p>
-    Uso cookies propias necesarias y, si lo aceptas, cookies de terceros para medir visitas
-    y mostrar publicidad. Puedes rechazarlas sin perder ninguna funcionalidad.
-    Más detalle en la <a href="/politica-de-cookies/">política de cookies</a>.
-  </p>
-  <div class="cookies-botones">
-    <button class="boton boton-principal" type="button" data-cookies="aceptar">Aceptar</button>
-    <button class="boton" type="button" data-cookies="rechazar">Rechazar</button>
-    <a class="boton" href="/politica-de-cookies/">Más información</a>
+  <div class="cookies-inner">
+    <p>
+      Uso cookies propias necesarias y, solo si lo autorizas, cookies de terceros para medir
+      visitas y mostrar publicidad. Rechazarlas no limita ninguna funcionalidad del sitio.
+      Detalle en la <a href="/politica-de-cookies/">política de cookies</a>.
+    </p>
+    <div class="cookies-botones">
+      <button class="boton" type="button" data-cookies="aceptar">Aceptar</button>
+      <button class="boton" type="button" data-cookies="rechazar">Rechazar</button>
+      <button class="boton" type="button" data-cookies-config>Configurar</button>
+    </div>
+
+    <div class="cookies-config" data-abierto="false">
+      <label class="opcion-cookie">
+        <input type="checkbox" checked disabled />
+        <span>
+          <strong>Necesarias (siempre activas)</strong>
+          <span>Solo recuerdan tu decisión sobre estas cookies. No salen de tu navegador.</span>
+        </span>
+      </label>
+      <label class="opcion-cookie">
+        <input type="checkbox" data-cookie-tipo="analitica" />
+        <span>
+          <strong>Analíticas</strong>
+          <span>Miden qué artículos se leen, con la IP anonimizada. Proveedor: Google Analytics.</span>
+        </span>
+      </label>
+      <label class="opcion-cookie">
+        <input type="checkbox" data-cookie-tipo="publicidad" />
+        <span>
+          <strong>Publicitarias</strong>
+          <span>Permiten mostrar anuncios y medir su rendimiento. Proveedor: Google AdSense.</span>
+        </span>
+      </label>
+      <div class="cookies-botones" style="margin-top:16px">
+        <button class="boton" type="button" data-cookies="guardar">Guardar preferencias</button>
+      </div>
+    </div>
   </div>
 </div>
 
 <script define:vars={{ gaId: SITE.analytics.gaId, adsense: SITE.adsense }}>
   const CLAVE = 'consentimiento-cookies';
   const banner = document.querySelector('.cookies');
+  const panel = banner?.querySelector('.cookies-config');
 
-  function cargarScriptsOpcionales() {
-    if (gaId) {
-      const s = document.createElement('script');
-      s.async = true;
-      s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
-      document.head.appendChild(s);
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { window.dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', gaId, { anonymize_ip: true });
-    }
-
-    if (adsense.activo && adsense.publisherId) {
-      const a = document.createElement('script');
-      a.async = true;
-      a.crossOrigin = 'anonymous';
-      a.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense.publisherId}`;
-      document.head.appendChild(a);
-    }
+  function cargarAnalitica() {
+    if (!gaId) return;
+    const s = document.createElement('script');
+    s.async = true;
+    s.src = `https://www.googletagmanager.com/gtag/js?id=${gaId}`;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', gaId, { anonymize_ip: true });
   }
 
-  function decidir(valor) {
-    localStorage.setItem(CLAVE, valor);
+  function cargarPublicidad() {
+    if (!adsense.activo || !adsense.publisherId) return;
+    const a = document.createElement('script');
+    a.async = true;
+    a.crossOrigin = 'anonymous';
+    a.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense.publisherId}`;
+    document.head.appendChild(a);
+  }
+
+  function aplicar(pref) {
+    if (pref.analitica) cargarAnalitica();
+    if (pref.publicidad) cargarPublicidad();
+  }
+
+  function guardar(pref) {
+    localStorage.setItem(CLAVE, JSON.stringify(pref));
     banner?.setAttribute('hidden', '');
-    if (valor === 'aceptar') cargarScriptsOpcionales();
+    aplicar(pref);
   }
 
-  const guardado = localStorage.getItem(CLAVE);
-  if (guardado === 'aceptar') {
-    cargarScriptsOpcionales();
-  } else if (guardado !== 'rechazar') {
+  // Estado inicial
+  let guardado = null;
+  try { guardado = JSON.parse(localStorage.getItem(CLAVE) || 'null'); } catch (e) {}
+
+  if (guardado) {
+    aplicar(guardado);
+  } else {
     banner?.removeAttribute('hidden');
   }
 
-  document.querySelectorAll('[data-cookies]').forEach((b) => {
-    b.addEventListener('click', () => decidir(b.getAttribute('data-cookies')));
+  banner?.querySelector('[data-cookies-config]')?.addEventListener('click', () => {
+    const abierto = panel?.getAttribute('data-abierto') === 'true';
+    panel?.setAttribute('data-abierto', String(!abierto));
+  });
+
+  banner?.querySelectorAll('[data-cookies]').forEach((b) => {
+    b.addEventListener('click', () => {
+      const accion = b.getAttribute('data-cookies');
+      if (accion === 'aceptar') return guardar({ analitica: true, publicidad: true });
+      if (accion === 'rechazar') return guardar({ analitica: false, publicidad: false });
+      guardar({
+        analitica: !!banner.querySelector('[data-cookie-tipo="analitica"]')?.checked,
+        publicidad: !!banner.querySelector('[data-cookie-tipo="publicidad"]')?.checked,
+      });
+    });
   });
 </script>

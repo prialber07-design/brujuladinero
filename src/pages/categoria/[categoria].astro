@@ -2,6 +2,8 @@
 import { CATEGORIAS } from '../../../site.config';
 import Base from '../../layouts/Base.astro';
 import TarjetaArticulo from '../../components/TarjetaArticulo.astro';
+import MigaDePan from '../../components/MigaDePan.astro';
+import Anuncio from '../../components/Anuncio.astro';
 import { articulosDeCategoria } from '../../lib/articulos';
 
 export async function getStaticPaths() {
@@ -13,14 +15,24 @@ const articulos = await articulosDeCategoria(cat.slug);
 ---
 
 <Base titulo={cat.nombre} descripcion={cat.descripcion}>
-  <div class="estrecho">
-    <h1>{cat.nombre}</h1>
-    <p style="font-size:1.1rem;color:var(--texto-suave)">{cat.descripcion}</p>
+  <MigaDePan actual={cat.nombre} />
 
-    {articulos.length === 0 ? (
-      <p style="color:var(--texto-suave)">Aún no hay artículos en esta categoría.</p>
-    ) : (
-      <ul class="lista-articulos" style="padding:0;margin-top:2.5rem">
+  <header class="presentacion">
+    <h1>{cat.nombre}</h1>
+    <p>{cat.descripcion}</p>
+  </header>
+
+  {articulos.length === 0 ? (
+    <div class="vacio">
+      <h2>Estamos preparando contenido para esta sección</h2>
+      <p>
+        La educación financiera requiere tiempo y pausa. Los primeros artículos de
+        {' '}{cat.nombre.toLowerCase()} llegan pronto.
+      </p>
+    </div>
+  ) : (
+    <Fragment>
+      <ul class="lista-articulos">
         {articulos.map((a) => (
           <TarjetaArticulo
             slug={a.id}
@@ -32,6 +44,7 @@ const articulos = await articulosDeCategoria(cat.slug);
           />
         ))}
       </ul>
-    )}
-  </div>
+      {articulos.length > 2 && <Anuncio formato="banner" />}
+    </Fragment>
+  )}
 </Base>

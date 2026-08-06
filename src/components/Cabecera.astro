@@ -1,20 +1,89 @@
 ---
 import { SITE, CATEGORIAS } from '../../site.config';
+import Icono from './Icono.astro';
 
 const ruta = Astro.url.pathname;
-const esActual = (href: string) => ruta === href || ruta === href + '/';
+const activa = (href: string) => ruta === href || ruta === href + '/';
 ---
 
 <header class="cabecera">
-  <div class="contenedor cabecera-inner">
-    <a class="marca" href="/">{SITE.nombre}</a>
+  <div class="cabecera-inner">
+    <a class="marca" href="/">
+      <Icono nombre="brujula" tam={26} />
+      <span>{SITE.nombre}</span>
+    </a>
+
     <nav class="nav" aria-label="Principal">
       {CATEGORIAS.map((c) => (
-        <a href={`/categoria/${c.slug}/`} aria-current={esActual(`/categoria/${c.slug}/`) ? 'page' : undefined}>
+        <a href={`/categoria/${c.slug}/`} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
           {c.nombre}
         </a>
       ))}
-      <a href="/sobre-mi/" aria-current={esActual('/sobre-mi/') ? 'page' : undefined}>Sobre mí</a>
     </nav>
+
+    <div class="acciones-cabecera">
+      <button class="boton-icono" type="button" data-tema-toggle aria-label="Cambiar entre modo claro y oscuro">
+        <span data-icono-claro><Icono nombre="sol" tam={20} /></span>
+        <span data-icono-oscuro hidden><Icono nombre="luna" tam={20} /></span>
+      </button>
+      <button
+        class="boton-icono menu-movil-boton"
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="nav-movil"
+        aria-label="Abrir menú"
+      >
+        <Icono nombre="menu" tam={22} />
+      </button>
+    </div>
   </div>
+
+  <nav class="nav-movil" id="nav-movil" data-abierto="false" aria-label="Principal (móvil)">
+    {CATEGORIAS.map((c) => (
+      <a href={`/categoria/${c.slug}/`} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
+        {c.nombre}
+      </a>
+    ))}
+    <a href="/sobre-mi/" aria-current={activa('/sobre-mi/') ? 'page' : undefined}>Sobre mí</a>
+  </nav>
 </header>
+
+<script>
+  // Menú móvil
+  const botonMenu = document.querySelector('[data-menu-toggle]');
+  const navMovil = document.getElementById('nav-movil');
+  botonMenu?.addEventListener('click', () => {
+    const abierto = navMovil?.getAttribute('data-abierto') === 'true';
+    navMovil?.setAttribute('data-abierto', String(!abierto));
+    botonMenu.setAttribute('aria-expanded', String(!abierto));
+    botonMenu.setAttribute('aria-label', abierto ? 'Abrir menú' : 'Cerrar menú');
+  });
+
+  // Modo claro / oscuro. La preferencia guardada gana sobre la del sistema.
+  const raiz = document.documentElement;
+  const botonTema = document.querySelector('[data-tema-toggle]');
+  const iconoClaro = document.querySelector('[data-icono-claro]');
+  const iconoOscuro = document.querySelector('[data-icono-oscuro]');
+
+  function esOscuro() {
+    const guardado = raiz.getAttribute('data-tema');
+    if (guardado) return guardado === 'oscuro';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  function pintarIcono() {
+    const oscuro = esOscuro();
+    iconoClaro?.toggleAttribute('hidden', !oscuro);
+    iconoOscuro?.toggleAttribute('hidden', oscuro);
+  }
+
+  botonTema?.addEventListener('click', () => {
+    const nuevo = esOscuro() ? 'claro' : 'oscuro';
+    raiz.setAttribute('data-tema', nuevo);
+    localStorage.setItem('tema', nuevo);
+    pintarIcono();
+  });
+
+  pintarIcono();
+</script>

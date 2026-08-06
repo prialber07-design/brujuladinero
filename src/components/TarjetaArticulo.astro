@@ -15,13 +15,12 @@ const cat = CATEGORIAS.find((c) => c.slug === categoria);
 ---
 
 <li class="tarjeta">
-  <div class="meta">
+  <div class="tarjeta-meta">
     {mostrarCategoria && cat && <a class="etiqueta" href={`/categoria/${cat.slug}/`}>{cat.nombre}</a>}
     <time datetime={fecha.toISOString()}>
-      {fecha.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}
+      {fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
     </time>
   </div>
   <h2><a href={`/${slug}/`}>{titulo}</a></h2>
   <p>{descripcion}</p>
-  <a href={`/${slug}/`}>Leer el artículo →</a>
 </li>

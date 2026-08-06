@@ -1,29 +1,32 @@
 ---
 import { SITE } from '../../site.config';
 const anio = new Date().getFullYear();
+const revision = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
 ---
 
 <footer class="pie">
   <div class="contenedor">
+    <div class="pie-marca">{SITE.nombre}</div>
     <nav class="pie-enlaces" aria-label="Legal">
       <a href="/aviso-legal/">Aviso legal</a>
-      <a href="/politica-de-privacidad/">Política de privacidad</a>
-      <a href="/politica-de-cookies/">Política de cookies</a>
+      <a href="/politica-de-privacidad/">Privacidad</a>
+      <a href="/politica-de-cookies/">Cookies</a>
       <a href="/sobre-mi/">Sobre mí</a>
       <a href="/rss.xml">RSS</a>
-      <button class="boton" type="button" data-abrir-cookies>Preferencias de cookies</button>
+      <button class="enlace-boton" type="button" data-abrir-cookies>Configuración de cookies</button>
     </nav>
     <p>
-      © {anio} {SITE.nombre}. Contenido informativo y divulgativo.
-      <strong>No es asesoramiento financiero ni de inversión.</strong>
-      Verifica siempre la información con fuentes oficiales antes de tomar decisiones con tu dinero.
+      © {anio} {SITE.nombre}. Educación financiera honesta.
+      El contenido es divulgativo y <strong>no constituye asesoramiento financiero</strong>.
+      <br />Última revisión general: {revision}.
     </p>
   </div>
 </footer>
 
 <script>
   document.querySelector('[data-abrir-cookies]')?.addEventListener('click', () => {
-    localStorage.removeItem('consentimiento-cookies');
-    document.querySelector('.cookies')?.removeAttribute('hidden');
+    const banner = document.querySelector('.cookies');
+    banner?.removeAttribute('hidden');
+    banner?.querySelector('.cookies-config')?.setAttribute('data-abierto', 'true');
   });
 </script>

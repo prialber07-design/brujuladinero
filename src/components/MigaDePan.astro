@@ -1,0 +1,42 @@
+---
+import { SITE } from '../../site.config';
+import Icono from './Icono.astro';
+
+interface Props {
+  categoria?: { slug: string; nombre: string };
+  actual: string;
+}
+const { categoria, actual } = Astro.props;
+
+// Datos estructurados: Google muestra la miga de pan en los resultados.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: SITE.url },
+    ...(categoria
+      ? [{
+          '@type': 'ListItem',
+          position: 2,
+          name: categoria.nombre,
+          item: `${SITE.url}/categoria/${categoria.slug}/`,
+        }]
+      : []),
+    { '@type': 'ListItem', position: categoria ? 3 : 2, name: actual },
+  ],
+};
+---
+
+<nav class="miga" aria-label="Miga de pan">
+  <a href="/">Inicio</a>
+  <Icono nombre="chevron-derecha" tam={12} />
+  {categoria && (
+    <Fragment>
+      <a href={`/categoria/${categoria.slug}/`}>{categoria.nombre}</a>
+      <Icono nombre="chevron-derecha" tam={12} />
+    </Fragment>
+  )}
+  <span aria-current="page">{actual}</span>
+</nav>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />

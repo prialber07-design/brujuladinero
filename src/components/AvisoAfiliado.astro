@@ -1,0 +1,13 @@
+---
+import { SITE } from '../../site.config';
+import Icono from './Icono.astro';
+---
+
+<aside class="aviso-afiliado">
+  <Icono nombre="info" tam={18} />
+  <p>
+    <strong>Transparencia:</strong> este artículo contiene enlaces de afiliado. Si contratas
+    algo a través de ellos, {SITE.nombre} recibe una pequeña comisión sin coste adicional
+    para ti. Nunca recomiendo nada por su comisión.
+  </p>
+</aside>

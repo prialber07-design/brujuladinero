@@ -15,13 +15,25 @@ const articulos = defineCollection({
     fecha: z.coerce.date(),
     actualizado: z.coerce.date().optional(),
     autor: z.string().default('Alberto'),
+
     // Borrador: no se publica ni aparece en sitemap/RSS.
     borrador: z.boolean().default(false),
     // Marca los artículos que aún NO tienen tu experiencia personal añadida.
     // Es tu red de seguridad: no publiques nada con esto en true.
     faltaAporteReal: z.boolean().default(true),
+
     palabraClave: z.string().optional(),
-    imagen: z.string().optional(),
+
+    // Caja de "Puntos clave" al inicio. Entre 3 y 4 viñetas.
+    puntosClave: z.array(z.string()).max(5).optional(),
+
+    // Fuentes oficiales citadas. En finanzas es señal de confianza.
+    fuentes: z
+      .array(z.object({ texto: z.string(), url: z.string().url().optional() }))
+      .optional(),
+
+    // Activa el aviso legal de enlaces de afiliado. Obligatorio si los usas.
+    tieneAfiliados: z.boolean().default(false),
   }),
 });
 

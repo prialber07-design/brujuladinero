@@ -7,6 +7,15 @@ autor: 'Alberto'
 borrador: true
 faltaAporteReal: true
 palabraClave: 'fondo de emergencia'
+puntosClave:
+  - 'Se calcula sobre tus GASTOS mensuales, no sobre tus ingresos.'
+  - 'Entre 3 y 12 meses según lo estable que sea tu trabajo.'
+  - 'Va en una cuenta separada y líquida. Nunca se invierte.'
+  - 'Si tienes deuda cara, primero un colchón mínimo y luego la deuda.'
+fuentes:
+  - texto: 'Banco de España — Portal del Cliente Bancario'
+    url: 'https://clientebancario.bde.es'
+tieneAfiliados: false
 ---
 
 Si solo vas a hacer una cosa con tu dinero este año, que sea esta. El fondo de
