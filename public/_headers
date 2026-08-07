@@ -1,0 +1,38 @@
+# Cabeceras para Cloudflare Pages.
+# Equivalen a las de nginx.conf, para que el sitio se comporte igual
+# se sirva donde se sirva.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Los assets de Astro llevan hash en el nombre: si el contenido cambia,
+# cambia el nombre. Se pueden cachear indefinidamente.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/og-default.png
+  Cache-Control: public, max-age=2592000
+
+# El HTML nunca se cachea, para que un despliegue se vea al instante.
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Estos los leen buscadores y motores de IA: mejor frescos.
+/robots.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8
+
+/llms.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8
+
+/ads.txt
+  Cache-Control: public, max-age=3600
+  Content-Type: text/plain; charset=utf-8

@@ -23,7 +23,9 @@ function envolverTablas() {
 }
 
 export default defineConfig({
-  site: 'https://brujuladinero.com',
+  // Cloudflare Pages: define SITE_URL en las variables de entorno del proyecto
+  // para que los despliegues de prueba no generen canonical al dominio final.
+  site: process.env.SITE_URL ?? 'https://brujuladinero.com',
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'es', locales: { es: 'es-ES' } },

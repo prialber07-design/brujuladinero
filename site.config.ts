@@ -1,10 +1,15 @@
 // Configuración central del sitio.
 // Si cambias de dominio o de nombre, este es el ÚNICO archivo que tocas.
 
+// URL pública del sitio. En Cloudflare Pages se sobreescribe con la variable
+// de entorno SITE_URL, para que los despliegues de prueba en *.pages.dev
+// generen canonical y sitemap correctos en vez de apuntar al dominio final.
+const URL_SITIO = import.meta.env.SITE_URL ?? 'https://brujuladinero.com';
+
 export const SITE = {
   nombre: 'Brújula Dinero',
   descripcion: 'Finanzas personales y cripto explicadas desde cero, para España.',
-  url: 'https://brujuladinero.com',
+  url: URL_SITIO,
   idioma: 'es-ES',
   autor: {
     nombre: 'Alberto',
