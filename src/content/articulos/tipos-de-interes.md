@@ -58,8 +58,12 @@ faq:
 fuentes:
   - texto: 'Banco de España — Estadísticas de tipos de interés y euríbor'
     url: 'https://www.bde.es/webbe/es/estadisticas/temas/tipos-interes.html'
+    organismo: 'Banco de España'
+    consultado: 2026-08-07
   - texto: 'Banco Central Europeo — Decisiones de política monetaria'
     url: 'https://www.ecb.europa.eu'
+    organismo: 'Banco Central Europeo'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 

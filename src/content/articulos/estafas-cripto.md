@@ -61,10 +61,16 @@ faq:
 fuentes:
   - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
     url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+    organismo: 'CNMV'
+    consultado: 2026-08-07
   - texto: 'CNMV — Preguntas y respuestas sobre el reglamento MiCA'
     url: 'https://www.cnmv.es/docportal/Legislacion/FAQ/FAQ_MICA.pdf'
+    organismo: 'CNMV'
+    consultado: 2026-08-07
   - texto: 'INCIBE — Oficina de Seguridad del Internauta'
     url: 'https://www.incibe.es'
+    organismo: 'INCIBE'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 
@@ -92,7 +98,8 @@ resulta convincente. Ya tienes la respuesta.
 
 Es la comprobación más barata que existe —dos minutos en la web de la CNMV— y la
 que más disgustos evita. Hazla **antes** de ingresar un euro, no después de que
-algo huela mal.
+algo huela mal. Si quieres el detalle de qué es MiCA y qué cambia exactamente,
+lo desarrollo en [este artículo](/que-es-mica/).
 
 Ojo con dos matices:
 

@@ -51,6 +51,8 @@ faq:
 fuentes:
   - texto: 'Banco de España — Portal del Cliente Bancario, comisiones bancarias'
     url: 'https://clientebancario.bde.es'
+    organismo: 'Banco de España'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 

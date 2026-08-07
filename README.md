@@ -47,9 +47,19 @@ faq:
 fuentes:
   - texto: 'Agencia Tributaria — nombre de la página'
     url: 'https://sede.agenciatributaria.gob.es'
+    organismo: 'Agencia Tributaria'      # se muestra destacado
+    consultado: 2026-08-07               # fecha en que lo comprobaste
 tieneAfiliados: false
 ---
 ```
+
+**Sobre las fuentes:** se muestran en una caja al final del artículo y además
+alimentan el campo `citation` de los datos estructurados. Usa **solo fuentes
+oficiales** —AEAT, CNMV, Banco de España, BCE, INCIBE, BOE—, nunca blogs ni
+comparadores. En un nicho YMYL, citar a un blog resta en vez de sumar.
+
+La fecha de `consultado` no es decorativa: le dice al lector a qué momento
+corresponde lo que lee, y a ti te marca cuándo toca revisar.
 
 **Regla que no puedes saltarte con las FAQ:** el texto de la respuesta debe ser
 idéntico al que ve el usuario. Google aplica acción manual si marcas contenido

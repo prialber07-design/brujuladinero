@@ -27,9 +27,20 @@ const articulos = defineCollection({
     // Caja de "Puntos clave" al inicio. Entre 3 y 4 viñetas.
     puntosClave: z.array(z.string()).max(5).optional(),
 
-    // Fuentes oficiales citadas. En finanzas es señal de confianza.
+    // Fuentes citadas. En un nicho YMYL es de lo que más confianza aporta,
+    // tanto al lector como a Google.
+    //   organismo: quién publica el dato (AEAT, CNMV, Banco de España…)
+    //   consultado: cuándo lo comprobaste. La normativa cambia y el lector
+    //              necesita saber a qué fecha corresponde lo que lee.
     fuentes: z
-      .array(z.object({ texto: z.string(), url: z.string().url().optional() }))
+      .array(
+        z.object({
+          texto: z.string(),
+          url: z.string().url().optional(),
+          organismo: z.string().optional(),
+          consultado: z.coerce.date().optional(),
+        }),
+      )
       .optional(),
 
     // Activa el aviso legal de enlaces de afiliado. Obligatorio si los usas.

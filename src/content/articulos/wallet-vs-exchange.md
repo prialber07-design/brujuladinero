@@ -54,8 +54,12 @@ faq:
 fuentes:
   - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
     url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+    organismo: 'CNMV'
+    consultado: 2026-08-07
   - texto: 'Agencia Tributaria — Sede electrónica'
     url: 'https://sede.agenciatributaria.gob.es'
+    organismo: 'Agencia Tributaria'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 
@@ -110,7 +114,8 @@ Lo que **no** hace, y conviene tenerlo claro:
 
 O sea: MiCA reduce el riesgo de acabar en una plataforma fraudulenta, que era
 [el problema más común](/estafas-cripto/). No elimina el riesgo de custodia, que
-es del que va este artículo.
+es del que va este artículo. Tienes el detalle completo del reglamento en
+[qué es MiCA y cómo te afecta](/que-es-mica/).
 
 No es un argumento para no usar exchanges: son la vía normal para comprar y
 vender. Es un argumento para no confundir *tener saldo en un exchange* con

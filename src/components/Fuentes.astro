@@ -1,20 +1,51 @@
 ---
+// Bloque de fuentes al final del artículo.
+// En finanzas es un elemento de confianza de primer orden: el lector puede
+// contrastar, y Google lee la señal de que el contenido está respaldado.
+// La fecha de consulta importa porque la normativa cambia.
 interface Props {
-  fuentes: readonly { texto: string; url?: string }[];
+  fuentes: readonly {
+    texto: string;
+    url?: string;
+    organismo?: string;
+    consultado?: Date;
+  }[];
 }
 const { fuentes } = Astro.props;
+
+const formatear = (d: Date) =>
+  d.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+
+const dominio = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+};
 ---
 
 {fuentes.length > 0 && (
   <section class="fuentes" aria-labelledby="fuentes-titulo">
     <h2 id="fuentes-titulo">Fuentes</h2>
+    <p class="fuentes-nota">
+      La información de este artículo procede de las siguientes fuentes.
+      Si consultas mucho después de la fecha indicada, comprueba que sigue vigente.
+    </p>
     <ol>
       {fuentes.map((f) => (
         <li>
+          {f.organismo && <span class="fuentes-organismo">{f.organismo}</span>}
           {f.url ? (
-            <a href={f.url} rel="nofollow noopener" target="_blank">{f.texto}</a>
+            <a href={f.url} rel="nofollow noopener" target="_blank">
+              {f.texto}
+              <span class="fuentes-dominio">{dominio(f.url)}</span>
+            </a>
           ) : (
-            f.texto
+            <span>{f.texto}</span>
+          )}
+          {f.consultado && (
+            <span class="fuentes-fecha">Consultado el {formatear(f.consultado)}</span>
           )}
         </li>
       ))}

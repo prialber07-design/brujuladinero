@@ -52,8 +52,12 @@ faq:
 fuentes:
   - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
     url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+    organismo: 'CNMV'
+    consultado: 2026-08-07
   - texto: 'Agencia Tributaria — Sede electrónica'
     url: 'https://sede.agenciatributaria.gob.es'
+    organismo: 'Agencia Tributaria'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 
@@ -157,7 +161,8 @@ que comprobarlo en abril.
 MiCA está en aplicación plena: cualquier plataforma que preste servicios de
 criptoactivos en España necesita autorización de la CNMV o de otra autoridad
 competente de la UE. Comprobar que la tiene es el primer filtro, y el más
-barato, contra [las estafas del sector](/estafas-cripto/).
+barato, contra [las estafas del sector](/estafas-cripto/). Lo explico entero en
+[qué es MiCA](/que-es-mica/).
 
 **No lo respalda nadie.** No hay fondo de garantía de depósitos ni entidad que
 responda. Si lo pierdes, lo perdiste.

@@ -15,6 +15,8 @@ puntosClave:
 fuentes:
   - texto: 'Banco de España — Portal del Cliente Bancario'
     url: 'https://clientebancario.bde.es'
+    organismo: 'Banco de España'
+    consultado: 2026-08-07
 tieneAfiliados: false
 resumen: >-
   Un fondo de emergencia son entre 3 y 12 meses de tus gastos mensuales

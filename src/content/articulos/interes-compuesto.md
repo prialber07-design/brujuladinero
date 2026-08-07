@@ -50,6 +50,8 @@ faq:
 fuentes:
   - texto: 'Banco de España — Simulador de ahorro e inversión del Portal del Cliente Bancario'
     url: 'https://clientebancario.bde.es'
+    organismo: 'Banco de España'
+    consultado: 2026-08-07
 tieneAfiliados: false
 ---
 

@@ -400,10 +400,37 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 .aviso-divulgativo p { margin: 0; }
 
 /* ── Fuentes ─────────────────────────────────────────────── */
-.fuentes { margin: var(--e12) 0; padding-top: var(--e6); border-top: 1px solid var(--borde); }
-.fuentes h2 { margin: 0 0 var(--e3); font-size: 20px; }
-.fuentes ol { margin: 0; padding-left: var(--e6); font-family: var(--sans); font-size: 14px; color: var(--texto-suave); }
-.fuentes li { margin: var(--e2) 0; }
+.fuentes {
+  margin: var(--e12) 0; padding: var(--e6);
+  background: var(--superficie-baja);
+  border: 1px solid var(--borde); border-radius: var(--radio);
+}
+.fuentes h2 { margin: 0 0 var(--e2); font-size: 20px; }
+.fuentes-nota {
+  margin: 0 0 var(--e4); font-family: var(--sans);
+  font-size: 13px; line-height: 1.55; color: var(--texto-suave);
+}
+.fuentes ol {
+  margin: 0; padding-left: var(--e6);
+  font-family: var(--sans); font-size: 14px; color: var(--texto);
+}
+.fuentes li { margin: 0 0 var(--e4); line-height: 1.5; }
+.fuentes li::marker { color: var(--acento); font-weight: 700; }
+.fuentes a { text-decoration: none; font-weight: 600; }
+.fuentes a:hover { text-decoration: underline; }
+.fuentes-organismo {
+  display: block; margin-bottom: 2px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--acento);
+}
+.fuentes-dominio {
+  display: block; margin-top: 2px;
+  font-size: 12px; font-weight: 400; color: var(--texto-suave);
+}
+.fuentes-fecha {
+  display: block; margin-top: 2px;
+  font-size: 12px; color: var(--texto-suave);
+}
 
 /* ── Caja de autor ───────────────────────────────────────── */
 .caja-autor {
