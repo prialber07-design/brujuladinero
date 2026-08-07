@@ -68,6 +68,37 @@ const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nom
     <link rel="alternate" type="application/rss+xml" title={SITE.nombre} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    {SITE.adsense.scriptEnCabecera && SITE.adsense.publisherId && (
+      <Fragment>
+        {/* Modo de consentimiento por defecto: TODO DENEGADO.
+            Tiene que ejecutarse ANTES que el script de AdSense; si no, hay
+            una ventana de milisegundos en la que se ejecutaría sin
+            restricción. El banner lo actualiza a "granted" si el usuario
+            acepta. */}
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ window.dataLayer.push(arguments); }
+          gtag('consent', 'default', {
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied',
+            analytics_storage: 'denied',
+            wait_for_update: 500
+          });
+        </script>
+
+        {/* AdSense. Va en el <head> porque es donde Google lo busca para
+            verificar y revisar el sitio. Para el tráfico del EEE hace falta
+            además una plataforma de consentimiento certificada: la de Google
+            es gratuita y se activa en el panel de AdSense. Ver README. */}
+        <script
+          async
+          src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsense.publisherId}`}
+          crossorigin="anonymous"
+        />
+      </Fragment>
+    )}
+
     {/* Aplica el tema guardado antes de pintar, para que no haya destello */}
     <script is:inline>
       (function () {

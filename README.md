@@ -142,6 +142,32 @@ Ya está resuelto en el código, no hay que tocarlo por artículo:
 Lo que sí depende de ti en cada artículo: escribir un buen `resumen` y unas
 `faq` que respondan de verdad. Es lo que decide si te citan a ti o a otro.
 
+## AdSense
+
+El identificador de editor está en `site.config.ts`. Dos interruptores:
+
+| Opción | Qué hace | Cuándo |
+|---|---|---|
+| `scriptEnCabecera` | Carga el script en el `<head>` | **Ya en true.** Google lo necesita ahí para verificar y revisar |
+| `unidadesActivas` | Pinta bloques de anuncio en los artículos | **Ponlo en true solo cuando te aprueben** |
+
+El `ads.txt` ya está relleno con tu identificador.
+
+### Consentimiento — léelo antes de solicitar la aprobación
+
+El sitio declara el **modo de consentimiento de Google con todo denegado por
+defecto**, antes de que cargue el script. El banner lo actualiza si el usuario
+acepta.
+
+Eso es lo correcto técnicamente, **pero no basta legalmente**. Para servir
+anuncios a tráfico del Espacio Económico Europeo, Google exige una **plataforma
+de consentimiento certificada**. El banner propio de esta web no lo es.
+
+Tienes que activar la CMP de Google —es gratuita— desde el panel de AdSense, en
+**Privacidad y mensajes**. Cuando lo hagas, revisa que no se solape visualmente
+con el banner propio: probablemente convenga quedarse solo con la de Google para
+la parte publicitaria.
+
 ## Imagen para redes sociales
 
 `public/og-default.png` (1200×630) se genera con:

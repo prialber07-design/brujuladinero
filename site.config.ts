@@ -17,10 +17,16 @@ export const SITE = {
     bio: 'Documento mi propio aprendizaje sobre finanzas personales y criptomonedas desde cero.',
     email: 'hola@brujuladinero.com',
   },
-  // Se rellena cuando AdSense te apruebe (paso posterior).
   adsense: {
-    activo: false,
-    publisherId: '', // formato: ca-pub-0000000000000000
+    publisherId: 'ca-pub-2108212339865549',
+    // Carga el script en el <head>. Es lo que AdSense necesita encontrar
+    // para verificar el sitio y para revisarlo. Debe estar en true desde
+    // que solicitas la aprobación.
+    scriptEnCabecera: true,
+    // Pinta bloques de anuncio reales dentro de los artículos.
+    // Actívalo SOLO cuando AdSense te haya aprobado: antes no se muestra
+    // nada y solo añade peticiones inútiles.
+    unidadesActivas: false,
   },
   analytics: {
     // ID de Google Analytics 4, formato G-XXXXXXXXXX

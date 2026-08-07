@@ -3,7 +3,14 @@
 //  · Nada de "al continuar navegando aceptas": el consentimiento es explícito.
 //  · Aceptar, Rechazar y Configurar tienen el mismo peso visual.
 //  · Los interruptores del panel vienen DESACTIVADOS por defecto.
-//  · Ningún script de terceros se carga antes de la aceptación.
+//
+// IMPORTANTE sobre publicidad: el script de AdSense se carga en el <head>
+// porque Google lo necesita ahí para verificar y revisar el sitio. Este
+// banner ya NO lo inyecta, para no cargarlo dos veces.
+// Consecuencia: para el tráfico del Espacio Económico Europeo, el
+// consentimiento publicitario debe gestionarlo una plataforma certificada.
+// Google ofrece la suya gratis y se activa en el panel de AdSense; este
+// banner por sí solo no cumple ese requisito. Ver README.
 import { SITE } from '../../site.config';
 ---
 
@@ -66,18 +73,23 @@ import { SITE } from '../../site.config';
     gtag('config', gaId, { anonymize_ip: true });
   }
 
-  function cargarPublicidad() {
-    if (!adsense.activo || !adsense.publisherId) return;
-    const a = document.createElement('script');
-    a.async = true;
-    a.crossOrigin = 'anonymous';
-    a.src = `https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${adsense.publisherId}`;
-    document.head.appendChild(a);
+  // La preferencia publicitaria se registra y se expone a Google mediante
+  // el modo de consentimiento. El script de AdSense ya está en el <head>:
+  // aquí no se carga nada, solo se comunica la decisión del usuario.
+  function aplicarPublicidad(concedido) {
+    if (!adsense.publisherId) return;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    gtag('consent', 'update', {
+      ad_storage: concedido ? 'granted' : 'denied',
+      ad_user_data: concedido ? 'granted' : 'denied',
+      ad_personalization: concedido ? 'granted' : 'denied',
+    });
   }
 
   function aplicar(pref) {
     if (pref.analitica) cargarAnalitica();
-    if (pref.publicidad) cargarPublicidad();
+    aplicarPublicidad(!!pref.publicidad);
   }
 
   function guardar(pref) {

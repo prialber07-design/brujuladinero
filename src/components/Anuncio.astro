@@ -11,7 +11,7 @@ interface Props {
   slot?: string;
 }
 const { formato = 'rectangulo', slot } = Astro.props;
-const activo = SITE.adsense.activo && SITE.adsense.publisherId && slot;
+const activo = SITE.adsense.unidadesActivas && SITE.adsense.publisherId && slot;
 ---
 
 <aside class={`anuncio anuncio-${formato}`} aria-label="Publicidad">
