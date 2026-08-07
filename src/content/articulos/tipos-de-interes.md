@@ -3,6 +3,7 @@ titulo: 'Tipos de interés: qué significan para tu hipoteca y tu ahorro'
 descripcion: 'Qué son los tipos de interés del BCE, por qué salen constantemente en las noticias y cómo se traducen en tu hipoteca, tus ahorros y el precio de las cosas.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-06
+actualizado: 2026-08-07
 autor: 'Alberto'
 borrador: true
 faltaAporteReal: true
@@ -37,6 +38,12 @@ faq:
       se mueve anticipando y siguiendo las decisiones del BCE. Cuando el
       mercado espera subidas, el euríbor sube antes incluso de que el BCE
       actúe.
+  - pregunta: '¿Dónde consulto el euríbor actual?'
+    respuesta: >-
+      En las estadísticas de tipos de interés del Banco de España, que publica
+      el dato diario y la media mensual, que es la que suelen usar las
+      hipotecas. Para tu revisión concreta, el valor que cuenta es el del mes
+      que indique tu escritura, no el del día en que lo consultas.
   - pregunta: '¿Cuándo se nota una subida de tipos en mi hipoteca?'
     respuesta: >-
       En una hipoteca variable, en la siguiente revisión, que suele ser anual o
@@ -49,8 +56,10 @@ faq:
       herramienta con efectos secundarios conocidos, y encarecer las hipotecas
       es uno de ellos.
 fuentes:
-  - texto: 'Banco de España — Tipos de interés oficiales y euríbor'
-    url: 'https://www.bde.es'
+  - texto: 'Banco de España — Estadísticas de tipos de interés y euríbor'
+    url: 'https://www.bde.es/webbe/es/estadisticas/temas/tipos-interes.html'
+  - texto: 'Banco Central Europeo — Decisiones de política monetaria'
+    url: 'https://www.ecb.europa.eu'
 tieneAfiliados: false
 ---
 
@@ -132,6 +141,30 @@ respecto a dejarlo en la cuenta corriente.
 **Si estás invirtiendo a largo plazo**, esto es ruido. Los tipos suben y bajan en
 ciclos; [el interés compuesto](/interes-compuesto/) trabaja en una escala
 distinta.
+
+## Dónde mirar la cifra de hoy
+
+Este artículo no lleva ninguna cifra concreta, y es deliberado: el euríbor se
+publica a diario y los tipos del BCE se revisan cada pocas semanas, así que
+cualquier número que escribiera aquí estaría desfasado antes de que tú lo leas.
+
+Lo útil no es que yo te dé el dato, sino que sepas **dónde consultarlo tú**:
+
+| Qué | Dónde | Cada cuánto |
+|---|---|---|
+| **Euríbor oficial** | Banco de España, estadísticas de tipos de interés | Diario, con media mensual |
+| **Tipos del BCE** | Banco Central Europeo, decisiones de política monetaria | Reuniones cada ~6 semanas |
+| **Tu revisión** | Tu escritura de hipoteca | Anual o semestral |
+
+Dos consejos sobre cómo interpretarlo:
+
+**Para tu hipoteca, el dato que importa no es el euríbor de hoy**, sino el del
+mes que fija tu escritura para la revisión. Puede haber varias décimas de
+diferencia.
+
+**Desconfía de las previsiones.** Verás titulares con estimaciones de bancos y
+servicios de estudios para final de año. Son escenarios, y suelen discrepar
+bastante entre sí. Sirven para hacerse una idea del rumbo, no para decidir.
 
 ## Cómo leer los titulares
 

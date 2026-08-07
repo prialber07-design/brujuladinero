@@ -3,6 +3,7 @@ titulo: 'Wallet o exchange: dónde están de verdad tus criptomonedas'
 descripcion: 'La diferencia entre tener cripto en un exchange y en tu propia wallet, qué significa la custodia, y por qué la frase "not your keys, not your coins" importa.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-06
+actualizado: 2026-08-07
 autor: 'Alberto'
 borrador: true
 faltaAporteReal: true
@@ -39,9 +40,11 @@ faq:
   - pregunta: '¿Es seguro dejar las criptomonedas en un exchange?'
     respuesta: >-
       Depende del exchange y del plazo. Para operar a corto plazo es lo
-      práctico. Para cantidades relevantes a largo plazo el riesgo es que
-      dependes de la solvencia y la seguridad de un tercero, y las
-      criptomonedas no están cubiertas por el fondo de garantía de depósitos.
+      práctico, y desde julio de 2026 el reglamento MiCA exige que la
+      plataforma esté autorizada por la CNMV para operar en España. Aun así,
+      para cantidades relevantes a largo plazo sigues dependiendo de la
+      solvencia de un tercero: MiCA no crea ningún fondo de garantía de
+      depósitos para criptoactivos.
   - pregunta: '¿Qué es la frase semilla y qué pasa si la pierdo?'
     respuesta: >-
       Es la lista de 12 o 24 palabras que permite regenerar tu wallet y acceder
@@ -49,8 +52,10 @@ faq:
       son irrecuperables: no hay ninguna entidad que pueda restaurarlos. Si
       alguien la obtiene, puede vaciarte la wallet.
 fuentes:
-  - texto: 'CNMV — Advertencias al inversor sobre criptoactivos'
-    url: 'https://www.cnmv.es'
+  - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
+    url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+  - texto: 'Agencia Tributaria — Sede electrónica'
+    url: 'https://sede.agenciatributaria.gob.es'
 tieneAfiliados: false
 ---
 
@@ -82,6 +87,30 @@ Con las criptomonedas depositadas en un exchange **no existe equivalente**. Si
 la plataforma quiebra, sufre un ataque o suspende las retiradas, entras en la
 lista de acreedores. Ha pasado varias veces, con plataformas que parecían
 sólidas hasta la semana anterior.
+
+### Qué cambia con MiCA, y qué no
+
+Desde el **1 de julio de 2026** el reglamento europeo MiCA está en aplicación
+plena: para prestar servicios de criptoactivos en España hace falta
+**autorización de la CNMV** o de otra autoridad competente de la UE.
+
+Eso es una mejora real. Introduce requisitos de solvencia, de separación entre
+los fondos de los clientes y los de la empresa, y de información. Y te da algo
+que antes no tenías: **una lista oficial que consultar** antes de abrir cuenta
+en ningún sitio.
+
+Lo que **no** hace, y conviene tenerlo claro:
+
+- **No crea un fondo de garantía** equivalente al bancario. Si la plataforma
+  quiebra, sigues siendo acreedor.
+- **No convierte el saldo en tuyo.** Si las claves las tiene la empresa, la
+  custodia sigue siendo suya.
+- **No cubre lo que hagas fuera.** Una transferencia a tu propia wallet, o a la
+  de un tercero, queda fuera de todo esto y es irreversible.
+
+O sea: MiCA reduce el riesgo de acabar en una plataforma fraudulenta, que era
+[el problema más común](/estafas-cripto/). No elimina el riesgo de custodia, que
+es del que va este artículo.
 
 No es un argumento para no usar exchanges: son la vía normal para comprar y
 vender. Es un argumento para no confundir *tener saldo en un exchange* con
@@ -125,8 +154,8 @@ Reglas que no admiten excepción:
 ## Cómo decidir
 
 **Si estás empezando y hablamos de cantidades pequeñas**, dejarlo en un exchange
-conocido y bien regulado es razonable. Lo importante es que sea una decisión y
-no un descuido.
+autorizado por la CNMV es razonable. Lo importante es que sea una decisión y no
+un descuido.
 
 **Si la cantidad ya es relevante para ti**, aprende a usar una wallet propia. Y
 haz la prueba completa antes de mover nada serio: crea la wallet, apunta la
@@ -135,6 +164,22 @@ semilla**. Si recuperas los fondos, tu copia de seguridad funciona. Si no, mejor
 descubrirlo con 5 € que con todo.
 
 Ese ensayo es la única forma de saber que la copia sirve, y casi nadie lo hace.
+
+## Mover fondos también tiene efectos fiscales
+
+Un detalle que sorprende a mucha gente: **cambiar una criptomoneda por otra
+genera una ganancia o pérdida patrimonial** a efectos del IRPF, aunque no hayas
+tocado un euro. Vender también. Mover monedas entre tus propias wallets, en
+cambio, no es una transmisión.
+
+Y si tus criptoactivos están custodiados **fuera de España** y superan cierto
+umbral, existe una **declaración informativa específica**, el modelo 721, con
+plazo propio y sanciones por no presentarla.
+
+No entro en cifras ni en tipos a propósito: cambian, y un dato desactualizado en
+esta materia sale caro. Lo que debes retener es que **operar tiene consecuencias
+fiscales y conviene informarse antes de operar, no en abril siguiente**.
+Compruébalo en la sede de la Agencia Tributaria o con un asesor.
 
 ## Un recordatorio incómodo
 

@@ -3,6 +3,7 @@ titulo: 'Qué es Bitcoin, explicado sin tecnicismos'
 descripcion: 'Qué es Bitcoin y cómo funciona realmente, contado con una analogía sencilla, sin jerga y sin promesas: qué resuelve, qué no resuelve y qué riesgos tiene.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-06
+actualizado: 2026-08-07
 autor: 'Alberto'
 borrador: true
 faltaAporteReal: true
@@ -49,8 +50,10 @@ faq:
       considera seudónimo: si una dirección se vincula a una persona, todo su
       historial queda a la vista.
 fuentes:
-  - texto: 'Banco de España y CNMV — Comunicado conjunto sobre criptomonedas'
-    url: 'https://www.cnmv.es'
+  - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
+    url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+  - texto: 'Agencia Tributaria — Sede electrónica'
+    url: 'https://sede.agenciatributaria.gob.es'
 tieneAfiliados: false
 ---
 
@@ -144,8 +147,17 @@ queda expuesto.
 **No es rápido ni gratis.** Las transacciones tardan minutos y llevan comisión,
 que sube cuando la red está congestionada.
 
-**No está exento de impuestos.** Operar con criptomonedas tiene consecuencias
-fiscales en España. Comprobarlas antes es más barato que comprobarlas después.
+**No está exento de impuestos.** Vender criptomonedas, o cambiar unas por otras,
+genera ganancia o pérdida patrimonial en el IRPF aunque no llegues a tocar un
+euro. Y si están custodiadas fuera de España por encima de cierto umbral, hay
+una declaración informativa aparte. Comprobarlo antes de operar es más barato
+que comprobarlo en abril.
+
+**No está sin regular.** Desde el **1 de julio de 2026** el reglamento europeo
+MiCA está en aplicación plena: cualquier plataforma que preste servicios de
+criptoactivos en España necesita autorización de la CNMV o de otra autoridad
+competente de la UE. Comprobar que la tiene es el primer filtro, y el más
+barato, contra [las estafas del sector](/estafas-cripto/).
 
 **No lo respalda nadie.** No hay fondo de garantía de depósitos ni entidad que
 responda. Si lo pierdes, lo perdiste.

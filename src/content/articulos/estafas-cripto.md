@@ -3,6 +3,7 @@ titulo: 'Las 7 estafas cripto más comunes y cómo reconocerlas'
 descripcion: 'Las estafas con criptomonedas que más se repiten en España, el patrón que comparten todas y las señales que permiten detectarlas antes de perder dinero.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-06
+actualizado: 2026-08-07
 autor: 'Alberto'
 borrador: true
 faltaAporteReal: true
@@ -10,13 +11,14 @@ palabraClave: 'estafas cripto'
 resumen: >-
   Casi todas las estafas cripto comparten tres señales: prometen rentabilidad
   garantizada, meten prisa y piden que muevas el dinero fuera de plataformas
-  reguladas. Ninguna entidad legítima pedirá jamás tu frase semilla ni acceso
-  remoto a tu ordenador.
+  reguladas. Desde julio de 2026 el reglamento MiCA exige autorización de la
+  CNMV para operar en España, así que ahora existe una lista oficial contra la
+  que contrastar antes de ingresar nada.
 puntosClave:
   - 'Rentabilidad garantizada o fija = estafa, sin excepciones.'
   - 'Nadie legítimo te pedirá nunca tu frase semilla.'
   - 'La urgencia es una herramienta: sirve para que no lo consultes con nadie.'
-  - 'Comprueba siempre si la entidad está registrada en la CNMV o el Banco de España.'
+  - 'Desde julio de 2026, operar en España sin autorización MiCA es ilegal: compruébalo en la CNMV.'
 temas:
   - estafas cripto
   - fraude criptomonedas
@@ -25,10 +27,19 @@ temas:
 faq:
   - pregunta: '¿Cómo sé si una plataforma de criptomonedas es legítima?'
     respuesta: >-
-      Comprueba si está inscrita en los registros oficiales del Banco de España
-      o de la CNMV, y consulta las advertencias sobre entidades no autorizadas
-      que publica la CNMV. Que una web tenga buen aspecto o aparezca en
-      anuncios no acredita absolutamente nada.
+      Desde el 1 de julio de 2026, con el reglamento europeo MiCA en aplicación
+      plena, para prestar servicios de criptoactivos en España hace falta
+      autorización de la CNMV o de otra autoridad competente de la UE.
+      Comprueba que la plataforma figura en el registro de la CNMV y consulta
+      sus advertencias sobre entidades no autorizadas. Que una web tenga buen
+      aspecto o aparezca en anuncios no acredita nada.
+  - pregunta: '¿Qué es MiCA y en qué me ayuda contra las estafas?'
+    respuesta: >-
+      MiCA es el reglamento europeo de mercados de criptoactivos, en aplicación
+      plena desde el 1 de julio de 2026. Su efecto práctico para ti es que
+      ahora existe una lista oficial contra la que contrastar: si una
+      plataforma opera en España sin figurar como autorizada, esa sola
+      circunstancia ya es motivo suficiente para no ingresar ni un euro.
   - pregunta: '¿Puede alguien robarme las criptomonedas solo con mi dirección pública?'
     respuesta: >-
       No. La dirección pública sirve para recibir fondos y compartirla no
@@ -48,9 +59,11 @@ faq:
       minutos o con contárselo a alguien de confianza, y por eso el estafador
       trabaja para que no haya tiempo de hacer ninguna de las dos cosas.
 fuentes:
-  - texto: 'CNMV — Advertencias sobre entidades no registradas'
-    url: 'https://www.cnmv.es'
-  - texto: 'Oficina de Seguridad del Internauta (INCIBE)'
+  - texto: 'CNMV — Nueva regulación de criptoactivos: reglamento MiCA'
+    url: 'https://www.cnmv.es/portal/mica/regulacion-criptoactivos'
+  - texto: 'CNMV — Preguntas y respuestas sobre el reglamento MiCA'
+    url: 'https://www.cnmv.es/docportal/Legislacion/FAQ/FAQ_MICA.pdf'
+  - texto: 'INCIBE — Oficina de Seguridad del Internauta'
     url: 'https://www.incibe.es'
 tieneAfiliados: false
 ---
@@ -61,6 +74,34 @@ que compra, y el ambiente general de «te vas a hacer rico» baja las defensas d
 cualquiera.
 
 La buena noticia es que las estafas se repiten. Son pocas y siempre las mismas.
+
+## La comprobación que antes no existía
+
+Hasta hace poco, verificar si una plataforma cripto era legítima era
+sorprendentemente difícil. Eso ha cambiado.
+
+El **reglamento europeo MiCA** está en aplicación plena desde el **1 de julio de
+2026**. Su consecuencia práctica es sencilla: para prestar servicios de
+criptoactivos en España hace falta **autorización de la CNMV** o de otra
+autoridad competente de la Unión Europea.
+
+Traducido a lo que te sirve: **ahora hay una lista oficial**. Si una plataforma
+te ofrece servicios en España y no figura como autorizada, no necesitas evaluar
+si su web parece seria, si tiene buenas reseñas o si el vídeo del fundador
+resulta convincente. Ya tienes la respuesta.
+
+Es la comprobación más barata que existe —dos minutos en la web de la CNMV— y la
+que más disgustos evita. Hazla **antes** de ingresar un euro, no después de que
+algo huela mal.
+
+Ojo con dos matices:
+
+- **Autorizada no significa segura.** Que una plataforma esté regulada no
+  garantiza que no quiebre ni que su seguridad sea buena. Elimina a los
+  estafadores directos, no al resto de riesgos.
+- **Nada de esto cubre lo que pase fuera.** Si te convencen para mover fondos a
+  una wallet que controlan ellos, la regulación no interviene: esa transferencia
+  la hiciste tú y es irreversible.
 
 ## El patrón que comparten todas
 
@@ -90,8 +131,8 @@ El saldo es un número en una base de datos suya. Cuando pides retirar en serio,
 aparecen «impuestos previos» o «comisiones de desbloqueo» que hay que pagar
 antes. Es la segunda fase de la estafa.
 
-**Señal:** no está en ningún registro oficial. Compruébalo siempre en la CNMV o
-el Banco de España, no en las reseñas de su propia web.
+**Señal:** no aparece como entidad autorizada. Compruébalo siempre en el
+registro de la CNMV, no en las reseñas de su propia web.
 
 ### 2. Robo de la frase semilla
 
@@ -153,8 +194,8 @@ producto real detrás.
 
 ## Cómo protegerte
 
-- **Comprueba el registro oficial** de cualquier plataforma antes de ingresar un
-  euro.
+- **Comprueba la autorización MiCA** de cualquier plataforma en la CNMV antes de
+  ingresar un euro.
 - **Activa la verificación en dos pasos** con app de autenticación, no por SMS.
 - **Nunca compartas la semilla.** Ni siquiera parcialmente.
 - **Cuéntaselo a alguien** antes de invertir en algo que te han recomendado por
@@ -184,7 +225,8 @@ cuenta, y actuar rápido importa.
 - **Rentabilidad garantizada = estafa.** Sin matices.
 - **Nadie legítimo pide tu frase semilla.** Nunca.
 - La **urgencia** existe para que no lo consultes con nadie.
-- Comprueba el **registro oficial** antes de ingresar dinero.
+- Desde julio de 2026, comprueba la **autorización MiCA en la CNMV** antes de
+  ingresar dinero. Es la verificación más barata que existe.
 - Si caes: corta, guarda pruebas, denuncia, y no pagues por «recuperar».
 
 <!--
