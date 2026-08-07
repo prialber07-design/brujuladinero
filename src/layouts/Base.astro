@@ -68,6 +68,13 @@ const tituloCompleto = titulo === SITE.nombre ? titulo : `${titulo} | ${SITE.nom
     <link rel="alternate" type="application/rss+xml" title={SITE.nombre} href="/rss.xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
+    {SITE.adsense.publisherId && (
+      /* Método de verificación por metaetiqueta. AdSense admite tres vías
+         —script, ads.txt o esta— y deja elegir. Tenerla puesta no cuesta
+         nada y evita quedarse bloqueado si pide justo esta. */
+      <meta name="google-adsense-account" content={SITE.adsense.publisherId} />
+    )}
+
     {SITE.adsense.scriptEnCabecera && SITE.adsense.publisherId && (
       <Fragment>
         {/* Modo de consentimiento por defecto: TODO DENEGADO.
