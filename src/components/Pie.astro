@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE } from '../../site.config';
 const anio = new Date().getFullYear();
 const revision = new Date().toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' });
@@ -8,11 +9,11 @@ const revision = new Date().toLocaleDateString('es-ES', { day: 'numeric', month:
   <div class="contenedor">
     <div class="pie-marca">{SITE.nombre}</div>
     <nav class="pie-enlaces" aria-label="Legal">
-      <a href="/aviso-legal/">Aviso legal</a>
-      <a href="/politica-de-privacidad/">Privacidad</a>
-      <a href="/politica-de-cookies/">Cookies</a>
-      <a href="/sobre-mi/">Sobre mí</a>
-      <a href="/rss.xml">RSS</a>
+      <a href={ruta('/aviso-legal/')}>Aviso legal</a>
+      <a href={ruta('/politica-de-privacidad/')}>Privacidad</a>
+      <a href={ruta('/politica-de-cookies/')}>Cookies</a>
+      <a href={ruta('/sobre-mi/')}>Sobre mí</a>
+      <a href={ruta('/rss.xml')}>RSS</a>
       <button class="enlace-boton" type="button" data-abrir-cookies>Configuración de cookies</button>
     </nav>
     <p>

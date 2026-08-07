@@ -1,21 +1,23 @@
 ---
+import { ruta, esRutaActual } from '../lib/rutas';
 import { SITE, CATEGORIAS } from '../../site.config';
 import Icono from './Icono.astro';
 
-const ruta = Astro.url.pathname;
-const activa = (href: string) => ruta === href || ruta === href + '/';
+
+const rutaActual = Astro.url.pathname;
+const activa = (destino: string) => esRutaActual(rutaActual, destino);
 ---
 
 <header class="cabecera">
   <div class="cabecera-inner">
-    <a class="marca" href="/">
+    <a class="marca" href={ruta('/')}>
       <Icono nombre="brujula" tam={26} />
       <span>{SITE.nombre}</span>
     </a>
 
     <nav class="nav" aria-label="Principal">
       {CATEGORIAS.map((c) => (
-        <a href={`/categoria/${c.slug}/`} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
+        <a href={ruta(`/categoria/${c.slug}/`)} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
           {c.nombre}
         </a>
       ))}
@@ -41,11 +43,11 @@ const activa = (href: string) => ruta === href || ruta === href + '/';
 
   <nav class="nav-movil" id="nav-movil" data-abierto="false" aria-label="Principal (móvil)">
     {CATEGORIAS.map((c) => (
-      <a href={`/categoria/${c.slug}/`} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
+      <a href={ruta(`/categoria/${c.slug}/`)} aria-current={activa(`/categoria/${c.slug}/`) ? 'page' : undefined}>
         {c.nombre}
       </a>
     ))}
-    <a href="/sobre-mi/" aria-current={activa('/sobre-mi/') ? 'page' : undefined}>Sobre mí</a>
+    <a href={ruta('/sobre-mi/')} aria-current={activa('/sobre-mi/') ? 'page' : undefined}>Sobre mí</a>
   </nav>
 </header>
 

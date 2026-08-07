@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE } from '../../site.config';
 import Base from '../layouts/Base.astro';
 ---
@@ -63,7 +64,7 @@ import Base from '../layouts/Base.astro';
     <p>
       Los datos se conservan mientras sean necesarios para la finalidad indicada o hasta que
       retires tu consentimiento. Los plazos de las cookies figuran en la
-      <a href="/politica-de-cookies/">política de cookies</a>.
+      <a href={ruta('/politica-de-cookies/')}>política de cookies</a>.
     </p>
 
     <h2>5. Tus derechos</h2>

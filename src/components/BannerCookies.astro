@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 // Consentimiento conforme al RGPD y a la LSSI-CE:
 //  · Nada de "al continuar navegando aceptas": el consentimiento es explícito.
 //  · Aceptar, Rechazar y Configurar tienen el mismo peso visual.
@@ -19,7 +20,7 @@ import { SITE } from '../../site.config';
     <p>
       Uso cookies propias necesarias y, solo si lo autorizas, cookies de terceros para medir
       visitas y mostrar publicidad. Rechazarlas no limita ninguna funcionalidad del sitio.
-      Detalle en la <a href="/politica-de-cookies/">política de cookies</a>.
+      Detalle en la <a href={ruta('/politica-de-cookies/')}>política de cookies</a>.
     </p>
     <div class="cookies-botones">
       <button class="boton" type="button" data-cookies="aceptar">Aceptar</button>

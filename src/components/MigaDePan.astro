@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE } from '../../site.config';
 import Icono from './Icono.astro';
 
@@ -28,11 +29,11 @@ const jsonLd = {
 ---
 
 <nav class="miga" aria-label="Miga de pan">
-  <a href="/">Inicio</a>
+  <a href={ruta('/')}>Inicio</a>
   <Icono nombre="chevron-derecha" tam={12} />
   {categoria && (
     <Fragment>
-      <a href={`/categoria/${categoria.slug}/`}>{categoria.nombre}</a>
+      <a href={ruta(`/categoria/${categoria.slug}/`)}>{categoria.nombre}</a>
       <Icono nombre="chevron-derecha" tam={12} />
     </Fragment>
   )}

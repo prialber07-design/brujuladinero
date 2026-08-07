@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE, CATEGORIAS } from '../../site.config';
 import Base from '../layouts/Base.astro';
 ---
@@ -17,9 +18,9 @@ import Base from '../layouts/Base.astro';
 
     <h2>Por dónde seguir</h2>
     <ul>
-      <li><a href="/">Volver al inicio</a></li>
+      <li><a href={ruta('/')}>Volver al inicio</a></li>
       {CATEGORIAS.map((c) => (
-        <li><a href={`/categoria/${c.slug}/`}>{c.nombre}</a></li>
+        <li><a href={ruta(`/categoria/${c.slug}/`)}>{c.nombre}</a></li>
       ))}
     </ul>
   </div>

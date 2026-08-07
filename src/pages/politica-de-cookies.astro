@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE } from '../../site.config';
 import Base from '../layouts/Base.astro';
 ---
@@ -79,7 +80,7 @@ import Base from '../layouts/Base.astro';
 
     <h2>Más información</h2>
     <p>
-      Consulta también la <a href="/politica-de-privacidad/">política de privacidad</a> o
+      Consulta también la <a href={ruta('/politica-de-privacidad/')}>política de privacidad</a> o
       escribe a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>.
     </p>
 

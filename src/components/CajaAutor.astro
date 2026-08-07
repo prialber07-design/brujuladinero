@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE } from '../../site.config';
 
 interface Props { autor: string; }
@@ -14,6 +15,6 @@ const inicial = autor.trim().charAt(0).toUpperCase();
   <div class="caja-autor-texto">
     <h2>{autor}</h2>
     <p>{SITE.autor.bio}</p>
-    <a href="/sobre-mi/">Más sobre el autor →</a>
+    <a href={ruta('/sobre-mi/')}>Más sobre el autor →</a>
   </div>
 </aside>

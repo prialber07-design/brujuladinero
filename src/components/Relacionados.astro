@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { CATEGORIAS } from '../../site.config';
 import { articulosPublicados } from '../lib/articulos';
 
@@ -21,7 +22,7 @@ const nombreCat = (slug: string) => CATEGORIAS.find((c) => c.slug === slug)?.nom
       {relacionados.map((a) => (
         <li class="rejilla-tarjeta">
           <span class="cat">{nombreCat(a.data.categoria)}</span>
-          <h3><a href={`/${a.id}/`}>{a.data.titulo}</a></h3>
+          <h3><a href={ruta(`/${a.id}/`)}>{a.data.titulo}</a></h3>
         </li>
       ))}
     </ul>

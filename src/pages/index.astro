@@ -1,4 +1,5 @@
 ---
+import { ruta } from '../lib/rutas';
 import { SITE, CATEGORIAS } from '../../site.config';
 import Base from '../layouts/Base.astro';
 import TarjetaArticulo from '../components/TarjetaArticulo.astro';
@@ -75,7 +76,7 @@ const iconos = {
     <ul class="tarjetas-categoria">
       {CATEGORIAS.map((c) => (
         <li>
-          <a href={`/categoria/${c.slug}/`}>
+          <a href={ruta(`/categoria/${c.slug}/`)}>
             <span class="icono-categoria"><Icono nombre={iconos[c.slug]} tam={20} /></span>
             <h3>{c.nombre}</h3>
             <p>{c.descripcion}</p>
