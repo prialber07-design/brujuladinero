@@ -4,7 +4,7 @@ descripcion: 'Cómo proteger de verdad tus cuentas bancarias y de inversión: ge
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-07
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'verificación en dos pasos'
 resumen: >-

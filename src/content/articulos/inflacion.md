@@ -4,7 +4,7 @@ descripcion: 'Qué es la inflación, cómo se mide con el IPC, por qué tu infla
 categoria: 'actualidad-explicada'
 fecha: 2026-08-07
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la inflación'
 resumen: >-

@@ -4,7 +4,7 @@ descripcion: 'Qué son las stablecoins, los tres tipos que existen según cómo 
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-07
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una stablecoin'
 resumen: >-

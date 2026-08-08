@@ -5,7 +5,7 @@ categoria: 'actualidad-explicada'
 fecha: 2026-08-06
 actualizado: 2026-08-07
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'tipos de interés'
 resumen: >-

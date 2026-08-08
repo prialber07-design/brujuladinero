@@ -4,7 +4,7 @@ descripcion: 'Las comisiones que pagas al comprar criptomonedas y que casi nunca
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-07
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'comisiones criptomonedas'
 resumen: >-

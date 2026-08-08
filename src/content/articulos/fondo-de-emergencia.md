@@ -4,7 +4,7 @@ descripcion: 'Cómo calcular tu fondo de emergencia según tu situación real, d
 categoria: 'finanzas-personales'
 fecha: 2026-08-05
 autor: 'Alberto'
-borrador: true
+borrador: false
 faltaAporteReal: true
 palabraClave: 'fondo de emergencia'
 puntosClave:
