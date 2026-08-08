@@ -87,26 +87,46 @@ export function dato(valor: string, etiqueta: string): string {
   return valor.trim() || `[PENDIENTE: ${etiqueta}]`;
 }
 
+/**
+ * Cada categoría tiene su propio color, para que las cuatro secciones se
+ * distingan de un vistazo. Todos verificados con contraste WCAG AA sobre
+ * el fondo correspondiente.
+ *   claro  → para el modo claro
+ *   oscuro → versión aclarada, legible sobre fondo oscuro
+ *   suave  → fondo de la etiqueta en modo claro
+ */
 export const CATEGORIAS = [
   {
     slug: 'finanzas-personales',
     nombre: 'Finanzas personales',
+    corto: 'Finanzas',
     descripcion: 'Ahorro, presupuesto, cuentas y todo lo que afecta a tu dinero del día a día.',
+    gancho: 'Empieza aquí si quieres ordenar tu dinero.',
+    color: { claro: '#1f6f5c', oscuro: '#5fc4a4', suave: '#e6f2ee' },
   },
   {
     slug: 'cripto-desde-cero',
     nombre: 'Cripto desde cero',
+    corto: 'Cripto',
     descripcion: 'Criptomonedas explicadas sin jerga, para quien empieza sin saber nada.',
+    gancho: 'Sin promesas y sin tecnicismos.',
+    color: { claro: '#0f6b7d', oscuro: '#5cbdd1', suave: '#e3f1f4' },
   },
   {
     slug: 'fiscalidad-y-seguridad',
     nombre: 'Fiscalidad y seguridad',
+    corto: 'Fiscalidad',
     descripcion: 'Cómo declarar, cómo protegerte y cómo no perder tu dinero por un descuido.',
+    gancho: 'Lo que evita disgustos caros.',
+    color: { claro: '#8c4033', oscuro: '#e29685', suave: '#f7e9e5' },
   },
   {
     slug: 'actualidad-explicada',
     nombre: 'Actualidad explicada',
+    corto: 'Actualidad',
     descripcion: 'Lo que sale en las noticias, explicado para que sepas si te afecta.',
+    gancho: 'Los titulares, traducidos.',
+    color: { claro: '#7a5510', oscuro: '#d9ab4a', suave: '#f6eeda' },
   },
 ] as const;
 

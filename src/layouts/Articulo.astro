@@ -110,7 +110,7 @@ const enDesarrollo = import.meta.env.DEV;
     </div>
   )}
 
-  <div class="rejilla-articulo">
+  <div class="rejilla-articulo" data-cat={categoria}>
     <article>
       <header class="articulo-cabecera lectura">
         {cat && <a class="etiqueta" href={ruta(`/categoria/${cat.slug}/`)}>{cat.nombre}</a>}

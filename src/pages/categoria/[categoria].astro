@@ -1,9 +1,11 @@
 ---
+import { ruta } from '../../lib/rutas';
 import { CATEGORIAS } from '../../../site.config';
 import Base from '../../layouts/Base.astro';
 import TarjetaArticulo from '../../components/TarjetaArticulo.astro';
 import MigaDePan from '../../components/MigaDePan.astro';
 import Anuncio from '../../components/Anuncio.astro';
+import Icono from '../../components/Icono.astro';
 import { articulosDeCategoria } from '../../lib/articulos';
 
 export async function getStaticPaths() {
@@ -12,39 +14,68 @@ export async function getStaticPaths() {
 
 const { cat } = Astro.props;
 const articulos = await articulosDeCategoria(cat.slug);
+
+const iconos = {
+  'finanzas-personales': 'cartera',
+  'cripto-desde-cero': 'bitcoin',
+  'fiscalidad-y-seguridad': 'escudo',
+  'actualidad-explicada': 'periodico',
+} as const;
+
+const otras = CATEGORIAS.filter((c) => c.slug !== cat.slug);
 ---
 
 <Base titulo={cat.nombre} descripcion={cat.descripcion}>
-  <MigaDePan actual={cat.nombre} />
+  <div data-cat={cat.slug}>
+    <MigaDePan actual={cat.nombre} />
 
-  <header class="presentacion">
-    <h1>{cat.nombre}</h1>
-    <p>{cat.descripcion}</p>
-  </header>
+    <header class="categoria-cabecera">
+      <span class="categoria-icono"><Icono nombre={iconos[cat.slug]} tam={30} /></span>
+      <div>
+        <h1>{cat.nombre}</h1>
+        <p class="categoria-descripcion">{cat.descripcion}</p>
+        <p class="categoria-cuenta">
+          {articulos.length} {articulos.length === 1 ? 'artículo' : 'artículos'}
+        </p>
+      </div>
+    </header>
 
-  {articulos.length === 0 ? (
-    <div class="vacio">
-      <h2>Estamos preparando contenido para esta sección</h2>
-      <p>
-        La educación financiera requiere tiempo y pausa. Los primeros artículos de
-        {' '}{cat.nombre.toLowerCase()} llegan pronto.
-      </p>
+    {articulos.length === 0 ? (
+      <div class="vacio">
+        <h2>Estamos preparando contenido para esta sección</h2>
+        <p>Los primeros artículos de {cat.nombre.toLowerCase()} llegan pronto.</p>
+      </div>
+    ) : (
+      <Fragment>
+        <ul class="lista-articulos">
+          {articulos.map((a) => (
+            <TarjetaArticulo
+              slug={a.id}
+              titulo={a.data.titulo}
+              descripcion={a.data.descripcion}
+              categoria={a.data.categoria}
+              fecha={a.data.fecha}
+              mostrarCategoria={false}
+            />
+          ))}
+        </ul>
+        {articulos.length > 2 && <Anuncio formato="banner" />}
+      </Fragment>
+    )}
+  </div>
+
+  <nav class="otras-secciones" aria-labelledby="otras-titulo">
+    <h2 id="otras-titulo" class="titulo-bloque">Otras secciones</h2>
+    <div class="mapa-secciones">
+      {otras.map((c) => (
+        <a href={ruta(`/categoria/${c.slug}/`)} data-cat={c.slug} class="mapa-tarjeta">
+          <span class="mapa-icono"><Icono nombre={iconos[c.slug]} tam={22} /></span>
+          <span class="mapa-texto">
+            <strong>{c.nombre}</strong>
+            <span>{c.gancho}</span>
+          </span>
+        </a>
+      ))}
     </div>
-  ) : (
-    <Fragment>
-      <ul class="lista-articulos">
-        {articulos.map((a) => (
-          <TarjetaArticulo
-            slug={a.id}
-            titulo={a.data.titulo}
-            descripcion={a.data.descripcion}
-            categoria={a.data.categoria}
-            fecha={a.data.fecha}
-            mostrarCategoria={false}
-          />
-        ))}
-      </ul>
-      {articulos.length > 2 && <Anuncio formato="banner" />}
-    </Fragment>
-  )}
+  </nav>
 </Base>

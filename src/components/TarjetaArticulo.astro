@@ -9,19 +9,26 @@ interface Props {
   categoria: string;
   fecha: Date;
   mostrarCategoria?: boolean;
+  destacado?: boolean;
 }
 
-const { slug, titulo, descripcion, categoria, fecha, mostrarCategoria = true } = Astro.props;
+const {
+  slug, titulo, descripcion, categoria, fecha,
+  mostrarCategoria = true, destacado = false,
+} = Astro.props;
+
 const cat = CATEGORIAS.find((c) => c.slug === categoria);
 ---
 
-<li class="tarjeta">
+<li class={destacado ? 'tarjeta tarjeta-destacada' : 'tarjeta'} data-cat={categoria}>
   <div class="tarjeta-meta">
-    {mostrarCategoria && cat && <a class="etiqueta" href={ruta(`/categoria/${cat.slug}/`)}>{cat.nombre}</a>}
+    {mostrarCategoria && cat && (
+      <a class="etiqueta" href={ruta(`/categoria/${cat.slug}/`)}>{cat.nombre}</a>
+    )}
     <time datetime={fecha.toISOString()}>
       {fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
     </time>
   </div>
-  <h2><a href={ruta(`/${slug}/`)}>{titulo}</a></h2>
+  <h3><a href={ruta(`/${slug}/`)}>{titulo}</a></h3>
   <p>{descripcion}</p>
 </li>
