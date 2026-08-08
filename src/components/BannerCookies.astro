@@ -13,9 +13,30 @@ import { ruta } from '../lib/rutas';
 // Google ofrece la suya gratis y se activa en el panel de AdSense; este
 // banner por sí solo no cumple ese requisito. Ver README.
 import { SITE } from '../../site.config';
+
+// Con la CMP de Google publicada, este banner no debe mostrarse: el visitante
+// vería dos avisos a la vez y el que manda es el de Google.
+const usarBannerPropio = !SITE.adsense.cmpGoogle;
 ---
 
-<div class="cookies" role="dialog" aria-label="Consentimiento de cookies" hidden>
+{!usarBannerPropio && (
+  /* La CMP de Google gestiona el consentimiento. Este script solo se encarga
+     de que el enlace del pie siga funcionando, abriendo su panel. */
+  <script is:inline>
+    document.addEventListener('click', function (e) {
+      var b = e.target.closest && e.target.closest('[data-abrir-cookies]');
+      if (!b) return;
+      e.preventDefault();
+      if (window.googlefc && window.googlefc.showRevocationMessage) {
+        window.googlefc.showRevocationMessage();
+      } else {
+        window.location.href = '/politica-de-cookies/';
+      }
+    });
+  </script>
+)}
+
+<div class="cookies" role="dialog" aria-label="Consentimiento de cookies" hidden={true} data-activo={usarBannerPropio ? 'si' : 'no'}>
   <div class="cookies-inner">
     <p>
       Uso cookies propias necesarias y, solo si lo autorizas, cookies de terceros para medir
@@ -62,6 +83,9 @@ import { SITE } from '../../site.config';
   const banner = document.querySelector('.cookies');
   const panel = banner?.querySelector('.cookies-config');
 
+  // Si manda la CMP de Google, este banner no interviene en nada.
+  const activo = banner?.getAttribute('data-activo') === 'si';
+
   function cargarAnalitica() {
     if (!gaId) return;
     const s = document.createElement('script');
@@ -103,7 +127,9 @@ import { SITE } from '../../site.config';
   let guardado = null;
   try { guardado = JSON.parse(localStorage.getItem(CLAVE) || 'null'); } catch (e) {}
 
-  if (guardado) {
+  if (!activo) {
+    // La CMP de Google se encarga. No se muestra nada ni se toca el consentimiento.
+  } else if (guardado) {
     aplicar(guardado);
   } else {
     banner?.removeAttribute('hidden');

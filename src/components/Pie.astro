@@ -25,9 +25,12 @@ const revision = new Date().toLocaleDateString('es-ES', { day: 'numeric', month:
 </footer>
 
 <script>
+  // Solo actúa si manda el banner propio. Con la CMP de Google publicada,
+  // el clic lo intercepta BannerCookies y abre el panel de Google.
   document.querySelector('[data-abrir-cookies]')?.addEventListener('click', () => {
     const banner = document.querySelector('.cookies');
-    banner?.removeAttribute('hidden');
-    banner?.querySelector('.cookies-config')?.setAttribute('data-abierto', 'true');
+    if (banner?.getAttribute('data-activo') !== 'si') return;
+    banner.removeAttribute('hidden');
+    banner.querySelector('.cookies-config')?.setAttribute('data-abierto', 'true');
   });
 </script>

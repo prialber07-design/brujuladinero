@@ -28,12 +28,27 @@ const analyticsActivo = !!SITE.analytics.gaId;
     </p>
 
     <h2>Cómo se pide tu consentimiento</h2>
-    <p>
-      Al entrar por primera vez aparece un aviso con tres opciones del mismo peso:
-      <strong>aceptar</strong>, <strong>rechazar</strong> o <strong>configurar</strong> por
-      categorías. <strong>Ninguna cookie opcional se activa antes de que elijas</strong>, y
-      seguir navegando no equivale a aceptar.
-    </p>
+    {SITE.adsense.cmpGoogle ? (
+      <Fragment>
+        <p>
+          Al entrar por primera vez aparece un aviso gestionado por la plataforma de
+          consentimiento de <strong>Google</strong>, certificada e integrada con el marco de
+          transparencia y consentimiento (TCF) de IAB Europe. Desde ahí puedes aceptar,
+          rechazar o configurar tus preferencias por finalidad y por proveedor.
+        </p>
+        <p>
+          <strong>Ninguna cookie opcional se activa antes de que elijas</strong>, y seguir
+          navegando no equivale a aceptar.
+        </p>
+      </Fragment>
+    ) : (
+      <p>
+        Al entrar por primera vez aparece un aviso con tres opciones del mismo peso:
+        <strong>aceptar</strong>, <strong>rechazar</strong> o <strong>configurar</strong> por
+        categorías. <strong>Ninguna cookie opcional se activa antes de que elijas</strong>, y
+        seguir navegando no equivale a aceptar.
+      </p>
+    )}
 
     <h2>Cookies necesarias</h2>
     <p>No requieren consentimiento porque sin ellas el aviso anterior no podría funcionar.</p>

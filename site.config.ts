@@ -27,6 +27,19 @@ export const SITE = {
     // Actívalo SOLO cuando AdSense te haya aprobado: antes no se muestra
     // nada y solo añade peticiones inútiles.
     unidadesActivas: false,
+
+    // Ponlo en true cuando hayas publicado el mensaje de consentimiento en
+    // AdSense > Privacidad y mensajes.
+    //
+    // Google exige una CMP certificada e integrada con el estándar TCF para
+    // servir anuncios en el EEE, Reino Unido y Suiza. El banner propio de
+    // esta web NO lo es, así que la de Google pasa a ser la que manda.
+    //
+    // Con esto en true:
+    //   · Deja de mostrarse el banner propio (evita ver dos a la vez)
+    //   · El enlace del pie abre el panel de Google
+    //   · El consentimiento lo gestiona Google de extremo a extremo
+    cmpGoogle: false,
   },
   analytics: {
     // ID de Google Analytics 4, formato G-XXXXXXXXXX
