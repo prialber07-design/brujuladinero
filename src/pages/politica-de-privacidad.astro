@@ -1,90 +1,129 @@
 ---
 import { ruta } from '../lib/rutas';
-import { SITE } from '../../site.config';
+import { SITE, TITULAR, FALTAN_DATOS_TITULAR, dato } from '../../site.config';
 import Base from '../layouts/Base.astro';
+
+const enDesarrollo = import.meta.env.DEV;
 ---
 
 <Base titulo="Política de privacidad" descripcion={`Cómo trata ${SITE.nombre} tus datos personales, conforme al RGPD.`}>
   <div class="lectura cuerpo">
     <h1>Política de privacidad</h1>
 
-    <div class="aviso-borrador">
-      <strong>PLANTILLA — revísala antes de publicar.</strong> Rellena los <code>[...]</code> y
-      ajusta los apartados a lo que realmente uses. Si añades formulario de contacto o
-      newsletter, hay que documentarlo aquí. Ante la duda, consulta con un profesional.
-    </div>
+    {enDesarrollo && FALTAN_DATOS_TITULAR && (
+      <div class="aviso-borrador">
+        <strong>Solo visible en local.</strong> Faltan datos del titular en
+        <code>site.config.ts</code>. Revisa además el apartado 3 si añades formulario de
+        contacto o boletín, y el 4 si cambias de alojamiento.
+      </div>
+    )}
+
+    <p>
+      Esta política explica cómo se tratan los datos personales de quienes visitan este sitio,
+      conforme al Reglamento (UE) 2016/679 (RGPD) y a la Ley Orgánica 3/2018 (LOPDGDD).
+    </p>
 
     <h2>1. Responsable del tratamiento</h2>
     <ul>
-      <li><strong>Responsable:</strong> [NOMBRE Y APELLIDOS]</li>
-      <li><strong>NIF:</strong> [TU NIF]</li>
-      <li><strong>Contacto:</strong> {SITE.autor.email}</li>
+      <li><strong>Responsable:</strong> {dato(TITULAR.nombre, 'nombre y apellidos')}</li>
+      <li><strong>NIF:</strong> {dato(TITULAR.nif, 'NIF')}</li>
+      <li><strong>Domicilio:</strong> {dato(TITULAR.direccion, 'domicilio')}</li>
+      <li><strong>Contacto:</strong> <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a></li>
     </ul>
 
     <h2>2. Qué datos se tratan y con qué finalidad</h2>
-    <table>
-      <thead>
-        <tr><th>Dato</th><th>Finalidad</th><th>Base legal</th></tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Datos de navegación (cookies analíticas)</td>
-          <td>Medir visitas y entender qué contenido resulta útil</td>
-          <td>Consentimiento</td>
-        </tr>
-        <tr>
-          <td>Datos de navegación (cookies publicitarias)</td>
-          <td>Mostrar publicidad y financiar el sitio</td>
-          <td>Consentimiento</td>
-        </tr>
-        <tr>
-          <td>Correo electrónico, si escribes</td>
-          <td>Responder a tu consulta</td>
-          <td>Consentimiento</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="tabla-scroll">
+      <table>
+        <thead>
+          <tr><th>Dato</th><th>Finalidad</th><th>Base legal</th><th>Conservación</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Datos de navegación (cookies analíticas)</td>
+            <td>Medir visitas y saber qué contenido resulta útil</td>
+            <td>Consentimiento</td>
+            <td>Hasta 2 años o hasta que lo retires</td>
+          </tr>
+          <tr>
+            <td>Datos de navegación (cookies publicitarias)</td>
+            <td>Mostrar publicidad y medir su rendimiento</td>
+            <td>Consentimiento</td>
+            <td>Hasta 2 años o hasta que lo retires</td>
+          </tr>
+          <tr>
+            <td>Correo electrónico y contenido del mensaje</td>
+            <td>Responder a tu consulta</td>
+            <td>Consentimiento</td>
+            <td>Mientras dure la conversación y un año más</td>
+          </tr>
+          <tr>
+            <td>Dirección IP y datos técnicos de la petición</td>
+            <td>Servir la página y garantizar la seguridad</td>
+            <td>Interés legítimo</td>
+            <td>Según los registros del proveedor de alojamiento</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
     <p>
-      <strong>Sin tu consentimiento no se carga ninguna cookie de terceros.</strong> Si rechazas,
-      la web funciona igual.
+      <strong>Sin tu consentimiento no se activa ninguna cookie analítica ni publicitaria.</strong>
+      Si las rechazas, el sitio funciona con normalidad y no pierdes ninguna funcionalidad.
     </p>
 
-    <h2>3. Destinatarios</h2>
+    <h2>3. No se recogen datos que no necesito</h2>
     <p>
-      Si aceptas las cookies opcionales, tus datos de navegación son tratados por
-      <strong>Google Ireland Limited</strong> (Google Analytics y Google AdSense), que puede
-      transferirlos fuera del Espacio Económico Europeo amparándose en las cláusulas
-      contractuales tipo de la Comisión Europea.
-    </p>
-    <p>
-      El alojamiento del sitio corre a cargo de <strong>[TU PROVEEDOR DE HOSTING]</strong>.
+      Este sitio no dispone de registro de usuarios, ni de boletín, ni de zona privada. No se
+      solicitan datos identificativos para leer ningún contenido.
     </p>
 
-    <h2>4. Conservación</h2>
+    <h2>4. Destinatarios y transferencias internacionales</h2>
     <p>
-      Los datos se conservan mientras sean necesarios para la finalidad indicada o hasta que
-      retires tu consentimiento. Los plazos de las cookies figuran en la
-      <a href={ruta('/politica-de-cookies/')}>política de cookies</a>.
+      El sitio está alojado en <strong>{TITULAR.hosting}</strong>, que trata los datos técnicos
+      necesarios para servir las páginas.
+    </p>
+    <p>
+      Si aceptas las cookies opcionales, los datos de navegación son tratados por
+      <strong>Google Ireland Limited</strong> a través de Google Analytics y Google AdSense.
+      Google puede transferir datos fuera del Espacio Económico Europeo amparándose en las
+      cláusulas contractuales tipo aprobadas por la Comisión Europea y en otras garantías
+      previstas en el capítulo V del RGPD.
+    </p>
+    <p>
+      No se ceden datos a otros terceros ni se elaboran perfiles con fines distintos de los
+      indicados.
     </p>
 
     <h2>5. Tus derechos</h2>
     <p>
-      Puedes ejercer los derechos de acceso, rectificación, supresión, oposición, limitación y
-      portabilidad escribiendo a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>,
-      acreditando tu identidad.
+      Puedes ejercer los derechos de <strong>acceso, rectificación, supresión, oposición,
+      limitación del tratamiento y portabilidad</strong>, así como retirar tu consentimiento en
+      cualquier momento, escribiendo a
+      <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a> y acreditando tu identidad.
     </p>
     <p>
-      Si consideras que el tratamiento no se ajusta a la normativa, puedes reclamar ante la
+      La retirada del consentimiento no afecta a la licitud del tratamiento realizado con
+      anterioridad.
+    </p>
+    <p>
+      Si consideras que el tratamiento no se ajusta a la normativa, puedes presentar una
+      reclamación ante la
       <a href="https://www.aepd.es" rel="nofollow noopener" target="_blank">Agencia Española de
       Protección de Datos</a>.
     </p>
 
-    <h2>6. Retirar el consentimiento</h2>
+    <h2>6. Cómo cambiar tu decisión sobre las cookies</h2>
     <p>
-      Puedes cambiar tu decisión en cualquier momento desde el enlace
-      <strong>«Preferencias de cookies»</strong> del pie de página.
+      En cualquier momento, desde el enlace <strong>«Configuración de cookies»</strong> del pie
+      de página. Tienes el detalle completo en la
+      <a href={ruta('/politica-de-cookies/')}>política de cookies</a>.
     </p>
 
-    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+    <h2>7. Seguridad</h2>
+    <p>
+      El sitio se sirve íntegramente sobre HTTPS. No se almacenan contraseñas ni datos de pago,
+      porque no existe ninguna funcionalidad que los requiera.
+    </p>
+
+    <p class="nota-legal">Última actualización: {TITULAR.actualizacion}</p>
   </div>
 </Base>

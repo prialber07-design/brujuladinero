@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "og": "node scripts/generar-og.mjs",
+    "revisar": "node scripts/revisar.mjs",
     "astro": "astro"
   },
   "dependencies": {

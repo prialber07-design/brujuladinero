@@ -1,89 +1,124 @@
 ---
 import { ruta } from '../lib/rutas';
-import { SITE } from '../../site.config';
+import { SITE, TITULAR } from '../../site.config';
 import Base from '../layouts/Base.astro';
+
+const enDesarrollo = import.meta.env.DEV;
+const adsenseActivo = SITE.adsense.scriptEnCabecera && SITE.adsense.publisherId;
+const analyticsActivo = !!SITE.analytics.gaId;
 ---
 
 <Base titulo="Política de cookies" descripcion={`Qué cookies usa ${SITE.nombre}, para qué sirven y cómo gestionarlas.`}>
   <div class="lectura cuerpo">
     <h1>Política de cookies</h1>
 
-    <div class="aviso-borrador">
-      <strong>PLANTILLA — actualízala cuando actives Analytics o AdSense.</strong> La tabla debe
-      reflejar las cookies que realmente se cargan. Revísala también si añades cualquier
-      servicio externo.
-    </div>
+    {enDesarrollo && (
+      <div class="aviso-borrador">
+        <strong>Solo visible en local.</strong> Esta tabla se genera según lo que tengas
+        activado en <code>site.config.ts</code>. Si añades cualquier servicio externo nuevo
+        —un vídeo incrustado, un mapa, un formulario—, añádelo aquí a mano.
+      </div>
+    )}
 
     <h2>Qué es una cookie</h2>
     <p>
       Un archivo pequeño que un sitio web guarda en tu navegador para recordar información
-      entre visitas.
+      entre páginas o entre visitas. Algunas son imprescindibles para que el sitio funcione y
+      otras sirven para medir o para mostrar publicidad.
     </p>
 
-    <h2>Cookies que usa este sitio</h2>
+    <h2>Cómo se pide tu consentimiento</h2>
+    <p>
+      Al entrar por primera vez aparece un aviso con tres opciones del mismo peso:
+      <strong>aceptar</strong>, <strong>rechazar</strong> o <strong>configurar</strong> por
+      categorías. <strong>Ninguna cookie opcional se activa antes de que elijas</strong>, y
+      seguir navegando no equivale a aceptar.
+    </p>
 
-    <h3>Necesarias (no requieren consentimiento)</h3>
+    <h2>Cookies necesarias</h2>
+    <p>No requieren consentimiento porque sin ellas el aviso anterior no podría funcionar.</p>
     <div class="tabla-scroll">
       <table>
-        <thead><tr><th>Nombre</th><th>Finalidad</th><th>Duración</th></tr></thead>
+        <thead><tr><th>Nombre</th><th>Finalidad</th><th>Duración</th><th>Titular</th></tr></thead>
         <tbody>
           <tr>
             <td><code>consentimiento-cookies</code></td>
-            <td>Recordar si aceptaste o rechazaste las cookies opcionales</td>
+            <td>Recordar qué has decidido sobre las cookies opcionales</td>
             <td>Permanente hasta que la borres</td>
+            <td>Propia</td>
           </tr>
-        </tbody>
-      </table>
-    </div>
-    <p>
-      Se almacena en el <em>localStorage</em> de tu navegador y no se envía a ningún servidor.
-    </p>
-
-    <h3>Analíticas (requieren tu consentimiento)</h3>
-    <div class="tabla-scroll">
-      <table>
-        <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
-        <tbody>
           <tr>
-            <td>Google Analytics</td>
-            <td>Medir visitas y páginas más leídas, con IP anonimizada</td>
-            <td>Hasta 2 años</td>
+            <td><code>tema</code></td>
+            <td>Recordar si prefieres el modo claro u oscuro</td>
+            <td>Permanente hasta que la borres</td>
+            <td>Propia</td>
           </tr>
         </tbody>
       </table>
     </div>
-
-    <h3>Publicitarias (requieren tu consentimiento)</h3>
-    <div class="tabla-scroll">
-      <table>
-        <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
-        <tbody>
-          <tr>
-            <td>Google AdSense</td>
-            <td>Mostrar publicidad y medir su rendimiento</td>
-            <td>Hasta 2 años</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <h2>Cómo gestionarlas</h2>
     <p>
-      Al entrar por primera vez puedes <strong>aceptar o rechazar</strong> las cookies
-      opcionales. Rechazarlas no limita ninguna funcionalidad.
-    </p>
-    <p>
-      Puedes cambiar tu decisión cuando quieras desde
-      <strong>«Preferencias de cookies»</strong>, en el pie de página. También puedes
-      bloquearlas o eliminarlas desde la configuración de tu navegador.
+      Ambas se guardan en el almacenamiento local de tu navegador y <strong>no se envían a
+      ningún servidor</strong>.
     </p>
 
-    <h2>Más información</h2>
+    <h2>Cookies analíticas</h2>
+    <p>Requieren tu consentimiento expreso.</p>
+    {analyticsActivo ? (
+      <div class="tabla-scroll">
+        <table>
+          <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Google Analytics — Google Ireland Limited</td>
+              <td>Medir visitas y páginas más leídas, con la IP anonimizada</td>
+              <td>Hasta 2 años</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p>Actualmente <strong>no hay ninguna herramienta de analítica activa</strong> en este sitio.</p>
+    )}
+
+    <h2>Cookies publicitarias</h2>
+    <p>Requieren tu consentimiento expreso.</p>
+    {adsenseActivo ? (
+      <div class="tabla-scroll">
+        <table>
+          <thead><tr><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Google AdSense — Google Ireland Limited</td>
+              <td>Mostrar publicidad, limitar su repetición y medir su rendimiento</td>
+              <td>Hasta 2 años</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p>Actualmente <strong>no hay publicidad activa</strong> en este sitio.</p>
+    )}
+
+    <h2>Transferencias internacionales</h2>
     <p>
-      Consulta también la <a href={ruta('/politica-de-privacidad/')}>política de privacidad</a> o
-      escribe a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>.
+      Los proveedores anteriores pueden tratar datos fuera del Espacio Económico Europeo,
+      amparándose en las cláusulas contractuales tipo aprobadas por la Comisión Europea.
+      Más detalle en la <a href={ruta('/politica-de-privacidad/')}>política de privacidad</a>.
     </p>
 
-    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+    <h2>Cómo cambiar tu decisión</h2>
+    <p>
+      Cuando quieras, desde el enlace <strong>«Configuración de cookies»</strong> del pie de
+      página. También puedes bloquear o eliminar cookies desde la configuración de tu
+      navegador; ten en cuenta que eso afecta a todos los sitios que visites, no solo a este.
+    </p>
+
+    <h2>Contacto</h2>
+    <p>
+      Para cualquier duda sobre esta política, escribe a
+      <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a>.
+    </p>
+
+    <p class="nota-legal">Última actualización: {TITULAR.actualizacion}</p>
   </div>
 </Base>

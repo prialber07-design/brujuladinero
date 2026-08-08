@@ -40,6 +40,40 @@ export const SITE = {
   permitirRastreadoresIA: true,
 } as const;
 
+/**
+ * ─────────────────────────────────────────────────────────────────
+ *  RELLENA ESTO. Es lo único que falta para que las páginas legales
+ *  sean válidas. Se propaga solo al aviso legal, la política de
+ *  privacidad y la de cookies.
+ *
+ *  La LSSI-CE obliga a identificar al titular de un sitio web con
+ *  contenido publicado. Ahora mismo tienes 16 artículos en línea.
+ * ─────────────────────────────────────────────────────────────────
+ */
+export const TITULAR = {
+  /** Nombre y apellidos completos, como en tu DNI. */
+  nombre: '',
+  /** NIF / DNI con la letra. */
+  nif: '',
+  /** Domicilio a efectos de notificaciones. Basta municipio y provincia. */
+  direccion: '',
+  /** Correo de contacto. Debe funcionar: es por donde se ejercen los derechos RGPD. */
+  email: 'hola@brujuladinero.com',
+  /** Quién aloja el sitio. Cámbialo si dejas GitHub Pages. */
+  hosting: 'GitHub Pages — GitHub, Inc. (Estados Unidos)',
+  /** Fecha de la última revisión de los textos legales. */
+  actualizacion: '2026-08-07',
+} as const;
+
+/** true cuando falta algún dato obligatorio del titular. */
+export const FALTAN_DATOS_TITULAR =
+  !TITULAR.nombre || !TITULAR.nif || !TITULAR.direccion;
+
+/** Devuelve el dato o un marcador visible si está sin rellenar. */
+export function dato(valor: string, etiqueta: string): string {
+  return valor.trim() || `[PENDIENTE: ${etiqueta}]`;
+}
+
 export const CATEGORIAS = [
   {
     slug: 'finanzas-personales',

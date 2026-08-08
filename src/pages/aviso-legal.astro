@@ -1,71 +1,98 @@
 ---
-import { SITE } from '../../site.config';
+import { SITE, TITULAR, FALTAN_DATOS_TITULAR, dato } from '../../site.config';
 import Base from '../layouts/Base.astro';
+
+const enDesarrollo = import.meta.env.DEV;
 ---
 
-<Base titulo="Aviso legal" descripcion={`Aviso legal y condiciones de uso de ${SITE.nombre}.`} noIndexar={false}>
+<Base titulo="Aviso legal" descripcion={`Aviso legal y condiciones de uso de ${SITE.nombre}.`}>
   <div class="lectura cuerpo">
     <h1>Aviso legal</h1>
 
-    <div class="aviso-borrador">
-      <strong>PLANTILLA — no publiques esto tal cual.</strong> Rellena los campos marcados con
-      <code>[...]</code> con tus datos reales. La LSSI-CE exige identificar al titular del sitio.
-      Si tienes dudas, usa un generador especializado o consulta con un profesional: yo no soy
-      fuente legal fiable y un aviso legal incorrecto puede acarrear sanción.
-    </div>
+    {enDesarrollo && FALTAN_DATOS_TITULAR && (
+      <div class="aviso-borrador">
+        <strong>Solo visible en local.</strong> Faltan datos del titular. Rellena
+        <code>TITULAR</code> en <code>site.config.ts</code> y se completan las tres páginas
+        legales a la vez. Hasta entonces aparecen marcadores <code>[PENDIENTE]</code> en la
+        web publicada.
+      </div>
+    )}
 
     <h2>1. Titular del sitio</h2>
+    <p>
+      En cumplimiento de la Ley 34/2002, de servicios de la sociedad de la información y de
+      comercio electrónico (LSSI-CE), se informa de los datos identificativos del titular:
+    </p>
     <ul>
-      <li><strong>Titular:</strong> [NOMBRE Y APELLIDOS COMPLETOS]</li>
-      <li><strong>NIF:</strong> [TU NIF]</li>
-      <li><strong>Domicilio:</strong> [DIRECCIÓN]</li>
-      <li><strong>Correo de contacto:</strong> {SITE.autor.email}</li>
+      <li><strong>Titular:</strong> {dato(TITULAR.nombre, 'nombre y apellidos')}</li>
+      <li><strong>NIF:</strong> {dato(TITULAR.nif, 'NIF')}</li>
+      <li><strong>Domicilio:</strong> {dato(TITULAR.direccion, 'domicilio')}</li>
+      <li><strong>Correo de contacto:</strong> <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a></li>
       <li><strong>Sitio web:</strong> {SITE.url}</li>
+      <li><strong>Alojamiento:</strong> {TITULAR.hosting}</li>
     </ul>
 
     <h2>2. Objeto</h2>
     <p>
       Este sitio tiene finalidad exclusivamente informativa y divulgativa sobre finanzas
-      personales y criptomonedas. El acceso es gratuito, salvo el coste de conexión del usuario.
+      personales y criptomonedas. El acceso es gratuito, salvo el coste de conexión a través
+      de la red de telecomunicaciones del usuario.
     </p>
 
     <h2>3. Exención de responsabilidad</h2>
     <p>
-      <strong>El contenido no constituye asesoramiento financiero, fiscal, legal ni de inversión.</strong>
-      El titular no está registrado como asesor financiero ante la CNMV ni ante ningún otro
-      organismo regulador, y no presta servicios de inversión.
+      <strong>
+        El contenido de este sitio no constituye asesoramiento financiero, fiscal, legal ni de
+        inversión, ni recomendación personalizada de ningún tipo.
+      </strong>
     </p>
     <p>
-      La información se ofrece de buena fe y se procura mantener actualizada, pero la normativa
-      y las condiciones de los productos cambian. El usuario es responsable de contrastar la
-      información con fuentes oficiales antes de tomar cualquier decisión económica. El titular
-      no responde de las decisiones adoptadas a partir del contenido publicado.
+      El titular no está registrado como asesor financiero ante la Comisión Nacional del
+      Mercado de Valores ni ante ningún otro organismo supervisor, y no presta servicios de
+      inversión ni de intermediación.
     </p>
     <p>
-      La inversión en criptoactivos y otros productos financieros conlleva riesgo de pérdida
-      total o parcial del capital.
+      La información se ofrece de buena fe y se procura mantenerla actualizada, pero la
+      normativa y las condiciones de los productos financieros cambian con frecuencia. Cada
+      artículo indica su fecha de publicación y, en su caso, de última revisión. Es
+      responsabilidad del usuario contrastar la información con fuentes oficiales o con un
+      profesional cualificado antes de tomar cualquier decisión económica.
+    </p>
+    <p>
+      El titular no responde de las decisiones adoptadas a partir del contenido publicado ni
+      de los perjuicios que pudieran derivarse de ellas. La inversión en criptoactivos y en
+      otros productos financieros conlleva riesgo de pérdida total o parcial del capital.
     </p>
 
     <h2>4. Propiedad intelectual</h2>
     <p>
-      Los contenidos originales de este sitio pertenecen a su titular. Se permite citar
-      fragmentos breves indicando la fuente y enlazando al artículo original. No se autoriza
-      la reproducción íntegra sin permiso.
+      Los contenidos originales de este sitio —textos, estructura y diseño— pertenecen a su
+      titular. Se permite citar fragmentos breves indicando la fuente y enlazando al artículo
+      original. No se autoriza la reproducción íntegra ni la reutilización sistemática sin
+      permiso previo por escrito.
     </p>
 
-    <h2>5. Enlaces de afiliado y publicidad</h2>
+    <h2>5. Publicidad y enlaces de afiliado</h2>
     <p>
-      Este sitio puede incluir publicidad de terceros y enlaces de afiliado, señalados como
-      tales. Su uso no supone coste adicional para el usuario. El titular no se responsabiliza
-      de los contenidos, productos o servicios de terceros enlazados.
+      Este sitio se financia mediante publicidad de terceros y, en algunos artículos, enlaces
+      de afiliado debidamente señalados. Su uso no supone coste adicional para el usuario. El
+      titular no se responsabiliza de los contenidos, productos o servicios ofrecidos por
+      terceros a los que se enlace.
     </p>
 
-    <h2>6. Legislación aplicable</h2>
+    <h2>6. Enlaces externos</h2>
     <p>
-      Este aviso legal se rige por la legislación española. Para cualquier controversia serán
-      competentes los juzgados y tribunales que correspondan conforme a la normativa vigente.
+      Los enlaces a sitios de terceros se facilitan como referencia. El titular no controla
+      dichos sitios ni asume responsabilidad alguna sobre su contenido o disponibilidad.
     </p>
 
-    <p class="aviso-legal-corto">Última actualización: [FECHA]</p>
+    <h2>7. Legislación aplicable</h2>
+    <p>
+      El presente aviso legal se rige por la legislación española. Para la resolución de
+      cualquier controversia serán competentes los juzgados y tribunales que correspondan
+      conforme a la normativa vigente en materia de consumidores y usuarios.
+    </p>
+
+    <p class="nota-legal">Última actualización: {TITULAR.actualizacion}</p>
   </div>
 </Base>

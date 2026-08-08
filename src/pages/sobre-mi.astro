@@ -1,61 +1,124 @@
 ---
-import { SITE } from '../../site.config';
+import { ruta } from '../lib/rutas';
+import { SITE, TITULAR, dato } from '../../site.config';
 import Base from '../layouts/Base.astro';
+import { articulosPublicados } from '../lib/articulos';
+
+const enDesarrollo = import.meta.env.DEV;
+const articulos = await articulosPublicados();
+
+// Datos estructurados de la página de perfil. Es lo que permite a Google
+// vincular todos los artículos con una persona identificable, que es lo que
+// más pesa en un nicho YMYL como las finanzas.
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  mainEntity: { '@id': `${SITE.url}/#autor` },
+  about: { '@id': `${SITE.url}/#autor` },
+  isPartOf: { '@id': `${SITE.url}/#web` },
+};
 ---
 
 <Base
   titulo="Sobre mí"
-  descripcion={`Quién está detrás de ${SITE.nombre} y por qué escribo sobre finanzas personales y criptomonedas desde cero.`}
+  descripcion={`Quién está detrás de ${SITE.nombre}, con qué criterio se escribe y qué no vas a encontrar aquí.`}
 >
   <div class="lectura cuerpo">
     <h1>Sobre mí</h1>
 
-    <div class="aviso-borrador">
-      <strong>Pendiente de completar.</strong> Esta página es de las más importantes del sitio:
-      en finanzas, Google evalúa activamente quién firma el contenido. Sustituye el texto de
-      abajo por el tuyo real, añade una foto y tu nombre completo.
-    </div>
+    {enDesarrollo && (
+      <div class="aviso-borrador">
+        <strong>Solo visible en local.</strong> Esta es la página más importante del sitio
+        para Google: es donde evalúa quién firma 16 artículos de finanzas. Sustituye los
+        párrafos marcados con <code>&#123;/* EDITA */&#125;</code> por tu texto real, y añade
+        una foto tuya en <code>/public/autor.jpg</code>. No inventes credenciales: la
+        honestidad posiciona mejor que un currículum falso.
+      </div>
+    )}
 
-    <p>
-      Me llamo <strong>{SITE.autor.nombre}</strong> y escribo aquí sobre finanzas personales
-      y criptomonedas.
+    <p class="entradilla">
+      Me llamo <strong>{dato(TITULAR.nombre, 'tu nombre')}</strong> y escribo sobre finanzas
+      personales y criptomonedas para gente que empieza desde cero.
     </p>
 
+    {/* EDITA: sustituye este bloque por tu historia real. Dos o tres párrafos.
+        Qué haces, por qué te metiste en esto, desde cuándo. */}
     <h2>Por qué existe esta web</h2>
     <p>
       No soy asesor financiero ni trabajo en banca. Soy alguien que decidió entender de una vez
-      cómo funciona su propio dinero y que va documentando el proceso: lo que aprendo, lo que me
-      cuesta entender y los errores que cometo por el camino.
+      cómo funciona su propio dinero, y que va documentando el proceso: lo que aprendo, lo que
+      me cuesta entender y los errores que cometo por el camino.
     </p>
     <p>
-      Escribo lo que me habría gustado encontrar cuando empecé: explicaciones sin jerga, con los
-      costes reales, y sin nadie intentando venderme nada.
+      Escribo lo que me habría gustado encontrar cuando empecé: explicaciones sin jerga, con
+      los costes reales por delante y sin nadie intentando venderme nada. Si algo no lo he
+      probado, lo digo.
     </p>
 
-    <h2>Qué no vas a encontrar aquí</h2>
+    <h2>Qué vas a encontrar aquí</h2>
+    <p>
+      <strong>Procedimientos, no consejos.</strong> Cómo funciona cada cosa, cuánto cuesta de
+      verdad y qué pasos dar. Ahora mismo hay {articulos.length} artículos repartidos en
+      cuatro secciones:
+    </p>
     <ul>
-      <li>Recomendaciones de qué comprar o vender.</li>
-      <li>Promesas de rentabilidad.</li>
+      <li><a href={ruta('/categoria/finanzas-personales/')}>Finanzas personales</a> — ahorro, presupuesto, deudas, nómina.</li>
+      <li><a href={ruta('/categoria/cripto-desde-cero/')}>Cripto desde cero</a> — sin jerga y sin promesas.</li>
+      <li><a href={ruta('/categoria/fiscalidad-y-seguridad/')}>Fiscalidad y seguridad</a> — cómo no perder dinero por un descuido.</li>
+      <li><a href={ruta('/categoria/actualidad-explicada/')}>Actualidad explicada</a> — lo que sale en las noticias, traducido.</li>
+    </ul>
+
+    <h2>Qué NO vas a encontrar</h2>
+    <ul>
+      <li>Recomendaciones sobre qué comprar o vender.</li>
+      <li>Promesas de rentabilidad, ni «oportunidades» con fecha límite.</li>
       <li>Contenido copiado de otras webs.</li>
+      <li>Datos sin fuente. Cada artículo cita de dónde sale lo que afirma.</li>
     </ul>
 
     <h2>Cómo trabajo</h2>
     <p>
-      Antes de escribir sobre algo, lo hago. Si explico cómo abrir una cuenta, es porque la abrí
-      yo. Si hablo de comisiones, son las que pagué. Cuando algo no lo he probado en primera
-      persona, lo digo expresamente.
+      Contrasto los datos con <strong>fuentes oficiales</strong> —Agencia Tributaria, CNMV,
+      Banco de España, INE— y las cito al final de cada artículo con la fecha en que las
+      consulté. La normativa cambia, así que esa fecha importa: si lees mucho después,
+      comprueba que sigue vigente.
     </p>
     <p>
-      Contrasto los datos con fuentes oficiales y actualizo los artículos cuando la normativa
-      cambia. Si detectas un error, escríbeme a <a href={`mailto:${SITE.autor.email}`}>{SITE.autor.email}</a>
-      y lo corrijo.
+      Cada artículo lleva visible su fecha de publicación y, cuando lo he revisado, la de
+      actualización. Reviso el contenido de fiscalidad y actualidad al menos una vez al año.
+    </p>
+    <p>
+      <strong>Si encuentras un error, escríbeme.</strong> Lo corrijo y lo hago constar. Es la
+      forma más rápida de que esto mejore:
+      <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a>.
+    </p>
+
+    <h2>Aviso importante</h2>
+    <p>
+      No estoy registrado como asesor financiero ante la CNMV ni ante ningún otro organismo
+      supervisor. <strong>Nada de lo que leas aquí es asesoramiento financiero, fiscal ni de
+      inversión.</strong> Es divulgación. Antes de tomar cualquier decisión con tu dinero,
+      contrasta con fuentes oficiales o con un profesional cualificado.
     </p>
 
     <h2>Transparencia</h2>
     <p>
-      Esta web se financia con publicidad y, en algunos artículos, con enlaces de afiliado
-      —si contratas algo a través de ellos, yo recibo una comisión sin coste adicional para ti.
-      Siempre están señalados. Nunca recomiendo algo por su comisión.
+      Esta web se financia con <strong>publicidad</strong> y, en algunos artículos, con
+      <strong>enlaces de afiliado</strong>: si contratas algo a través de ellos, recibo una
+      pequeña comisión sin coste adicional para ti. Están siempre señalados de forma visible
+      dentro del propio artículo.
+    </p>
+    <p>
+      Nunca recomiendo nada en función de su comisión. Si un producto me parece malo, lo digo
+      aunque tenga programa de afiliados.
+    </p>
+
+    <h2>Contacto</h2>
+    <p>
+      Para correcciones, dudas o propuestas:
+      <a href={`mailto:${TITULAR.email}`}>{TITULAR.email}</a>.
     </p>
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} is:inline />
 </Base>
