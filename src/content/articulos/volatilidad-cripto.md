@@ -3,7 +3,7 @@ titulo: 'Por qué el precio de las criptomonedas se mueve tanto'
 descripcion: 'Las causas reales de la volatilidad de las criptomonedas, por qué las caídas del 50% son normales en este activo y qué significa eso para quien invierte.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'volatilidad criptomonedas'

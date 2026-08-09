@@ -3,7 +3,7 @@ titulo: 'Fondo de emergencia: cuánto necesitas y dónde guardarlo'
 descripcion: 'Cómo calcular tu fondo de emergencia según tu situación real, dónde guardarlo para que no pierda valor y los errores que lo dejan inservible.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-05
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'fondo de emergencia'

@@ -3,7 +3,7 @@ titulo: 'Cómo tributan las criptomonedas en España: los conceptos básicos'
 descripcion: 'Qué operaciones con criptomonedas generan obligación de tributar, por qué permutar también cuenta y qué registro necesitas llevar desde el primer día.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declarar criptomonedas'

@@ -3,7 +3,7 @@ titulo: 'Cuentas sin comisiones: qué mirar antes de cambiar de banco'
 descripcion: 'Qué significa realmente "sin comisiones", las condiciones que suelen esconderse en la letra pequeña y cómo comprobar cuánto te está costando tu banco actual.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-06
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cuenta sin comisiones'

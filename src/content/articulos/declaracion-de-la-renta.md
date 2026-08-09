@@ -3,7 +3,7 @@ titulo: 'Cómo funciona la declaración de la renta, explicada de cero'
 descripcion: 'Qué es la declaración de la renta, por qué sale a devolver o a pagar, qué es el borrador y qué conviene revisar siempre antes de confirmarlo.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declaración de la renta'

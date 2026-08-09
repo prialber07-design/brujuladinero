@@ -3,7 +3,7 @@ titulo: 'Cómo proteger tus cuentas: contraseñas, 2FA y el SMS'
 descripcion: 'Cómo proteger de verdad tus cuentas bancarias y de inversión: gestor de contraseñas, verificación en dos pasos y por qué el SMS es el método más débil.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'verificación en dos pasos'

@@ -3,7 +3,7 @@ titulo: 'Qué es una recesión y cómo te afecta de verdad'
 descripcion: 'Qué es una recesión, cómo se mide, por qué el paro sube después y no antes, y qué decisiones personales tienen sentido cuando la economía se enfría.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una recesión'

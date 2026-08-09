@@ -3,7 +3,7 @@ titulo: 'Cómo hacer un presupuesto mensual que no abandones a las tres semanas'
 descripcion: 'El método para hacer un presupuesto que sobreviva más de un mes: por qué fallan los que apuntan cada gasto y qué hacer en su lugar, paso a paso.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'presupuesto mensual'

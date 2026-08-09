@@ -3,7 +3,7 @@ titulo: 'Cuánto cuesta de verdad comprar criptomonedas'
 descripcion: 'Las comisiones que pagas al comprar criptomonedas y que casi nunca aparecen juntas: spread, comisión de compra, red y retirada. Cómo calcular el coste real.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'comisiones criptomonedas'

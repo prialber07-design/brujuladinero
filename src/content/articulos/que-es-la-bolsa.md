@@ -3,7 +3,7 @@ titulo: 'Qué es la bolsa y cómo funciona, explicado desde cero'
 descripcion: 'Qué es una acción, qué es un índice, de dónde sale la rentabilidad y por qué la bolsa no es un casino ni una máquina de hacer dinero garantizada.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la bolsa'

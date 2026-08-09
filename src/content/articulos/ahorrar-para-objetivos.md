@@ -3,7 +3,7 @@ titulo: 'Cómo ahorrar para objetivos concretos sin mezclarlo todo'
 descripcion: 'Por qué ahorrar sin destino no funciona, cómo separar objetivos por plazo y dónde poner el dinero de cada uno según cuándo lo vayas a necesitar.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'ahorrar para objetivos'

@@ -3,7 +3,7 @@ titulo: 'Te han estafado: qué hacer en las primeras 48 horas'
 descripcion: 'Los pasos concretos tras sufrir un fraude bancario o con criptomonedas: qué hacer primero, dónde denunciar y por qué no debes pagar por recuperar.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué hacer si me han estafado'

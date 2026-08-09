@@ -3,7 +3,7 @@ titulo: 'Interés compuesto: por qué el tiempo importa más que la cantidad'
 descripcion: 'Qué es el interés compuesto, cómo calcularlo con números reales y por qué empezar cinco años antes rinde más que doblar la aportación mensual.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-06
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'interés compuesto'

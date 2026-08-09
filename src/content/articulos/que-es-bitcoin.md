@@ -4,7 +4,7 @@ descripcion: 'Qué es Bitcoin y cómo funciona realmente, contado con una analog
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-06
 actualizado: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es bitcoin'

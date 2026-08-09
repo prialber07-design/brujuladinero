@@ -3,7 +3,7 @@ titulo: 'Inflación: por qué tu dinero vale menos cada año'
 descripcion: 'Qué es la inflación, cómo se mide con el IPC, por qué tu inflación personal no coincide con la del titular y qué puedes hacer con tus ahorros.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la inflación'

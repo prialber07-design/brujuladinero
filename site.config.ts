@@ -12,10 +12,10 @@ export const SITE = {
   url: URL_SITIO,
   idioma: 'es-ES',
   autor: {
-    nombre: 'Alberto',
+    nombre: 'Alberto Pérez Lafuente',
     // Rellena esto antes de publicar: Google evalúa quién firma el contenido.
     bio: 'Documento mi propio aprendizaje sobre finanzas personales y criptomonedas desde cero.',
-    email: 'hola@brujuladinero.com',
+    email: 'prialber07@gmail.com',
   },
   adsense: {
     publisherId: 'ca-pub-2108212339865549',
@@ -60,7 +60,7 @@ export const SITE = {
  *  privacidad y la de cookies.
  *
  *  La LSSI-CE obliga a identificar al titular de un sitio web con
- *  contenido publicado. Ahora mismo tienes 16 artículos en línea.
+ *  contenido publicado.
  * ─────────────────────────────────────────────────────────────────
  */
 export const TITULAR = {
@@ -71,7 +71,7 @@ export const TITULAR = {
   /** Domicilio a efectos de notificaciones. Basta municipio y provincia. */
   direccion: 'Alférez Rojas 52, 50017 Zaragoza',
   /** Correo de contacto. Debe funcionar: es por donde se ejercen los derechos RGPD. */
-  email: 'hola@brujuladinero.com',
+  email: 'prialber07@gmail.com',
   /** Quién aloja el sitio. Cámbialo si dejas GitHub Pages. */
   hosting: 'GitHub Pages — GitHub, Inc. (Estados Unidos)',
   /** Fecha de la última revisión de los textos legales. */

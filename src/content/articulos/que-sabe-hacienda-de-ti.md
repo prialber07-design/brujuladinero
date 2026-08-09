@@ -3,7 +3,7 @@ titulo: 'Qué sabe Hacienda de tus cuentas y de tu dinero'
 descripcion: 'Qué información recibe la Agencia Tributaria de bancos, plataformas y otros países, y por qué el borrador de la renta puede estar incompleto.'
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué sabe Hacienda de mis cuentas'

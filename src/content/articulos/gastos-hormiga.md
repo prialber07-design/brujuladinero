@@ -3,7 +3,7 @@ titulo: 'Gastos hormiga: cómo encontrar el dinero que se te escapa'
 descripcion: 'Qué son los gastos hormiga, cómo detectarlos en tu extracto en veinte minutos y por qué eliminarlos todos es una mala estrategia que suele acabar en abandono.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'gastos hormiga'

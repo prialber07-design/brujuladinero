@@ -3,7 +3,7 @@ titulo: 'Qué es una stablecoin y por qué no todas son iguales'
 descripcion: 'Qué son las stablecoins, los tres tipos que existen según cómo mantienen su valor, por qué algunas se han hundido y qué exige ahora la regulación europea.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una stablecoin'

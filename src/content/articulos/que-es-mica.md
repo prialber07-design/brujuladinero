@@ -3,7 +3,7 @@ titulo: 'Qué es MiCA y cómo te afecta si tienes criptomonedas en España'
 descripcion: 'MiCA es el reglamento europeo de criptoactivos, plenamente aplicable en España desde julio de 2026. Qué cambia para ti, qué protege y qué sigue sin proteger.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es MiCA'

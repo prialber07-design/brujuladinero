@@ -3,7 +3,7 @@ titulo: 'Qué seguros necesitas de verdad y cuáles puedes ahorrarte'
 descripcion: 'Cómo decidir qué seguros contratar: la regla para distinguir un riesgo que debes cubrir de uno que puedes asumir, y los seguros que casi nadie necesita.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué seguros necesito'

@@ -3,7 +3,7 @@ titulo: 'Hipoteca fija o variable: cómo decidir sin adivinar el futuro'
 descripcion: 'Diferencias entre hipoteca fija, variable y mixta, y por qué la decisión no depende de acertar con los tipos sino de cuánta incertidumbre aguantas.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'hipoteca fija o variable'

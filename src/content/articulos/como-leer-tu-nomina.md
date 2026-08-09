@@ -3,7 +3,7 @@ titulo: 'Cómo leer tu nómina: qué significa cada línea'
 descripcion: 'Entiende tu nómina línea a línea: devengos, bases de cotización, deducciones de Seguridad Social e IRPF, y por qué el bruto nunca coincide con el neto.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo leer la nómina'

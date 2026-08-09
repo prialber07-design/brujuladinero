@@ -4,7 +4,7 @@ descripcion: 'La diferencia entre tener cripto en un exchange y en tu propia wal
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-06
 actualizado: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'wallet vs exchange'

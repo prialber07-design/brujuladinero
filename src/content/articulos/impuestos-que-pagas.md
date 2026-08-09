@@ -3,7 +3,7 @@ titulo: 'Qué impuestos pagas realmente en España sin darte cuenta'
 descripcion: 'El mapa de los impuestos que paga una persona corriente en España: los que ves en la nómina, los que van dentro del precio y los que aparecen una vez al año.'
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué impuestos pago en España'

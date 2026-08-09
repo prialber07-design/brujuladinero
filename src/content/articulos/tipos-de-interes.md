@@ -4,7 +4,7 @@ descripcion: 'Qué son los tipos de interés del BCE, por qué salen constanteme
 categoria: 'actualidad-explicada'
 fecha: 2026-08-06
 actualizado: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'tipos de interés'

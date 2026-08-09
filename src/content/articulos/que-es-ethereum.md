@@ -3,7 +3,7 @@ titulo: 'Qué es Ethereum y por qué no es solo otra moneda'
 descripcion: 'Qué es Ethereum, en qué se diferencia de Bitcoin, qué son los contratos inteligentes y el gas, y qué riesgos tiene todo lo que se construye encima.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es ethereum'

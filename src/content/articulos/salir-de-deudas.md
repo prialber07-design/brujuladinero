@@ -3,7 +3,7 @@ titulo: 'Cómo salir de deudas: método avalancha o bola de nieve'
 descripcion: 'Los dos métodos para amortizar deudas, cuál ahorra más dinero y cuál se abandona menos, y en qué orden atacar si tienes varias a la vez.'
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'salir de deudas'

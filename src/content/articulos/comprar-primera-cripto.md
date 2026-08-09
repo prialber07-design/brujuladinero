@@ -3,7 +3,7 @@ titulo: 'Cómo comprar tu primera criptomoneda paso a paso'
 descripcion: 'El proceso completo para comprar criptomonedas desde España: qué comprobar antes, cómo funciona la verificación de identidad y los errores que cuestan dinero.'
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
-autor: 'Alberto'
+autor: 'Alberto Pérez Lafuente'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo comprar criptomonedas'
