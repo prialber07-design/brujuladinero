@@ -2,8 +2,7 @@
  * Construye rutas internas respetando la subcarpeta desde la que se sirve
  * el sitio (`base` en astro.config.mjs).
  *
- * En la raíz devuelve la ruta tal cual. Bajo GitHub Pages en un repositorio
- * de proyecto, antepone /nombre-del-repo/.
+ * El sitio se sirve desde la raíz del dominio en el VPS.
  *
  * Úsalo SIEMPRE en lugar de escribir href="/algo/" a mano: si no, el enlace
  * funciona en local y se rompe en producción.

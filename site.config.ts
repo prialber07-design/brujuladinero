@@ -1,10 +1,8 @@
 // Configuración central del sitio.
 // Si cambias de dominio o de nombre, este es el ÚNICO archivo que tocas.
 
-// URL pública del sitio. En Cloudflare Pages se sobreescribe con la variable
-// de entorno SITE_URL, para que los despliegues de prueba en *.pages.dev
-// generen canonical y sitemap correctos en vez de apuntar al dominio final.
-const URL_SITIO = import.meta.env.SITE_URL ?? 'https://brujuladinero.com';
+// URL pública servida desde el VPS.
+const URL_SITIO = 'https://brujuladinero.com';
 
 export const SITE = {
   nombre: 'Brújula Dinero',
@@ -72,8 +70,8 @@ export const TITULAR = {
   direccion: 'Alférez Rojas 52, 50017 Zaragoza',
   /** Correo de contacto. Debe funcionar: es por donde se ejercen los derechos RGPD. */
   email: 'prialber07@gmail.com',
-  /** Quién aloja el sitio. Cámbialo si dejas GitHub Pages. */
-  hosting: 'GitHub Pages — GitHub, Inc. (Estados Unidos)',
+  /** Infraestructura donde se aloja el sitio. */
+  hosting: 'Servidor VPS propio',
   /** Fecha de la última revisión de los textos legales. */
   actualizacion: '2026-08-07',
 } as const;

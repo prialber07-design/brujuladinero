@@ -89,12 +89,12 @@ git commit -m "Nuevo artículo: fondo de emergencia"
 git push
 ```
 
-Cuando esté conectado Cloudflare Pages, el `push` despliega la web solo en
-menos de un minuto.
+El `push` desencadena el despliegue en el VPS. Comprueba después que
+`https://brujuladinero.com` responde correctamente.
 
 ## Despliegue con Docker
 
-Alternativa a Cloudflare Pages, para servirlo tú desde un VPS.
+Despliegue en el VPS.
 
 ```bash
 docker compose up -d --build
@@ -230,6 +230,5 @@ el lema, vuelve a lanzarlo. El texto está al final de `scripts/generar-og.mjs`.
 
 - [ ] Rellenar los `[...]` de las tres páginas legales
 - [ ] Escribir la página «Sobre mí» con datos reales y foto
-- [ ] Conectar el repositorio a Cloudflare Pages
 - [ ] Google Search Console y Analytics (rellenar `gaId` en `site.config.ts`)
 - [ ] AdSense — cuando haya 30-40 artículos publicados

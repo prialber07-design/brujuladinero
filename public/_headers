@@ -1,4 +1,4 @@
-# Cabeceras para Cloudflare Pages.
+# Cabeceras de referencia para el proxy del VPS.
 # Equivalen a las de nginx.conf, para que el sitio se comporte igual
 # se sirva donde se sirva.
 

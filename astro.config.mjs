@@ -22,38 +22,9 @@ function envolverTablas() {
   };
 }
 
-/**
- * Reescribe los enlaces internos del Markdown para que respeten la subcarpeta
- * desde la que se sirve el sitio. Así los artículos se siguen escribiendo con
- * /mi-articulo/ y funcionan igual en la raíz que bajo /brujuladinero/.
- */
-function ajustarEnlacesInternos({ base }) {
-  const prefijo = base.endsWith('/') ? base : base + '/';
-  return (arbol) => {
-    if (prefijo === '/') return;
-    visit(arbol, 'element', (nodo) => {
-      if (nodo.tagName !== 'a') return;
-      const href = nodo.properties?.href;
-      // Solo rutas internas absolutas. Se dejan intactas las externas,
-      // los anclas y las que ya llevan el prefijo.
-      if (typeof href !== 'string') return;
-      if (!href.startsWith('/') || href.startsWith('//')) return;
-      if (href.startsWith(prefijo)) return;
-      nodo.properties.href = prefijo + href.slice(1);
-    });
-  };
-}
-
-const BASE = process.env.BASE_PATH ?? '/';
-
 export default defineConfig({
-  // SITE_URL: dominio público. En despliegues de prueba se sobreescribe para
-  // que canonical y sitemap no apunten al dominio final.
-  site: process.env.SITE_URL ?? 'https://brujuladinero.com',
-  // BASE_PATH: subcarpeta desde la que se sirve. GitHub Pages en un
-  // repositorio de proyecto sirve desde /nombre-del-repo/. Con dominio propio
-  // o en Cloudflare se queda en '/'.
-  base: BASE,
+  site: 'https://brujuladinero.com',
+  base: '/',
   trailingSlash: 'always',
   integrations: [
     sitemap({
@@ -81,7 +52,7 @@ export default defineConfig({
     }),
   ],
   markdown: {
-    rehypePlugins: [envolverTablas, [ajustarEnlacesInternos, { base: BASE }]],
+    rehypePlugins: [envolverTablas],
     shikiConfig: { theme: 'github-light', wrap: true },
   },
 });
