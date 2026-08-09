@@ -39,7 +39,7 @@ export const SITE = {
     //   · Deja de mostrarse el banner propio (evita ver dos a la vez)
     //   · El enlace del pie abre el panel de Google
     //   · El consentimiento lo gestiona Google de extremo a extremo
-    cmpGoogle: false,
+    cmpGoogle: true,
   },
   analytics: {
     // ID de Google Analytics 4, formato G-XXXXXXXXXX
