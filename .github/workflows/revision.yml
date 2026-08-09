@@ -1,0 +1,67 @@
+name: Revisión mensual del contenido
+
+on:
+  schedule:
+    # Día 1 de cada mes a las 08:00 UTC
+    - cron: '0 8 1 * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  vigilar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Comprobar frescura del contenido
+        id: informe
+        run: |
+          {
+            echo 'cuerpo<<INFORME_FIN'
+            node scripts/vigilar.mjs --md
+            echo 'INFORME_FIN'
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Abrir o actualizar la incidencia
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const titulo = 'Revisión de contenido pendiente';
+            const cuerpo = process.env.CUERPO;
+
+            // Se reutiliza la misma incidencia mes a mes en lugar de abrir una
+            // nueva cada vez, para no llenar el repositorio de duplicados.
+            const abiertas = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'revision-contenido',
+            });
+
+            if (abiertas.data.length > 0) {
+              await github.rest.issues.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: abiertas.data[0].number,
+                body: cuerpo,
+              });
+              core.info(`Actualizada la incidencia #${abiertas.data[0].number}`);
+            } else {
+              const nueva = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: titulo,
+                body: cuerpo,
+                labels: ['revision-contenido'],
+              });
+              core.info(`Creada la incidencia #${nueva.data.number}`);
+            }
+        env:
+          CUERPO: ${{ steps.informe.outputs.cuerpo }}

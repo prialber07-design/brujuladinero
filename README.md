@@ -125,6 +125,52 @@ año.
 
 Todo está en `site.config.ts`. Es el único archivo que hay que tocar.
 
+## Mantener la web actualizada
+
+Google premia que los artículos que ya posicionan **se mantengan vivos**, no que
+añadas noticias que caducan en tres días. El sistema está montado para eso.
+
+### Vigilancia automática
+
+Cada artículo tiene una caducidad según su categoría:
+
+| Sección | Se revisa cada |
+|---|---|
+| Actualidad explicada | 6 meses |
+| Fiscalidad y seguridad | 12 meses |
+| Cripto desde cero | 12 meses |
+| Finanzas personales | 24 meses |
+
+```bash
+npm run vigilar
+```
+
+Te dice qué está vencido, qué vence en los próximos 60 días y qué sigue sin tu
+aportación personal.
+
+**Y va solo:** el día 1 de cada mes, una acción de GitHub ejecuta esa
+comprobación y **abre o actualiza una incidencia en el repositorio** con la
+lista. No hay que acordarse de nada. Reutiliza siempre la misma incidencia en
+vez de crear una nueva cada mes.
+
+### Crear un artículo nuevo
+
+```bash
+npm run nuevo -- "Título del artículo" fiscalidad-y-seguridad
+```
+
+Genera el esqueleto con todos los campos, **asigna la ilustración menos usada**
+de las que encajan con la categoría, y lo deja marcado como borrador.
+
+### Por qué no se publica solo
+
+El script crea borradores; publicar es siempre una decisión tuya.
+
+Publicar contenido generado sin que nadie lo revise es lo que Google llama
+*scaled content abuse*, y es motivo de rechazo en AdSense y de desindexación
+del dominio. La automatización te ahorra el trabajo mecánico —detectar qué
+revisar, montar la estructura, elegir la ilustración—, no el criterio.
+
 ## SEO y GEO
 
 Ya está resuelto en el código, no hay que tocarlo por artículo:
