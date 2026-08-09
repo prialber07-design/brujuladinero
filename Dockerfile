@@ -22,6 +22,11 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
+# La imagen se ejecuta como `nginx`, por lo que el PID no puede quedarse en
+# /run (propiedad de root). Se cambia en la configuración principal para no
+# duplicar la directiva `pid` al arrancar.
+RUN sed -i 's#pid        /run/nginx.pid;#pid        /tmp/nginx.pid;#' /etc/nginx/nginx.conf
+
 # nginx en Alpine ya trae un usuario sin privilegios
 RUN chown -R nginx:nginx /var/cache/nginx /usr/share/nginx/html
 USER nginx
@@ -34,4 +39,4 @@ HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
 # El pid va a /tmp y no a /var/run: con el sistema de archivos en solo
 # lectura, /var/run se monta como tmpfs y cualquier fichero creado al
 # construir la imagen desaparecería al arrancar el contenedor.
-CMD ["nginx", "-g", "daemon off; pid /tmp/nginx.pid;"]
+CMD ["nginx", "-g", "daemon off;"]
