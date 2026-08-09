@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cuenta sin comisiones'
+ilustracion: 'tarjeta'
+ilustracionAlt: 'Tarjeta bancaria vista en perspectiva'
 resumen: >-
   "Sin comisiones" casi nunca significa sin condiciones: lo habitual es exigir
   domiciliar la nómina, un número mínimo de recibos o un gasto mínimo con

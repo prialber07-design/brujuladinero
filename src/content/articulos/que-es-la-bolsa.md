@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la bolsa'
+ilustracion: 'crecimiento'
+ilustracionAlt: 'Curva ascendente con puntos marcados'
 resumen: >-
   La bolsa es un mercado donde se compran y venden participaciones en empresas.
   Comprar una acción es comprar un trozo de un negocio real, con sus beneficios

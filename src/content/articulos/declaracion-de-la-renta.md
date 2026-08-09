@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declaración de la renta'
+ilustracion: 'documento'
+ilustracionAlt: 'Impreso de declaración con una marca de verificación'
 resumen: >-
   La declaración de la renta ajusta lo que ya te retuvieron durante el año con
   lo que realmente te correspondía pagar. Que salga a devolver no es un premio:

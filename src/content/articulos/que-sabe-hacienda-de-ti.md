@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué sabe Hacienda de mis cuentas'
+ilustracion: 'lupa'
+ilustracionAlt: 'Lupa examinando un documento'
 resumen: >-
   La Agencia Tributaria recibe información de bancos, empresas, plataformas y
   administraciones de otros países mediante declaraciones informativas

@@ -314,6 +314,18 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 .puntos-clave ul { margin: 0; padding-left: var(--e6); font-family: var(--sans); font-size: 16px; }
 .puntos-clave li { margin: var(--e2) 0; color: var(--texto-suave); }
 
+/* ── Ilustración de cabecera ─────────────────────────────── */
+/* Altura reservada por la proporción del viewBox: no provoca
+   desplazamiento de diseño al cargar. */
+.ilustracion {
+  margin: 0 0 var(--e8);
+  padding: var(--e4);
+  background: var(--superficie-baja);
+  border: 1px solid var(--borde);
+  border-radius: var(--radio);
+}
+.ilustracion svg { display: block; width: 100%; height: auto; aspect-ratio: 640 / 200; }
+
 /* ── Resumen (respuesta directa, clave para GEO) ─────────── */
 .resumen {
   background: var(--acento-suave);

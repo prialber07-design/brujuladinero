@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es MiCA'
+ilustracion: 'escudo'
+ilustracionAlt: 'Escudo con una marca de verificación, que representa la regulación'
 resumen: >-
   MiCA es el reglamento europeo que regula los mercados de criptoactivos. Desde
   el 1 de julio de 2026, al terminar el periodo transitorio español, solo pueden

@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'presupuesto mensual'
+ilustracion: 'calendario'
+ilustracionAlt: 'Calendario mensual con un día marcado'
 resumen: >-
   Los presupuestos fallan porque intentan controlar cada gasto, y eso es un
   trabajo que nadie sostiene. El método que aguanta consiste en fijar los

@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'hipoteca fija o variable'
+ilustracion: 'casa'
+ilustracionAlt: 'Vivienda vista de frente con su tejado destacado'
 resumen: >-
   En una hipoteca fija la cuota no cambia nunca; en una variable se revisa
   periódicamente según el euríbor más tu diferencial. La fija cuesta algo más a

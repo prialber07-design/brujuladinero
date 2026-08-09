@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué impuestos pago en España'
+ilustracion: 'reparto'
+ilustracionAlt: 'Bloques que representan el reparto de los distintos impuestos'
 resumen: >-
   Además del IRPF de la nómina, pagas impuestos indirectos incluidos en el
   precio de casi todo lo que compras, impuestos locales por tener vivienda o

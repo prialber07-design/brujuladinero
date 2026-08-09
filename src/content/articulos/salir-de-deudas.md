@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'salir de deudas'
+ilustracion: 'escalera'
+ilustracionAlt: 'Barras descendentes que representan una deuda que se reduce'
 resumen: >-
   Hay dos métodos para amortizar varias deudas: la avalancha ataca primero la
   de mayor interés y ahorra más dinero; la bola de nieve ataca primero la más

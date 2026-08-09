@@ -8,6 +8,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es bitcoin'
+ilustracion: 'red'
+ilustracionAlt: 'Red de nodos conectados entre sí sin centro único'
 resumen: >-
   Bitcoin es un libro de cuentas público del que miles de ordenadores guardan
   una copia idéntica, sin que ninguna entidad central lo controle. Sirve para

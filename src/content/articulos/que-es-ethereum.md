@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es ethereum'
+ilustracion: 'bloques'
+ilustracionAlt: 'Tres bloques encadenados entre sí'
 resumen: >-
   Ethereum es una red que además de registrar transferencias permite ejecutar
   programas llamados contratos inteligentes. Bitcoin es una calculadora que

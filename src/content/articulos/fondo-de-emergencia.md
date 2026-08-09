@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'fondo de emergencia'
+ilustracion: 'caja-fuerte'
+ilustracionAlt: 'Caja fuerte cerrada, que representa el dinero guardado aparte y disponible'
 puntosClave:
   - 'Se calcula sobre tus GASTOS mensuales, no sobre tus ingresos.'
   - 'Entre 3 y 12 meses según lo estable que sea tu trabajo.'

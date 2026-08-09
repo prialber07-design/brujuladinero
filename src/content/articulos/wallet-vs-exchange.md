@@ -8,6 +8,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'wallet vs exchange'
+ilustracion: 'llave'
+ilustracionAlt: 'Llave, que representa el control de las claves privadas'
 resumen: >-
   En un exchange las claves las tiene la empresa: tú tienes una anotación en su
   sistema, parecida a un saldo bancario. En una wallet propia las claves las

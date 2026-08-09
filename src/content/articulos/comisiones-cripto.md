@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'comisiones criptomonedas'
+ilustracion: 'monedas'
+ilustracionAlt: 'Monedas apiladas que representan los costes acumulados'
 resumen: >-
   El coste de comprar criptomonedas no es solo la comisión anunciada: se suman
   el diferencial entre precio de compra y venta, la comisión de la operación,

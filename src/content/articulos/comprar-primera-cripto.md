@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo comprar criptomonedas'
+ilustracion: 'pasos'
+ilustracionAlt: 'Tres pasos numerados conectados en secuencia'
 resumen: >-
   Comprar criptomonedas desde España requiere una plataforma autorizada por la
   CNMV, verificar tu identidad y transferir euros. Antes de nada conviene tener

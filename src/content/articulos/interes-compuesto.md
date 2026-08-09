@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'interés compuesto'
+ilustracion: 'crecimiento'
+ilustracionAlt: 'Curva ascendente que se empina con el tiempo'
 resumen: >-
   El interés compuesto es el interés que generan tus intereses anteriores. Su
   efecto es lento al principio y muy grande al final, porque la base sobre la

@@ -8,6 +8,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'estafas cripto'
+ilustracion: 'alerta'
+ilustracionAlt: 'Señal triangular de advertencia'
 resumen: >-
   Casi todas las estafas cripto comparten tres señales: prometen rentabilidad
   garantizada, meten prisa y piden que muevas el dinero fuera de plataformas

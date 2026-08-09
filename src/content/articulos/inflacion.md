@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la inflación'
+ilustracion: 'monedas'
+ilustracionAlt: 'Monedas apiladas de tamaño decreciente'
 resumen: >-
   La inflación es la subida generalizada de los precios, que hace que con el
   mismo dinero compres menos cada año. Se mide con el IPC, que refleja una

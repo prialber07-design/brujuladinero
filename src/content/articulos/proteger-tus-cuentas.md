@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'verificación en dos pasos'
+ilustracion: 'candado'
+ilustracionAlt: 'Candado cerrado'
 resumen: >-
   Proteger tus cuentas de dinero se reduce a tres cosas: una contraseña única
   por servicio guardada en un gestor, verificación en dos pasos con app de

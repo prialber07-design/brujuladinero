@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'ahorrar para objetivos'
+ilustracion: 'diana'
+ilustracionAlt: 'Diana con una flecha clavada en el centro'
 resumen: >-
   Ahorrar sin un destino concreto falla porque el dinero sin nombre acaba
   gastándose. La solución es asignar cada objetivo a un plazo y elegir dónde

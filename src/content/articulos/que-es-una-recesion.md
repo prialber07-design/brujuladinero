@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una recesión'
+ilustracion: 'descenso'
+ilustracionAlt: 'Curva descendente que representa la caída de la actividad'
 resumen: >-
   Una recesión es una caída sostenida de la actividad económica, que suele
   identificarse con dos trimestres consecutivos de descenso del PIB. Lo que más

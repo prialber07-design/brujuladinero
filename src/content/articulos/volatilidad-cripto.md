@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'volatilidad criptomonedas'
+ilustracion: 'onda'
+ilustracionAlt: 'Onda con oscilaciones amplias y repetidas'
 resumen: >-
   Las criptomonedas se mueven tanto porque no tienen un valor de referencia
   objetivo, el mercado es pequeño comparado con los tradicionales, opera sin

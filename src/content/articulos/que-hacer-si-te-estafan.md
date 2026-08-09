@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué hacer si me han estafado'
+ilustracion: 'alerta'
+ilustracionAlt: 'Señal de advertencia que indica una situación urgente'
 resumen: >-
   Ante un fraude, el orden importa: cortar el acceso, reunir pruebas, avisar al
   banco por escrito y denunciar. Las primeras horas son las que más margen dan

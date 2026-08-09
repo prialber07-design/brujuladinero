@@ -24,6 +24,19 @@ const articulos = defineCollection({
 
     palabraClave: z.string().optional(),
 
+    // Ilustración de cabecera. Nombre de uno de los dibujos definidos en
+    // src/components/Ilustracion.astro. Toma el color de la categoría.
+    ilustracion: z
+      .enum([
+        'caja-fuerte', 'reparto', 'crecimiento', 'descenso', 'tarjeta',
+        'calendario', 'documento', 'escalera', 'monedas', 'casa', 'paraguas',
+        'diana', 'red', 'bloques', 'llave', 'candado', 'balanza', 'onda',
+        'alerta', 'escudo', 'lupa', 'pasos',
+      ])
+      .optional(),
+    /** Texto alternativo de la ilustración. Debe describir lo que se ve. */
+    ilustracionAlt: z.string().optional(),
+
     // Caja de "Puntos clave" al inicio. Entre 3 y 4 viñetas.
     puntosClave: z.array(z.string()).max(5).optional(),
 

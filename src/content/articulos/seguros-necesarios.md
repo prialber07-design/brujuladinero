@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué seguros necesito'
+ilustracion: 'paraguas'
+ilustracionAlt: 'Paraguas abierto que protege de lo que cae'
 resumen: >-
   Un seguro solo tiene sentido para riesgos poco probables pero que te
   arruinarían: responsabilidad civil, hogar si eres propietario, y vida si

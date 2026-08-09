@@ -1,0 +1,220 @@
+---
+/**
+ * Ilustración de cabecera del artículo.
+ *
+ * SVG en línea, geométrico y sobrio. Cada una pesa menos de 1 KB y usa
+ * var(--acento), así que hereda el color de la categoría automáticamente.
+ * No hay ninguna petición de red: nada de fotos de banco de imágenes, que
+ * pesarían cientos de kilobytes y no dirían nada del artículo.
+ *
+ * viewBox 640x200 para todas, así el hueco es siempre el mismo y no hay
+ * desplazamiento de diseño al cargar.
+ */
+interface Props {
+  nombre: string;
+  alt: string;
+}
+const { nombre, alt } = Astro.props;
+
+const A = 'var(--acento)';
+const S = 'var(--acento-suave)';
+
+const dibujos: Record<string, string> = {
+  // Caja fuerte: fondo de emergencia
+  'caja-fuerte': `
+    <rect x="230" y="45" width="180" height="115" rx="8" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <circle cx="320" cy="102" r="34" fill="none" stroke="${A}" stroke-width="3"/>
+    <circle cx="320" cy="102" r="12" fill="${A}"/>
+    <path d="M320 68v12M320 124v12M286 102h12M342 102h12" stroke="${A}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M240 160v14M400 160v14" stroke="${A}" stroke-width="3" stroke-linecap="round"/>`,
+
+  // Tres bloques proporcionales: reparto del sueldo, impuestos
+  'reparto': `
+    <rect x="150" y="70" width="160" height="60" rx="5" fill="${A}"/>
+    <rect x="320" y="70" width="96" height="60" rx="5" fill="${A}" opacity=".55"/>
+    <rect x="426" y="70" width="64" height="60" rx="5" fill="${A}" opacity=".28"/>
+    <path d="M150 148h340" stroke="${A}" stroke-width="2" opacity=".4"/>
+    <text x="230" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="${A}">50</text>
+    <text x="368" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="${A}" opacity=".7">30</text>
+    <text x="458" y="58" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="${A}" opacity=".5">20</text>`,
+
+  // Curva exponencial: interés compuesto, bolsa
+  'crecimiento': `
+    <path d="M160 155h320M160 155V45" stroke="${A}" stroke-width="2" opacity=".35"/>
+    <path d="M170 150 Q300 148 370 110 T470 52" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M170 150 Q300 148 370 110 T470 52 L470 155 L170 155 Z" fill="${A}" opacity=".12"/>
+    <circle cx="470" cy="52" r="7" fill="${A}"/>
+    <circle cx="370" cy="110" r="5" fill="${A}" opacity=".6"/>
+    <circle cx="270" cy="145" r="4" fill="${A}" opacity=".4"/>`,
+
+  // Curva descendente: recesión
+  'descenso': `
+    <path d="M160 155h320M160 155V45" stroke="${A}" stroke-width="2" opacity=".35"/>
+    <path d="M170 60 Q260 70 330 105 T470 148" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M170 60 Q260 70 330 105 T470 148 L470 155 L170 155 Z" fill="${A}" opacity=".1"/>
+    <circle cx="470" cy="148" r="7" fill="${A}"/>
+    <path d="M452 132l18 16 6-20" fill="none" stroke="${A}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>`,
+
+  // Tarjeta bancaria: cuentas y comisiones
+  'tarjeta': `
+    <rect x="200" y="55" width="240" height="150" rx="10" fill="${S}" stroke="${A}" stroke-width="3" transform="rotate(-6 320 100)"/>
+    <rect x="200" y="55" width="240" height="90" rx="10" fill="none" stroke="${A}" stroke-width="3" transform="rotate(-6 320 100)"/>
+    <path d="M204 88h232" stroke="${A}" stroke-width="10" transform="rotate(-6 320 100)"/>
+    <rect x="218" y="112" width="34" height="24" rx="4" fill="${A}" opacity=".5" transform="rotate(-6 320 100)"/>`,
+
+  // Calendario: presupuesto, objetivos
+  'calendario': `
+    <rect x="235" y="52" width="170" height="120" rx="8" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M235 84h170" stroke="${A}" stroke-width="3"/>
+    <path d="M272 40v24M368 40v24" stroke="${A}" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="272" cy="106" r="6" fill="${A}" opacity=".35"/>
+    <circle cx="308" cy="106" r="6" fill="${A}" opacity=".35"/>
+    <circle cx="344" cy="106" r="6" fill="${A}"/>
+    <circle cx="380" cy="106" r="6" fill="${A}" opacity=".35"/>
+    <circle cx="272" cy="140" r="6" fill="${A}" opacity=".35"/>
+    <circle cx="308" cy="140" r="6" fill="${A}" opacity=".35"/>
+    <circle cx="344" cy="140" r="6" fill="${A}" opacity=".35"/>`,
+
+  // Documento: nómina, renta, fiscalidad
+  'documento': `
+    <path d="M250 40h100l40 40v120a8 8 0 0 1-8 8H250a8 8 0 0 1-8-8V48a8 8 0 0 1 8-8Z" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M350 40v40h40" fill="none" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M266 106h108M266 128h108M266 150h64" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".55"/>
+    <circle cx="404" cy="150" r="26" fill="${A}"/>
+    <path d="M394 150l7 8 14-16" fill="none" stroke="var(--superficie)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  // Escalones descendentes: salir de deudas
+  'escalera': `
+    <rect x="170" y="60" width="70" height="100" rx="4" fill="${A}"/>
+    <rect x="250" y="88" width="70" height="72" rx="4" fill="${A}" opacity=".7"/>
+    <rect x="330" y="112" width="70" height="48" rx="4" fill="${A}" opacity=".45"/>
+    <rect x="410" y="134" width="70" height="26" rx="4" fill="${A}" opacity=".25"/>
+    <path d="M160 160h330" stroke="${A}" stroke-width="2" opacity=".4"/>
+    <path d="M420 52h50m0 0-14-12m14 12-14 12" stroke="${A}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".6"/>`,
+
+  // Monedas apiladas: gastos pequeños, comisiones
+  'monedas': `
+    <ellipse cx="250" cy="150" rx="52" ry="16" fill="${A}" opacity=".3"/>
+    <ellipse cx="250" cy="132" rx="52" ry="16" fill="${A}" opacity=".45"/>
+    <ellipse cx="250" cy="114" rx="52" ry="16" fill="${A}" opacity=".6"/>
+    <ellipse cx="250" cy="96" rx="52" ry="16" fill="${A}"/>
+    <ellipse cx="390" cy="152" rx="34" ry="11" fill="${A}" opacity=".3"/>
+    <ellipse cx="390" cy="140" rx="34" ry="11" fill="${A}" opacity=".5"/>
+    <ellipse cx="460" cy="154" rx="24" ry="8" fill="${A}" opacity=".3"/>`,
+
+  // Casa: hipoteca
+  'casa': `
+    <path d="M320 42 200 116v72a8 8 0 0 0 8 8h224a8 8 0 0 0 8-8v-72Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M186 124 320 42l134 82" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="296" y="140" width="48" height="56" rx="4" fill="${A}"/>
+    <rect x="228" y="130" width="38" height="34" rx="4" fill="${A}" opacity=".4"/>
+    <rect x="374" y="130" width="38" height="34" rx="4" fill="${A}" opacity=".4"/>`,
+
+  // Paraguas: seguros
+  'paraguas': `
+    <path d="M180 118a140 140 0 0 1 280 0Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M180 118a70 70 0 0 1 140 0 70 70 0 0 1 140 0" fill="none" stroke="${A}" stroke-width="3"/>
+    <path d="M320 118v52a20 20 0 0 1-40 0" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="320" cy="48" r="6" fill="${A}"/>`,
+
+  // Diana: objetivos
+  'diana': `
+    <circle cx="320" cy="102" r="66" fill="none" stroke="${A}" stroke-width="3" opacity=".35"/>
+    <circle cx="320" cy="102" r="44" fill="none" stroke="${A}" stroke-width="3" opacity=".6"/>
+    <circle cx="320" cy="102" r="22" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <circle cx="320" cy="102" r="7" fill="${A}"/>
+    <path d="M400 30 330 96" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M398 52l6-24-24 6" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  // Red de nodos: Bitcoin, blockchain
+  'red': `
+    <path d="M320 60 220 110M320 60 420 110M220 110 320 160M420 110 320 160M220 110 420 110M320 60 320 160"
+      stroke="${A}" stroke-width="2" opacity=".45"/>
+    <circle cx="320" cy="60" r="16" fill="${A}"/>
+    <circle cx="220" cy="110" r="13" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <circle cx="420" cy="110" r="13" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <circle cx="320" cy="160" r="13" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <circle cx="170" cy="66" r="8" fill="${A}" opacity=".35"/>
+    <circle cx="470" cy="66" r="8" fill="${A}" opacity=".35"/>
+    <path d="M170 66 220 110M470 66 420 110" stroke="${A}" stroke-width="2" opacity=".3"/>`,
+
+  // Cadena de bloques: Ethereum
+  'bloques': `
+    <rect x="176" y="76" width="80" height="60" rx="6" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <rect x="280" y="76" width="80" height="60" rx="6" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <rect x="384" y="76" width="80" height="60" rx="6" fill="${A}"/>
+    <path d="M256 106h24M360 106h24" stroke="${A}" stroke-width="3"/>
+    <path d="M192 96h30M192 110h48M192 124h20" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M296 96h30M296 110h48M296 124h20" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M400 96h30M400 110h48M400 124h20" stroke="var(--superficie)" stroke-width="3" stroke-linecap="round" opacity=".85"/>`,
+
+  // Llave: custodia, wallet
+  'llave': `
+    <circle cx="250" cy="102" r="46" fill="none" stroke="${A}" stroke-width="8"/>
+    <circle cx="250" cy="102" r="16" fill="${S}" stroke="${A}" stroke-width="4"/>
+    <path d="M296 102h150" stroke="${A}" stroke-width="8" stroke-linecap="round"/>
+    <path d="M400 102v34M436 102v24" stroke="${A}" stroke-width="8" stroke-linecap="round"/>`,
+
+  // Candado: seguridad de cuentas
+  'candado': `
+    <rect x="244" y="96" width="152" height="104" rx="12" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M276 96V72a44 44 0 0 1 88 0v24" fill="none" stroke="${A}" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="320" cy="140" r="14" fill="${A}"/>
+    <path d="M320 154v22" stroke="${A}" stroke-width="6" stroke-linecap="round"/>`,
+
+  // Balanza: comparativas, stablecoins
+  'balanza': `
+    <path d="M320 44v122M270 166h100" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M196 72h248" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="320" cy="60" r="8" fill="${A}"/>
+    <path d="M164 78a32 32 0 0 0 64 0Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M412 78a32 32 0 0 0 64 0Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M196 72v6M444 72v6" stroke="${A}" stroke-width="3"/>`,
+
+  // Onda: volatilidad, tipos, inflación
+  'onda': `
+    <path d="M150 105q35-70 70 0t70 0q35-70 70 0t70 0q35-70 70 0"
+      fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M150 145h340" stroke="${A}" stroke-width="2" opacity=".3"/>
+    <circle cx="220" cy="105" r="6" fill="${A}"/>
+    <circle cx="360" cy="105" r="6" fill="${A}" opacity=".6"/>
+    <circle cx="490" cy="105" r="6" fill="${A}" opacity=".35"/>`,
+
+  // Alerta: estafas
+  'alerta': `
+    <path d="M320 44 452 172H188Z" fill="${S}" stroke="${A}" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M320 92v46" stroke="${A}" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="320" cy="154" r="6" fill="${A}"/>`,
+
+  // Escudo: regulación, protección
+  'escudo': `
+    <path d="M320 36 428 70v58c0 42-44 68-108 82-64-14-108-40-108-82V70Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M286 108l24 26 52-52" fill="none" stroke="${A}" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  // Lupa sobre documento: qué sabe Hacienda
+  'lupa': `
+    <path d="M232 44h92l34 34v100a8 8 0 0 1-8 8h-118a8 8 0 0 1-8-8V52a8 8 0 0 1 8-8Z" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M324 44v34h34" fill="none" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M248 96h60M248 116h60" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <circle cx="396" cy="118" r="42" fill="none" stroke="${A}" stroke-width="6"/>
+    <path d="M426 148l32 32" stroke="${A}" stroke-width="8" stroke-linecap="round"/>`,
+
+  // Pasos numerados: guías paso a paso
+  'pasos': `
+    <circle cx="200" cy="102" r="26" fill="${A}"/>
+    <circle cx="320" cy="102" r="26" fill="${A}" opacity=".6"/>
+    <circle cx="440" cy="102" r="26" fill="${A}" opacity=".3"/>
+    <path d="M226 102h68M346 102h68" stroke="${A}" stroke-width="3" stroke-dasharray="6 6" opacity=".5"/>
+    <text x="200" y="110" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="var(--superficie)">1</text>
+    <text x="320" y="110" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="var(--superficie)">2</text>
+    <text x="440" y="110" text-anchor="middle" font-family="system-ui,sans-serif" font-size="22" font-weight="700" fill="var(--superficie)">3</text>`,
+};
+
+const dibujo = dibujos[nombre] ?? dibujos['crecimiento'];
+---
+
+<figure class="ilustracion">
+  <svg viewBox="0 0 640 200" role="img" aria-label={alt} preserveAspectRatio="xMidYMid meet">
+    <Fragment set:html={dibujo} />
+  </svg>
+</figure>

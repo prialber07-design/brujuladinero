@@ -7,6 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una stablecoin'
+ilustracion: 'balanza'
+ilustracionAlt: 'Balanza equilibrada entre dos platillos'
 resumen: >-
   Una stablecoin es una criptomoneda diseñada para mantener un valor estable,
   normalmente uno a uno con el euro o el dólar. Las hay respaldadas por dinero
