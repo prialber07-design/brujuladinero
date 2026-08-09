@@ -7,8 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declarar criptomonedas'
-ilustracion: 'documento'
-ilustracionAlt: 'Documento fiscal con una marca de verificación'
+ilustracion: 'calculadora'
+ilustracionAlt: 'Calculadora, que representa el cálculo de ganancias y pérdidas'
 resumen: >-
   Comprar y mantener criptomonedas no genera por sí mismo obligación de
   tributar. Vender, permutar unas por otras o pagar con ellas sí genera

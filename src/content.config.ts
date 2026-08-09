@@ -32,6 +32,7 @@ const articulos = defineCollection({
         'calendario', 'documento', 'escalera', 'monedas', 'casa', 'paraguas',
         'diana', 'red', 'bloques', 'llave', 'candado', 'balanza', 'onda',
         'alerta', 'escudo', 'lupa', 'pasos',
+        'goteo', 'cesta', 'nomina', 'calculadora', 'reloj', 'tarta', 'velas', 'dial',
       ])
       .optional(),
     /** Texto alternativo de la ilustración. Debe describir lo que se ve. */

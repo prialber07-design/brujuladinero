@@ -7,8 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo leer la nómina'
-ilustracion: 'documento'
-ilustracionAlt: 'Documento con líneas de texto y una marca de verificación'
+ilustracion: 'nomina'
+ilustracionAlt: 'Nómina con dos columnas, devengos y deducciones, y el total destacado'
 resumen: >-
   Una nómina tiene tres bloques: devengos (lo que la empresa te reconoce),
   deducciones (lo que se te descuenta por Seguridad Social e IRPF) y el líquido

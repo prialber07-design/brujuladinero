@@ -199,6 +199,82 @@ const dibujos: Record<string, string> = {
     <circle cx="396" cy="118" r="42" fill="none" stroke="${A}" stroke-width="6"/>
     <path d="M426 148l32 32" stroke="${A}" stroke-width="8" stroke-linecap="round"/>`,
 
+  // Grifo goteando: gastos hormiga, fugas pequeñas y constantes
+  'goteo': `
+    <path d="M212 66h74v34h-74Z" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M286 83h46a18 18 0 0 1 18 18v14" fill="none" stroke="${A}" stroke-width="8" stroke-linecap="round"/>
+    <path d="M232 46h34v20h-34Z" fill="${A}"/>
+    <circle cx="350" cy="136" r="7" fill="${A}"/>
+    <circle cx="350" cy="158" r="5" fill="${A}" opacity=".6"/>
+    <circle cx="350" cy="174" r="4" fill="${A}" opacity=".35"/>
+    <ellipse cx="418" cy="168" rx="46" ry="12" fill="${A}" opacity=".18"/>
+    <ellipse cx="418" cy="160" rx="34" ry="9" fill="${A}" opacity=".3"/>`,
+
+  // Cesta de la compra con flecha al alza: inflación
+  'cesta': `
+    <path d="M198 82h164l-20 84a10 10 0 0 1-10 8H228a10 10 0 0 1-10-8Z" fill="${S}" stroke="${A}" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M232 82l22-34M328 82l-22-34" stroke="${A}" stroke-width="3" stroke-linecap="round"/>
+    <path d="M246 108v42M280 108v42M314 108v42" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".45"/>
+    <path d="M396 158l30-40 26 22 34-64" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M466 76h20v20" fill="none" stroke="${A}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>`,
+
+  // Nómina: dos columnas, devengos y deducciones, con total
+  'nomina': `
+    <rect x="212" y="34" width="216" height="140" rx="8" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M212 62h216M320 62v78" stroke="${A}" stroke-width="3"/>
+    <path d="M232 46h56" stroke="${A}" stroke-width="4" stroke-linecap="round"/>
+    <path d="M236 80h60M236 98h48M236 116h60" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M344 80h60M344 98h44M344 116h56" stroke="${A}" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+    <path d="M212 140h216" stroke="${A}" stroke-width="3"/>
+    <rect x="330" y="148" width="80" height="16" rx="8" fill="${A}"/>`,
+
+  // Calculadora: cálculo de ganancias, fiscalidad cripto
+  'calculadora': `
+    <rect x="242" y="30" width="156" height="148" rx="10" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <rect x="262" y="48" width="116" height="30" rx="5" fill="${A}" opacity=".85"/>
+    <circle cx="278" cy="102" r="9" fill="${A}"/>
+    <circle cx="320" cy="102" r="9" fill="${A}" opacity=".55"/>
+    <circle cx="362" cy="102" r="9" fill="${A}" opacity=".55"/>
+    <circle cx="278" cy="134" r="9" fill="${A}" opacity=".55"/>
+    <circle cx="320" cy="134" r="9" fill="${A}" opacity=".55"/>
+    <circle cx="362" cy="134" r="9" fill="${A}"/>
+    <path d="M262 158h72" stroke="${A}" stroke-width="6" stroke-linecap="round" opacity=".4"/>`,
+
+  // Reloj con sector marcado: las primeras horas tras una estafa
+  'reloj': `
+    <circle cx="320" cy="102" r="68" fill="${S}" stroke="${A}" stroke-width="4"/>
+    <path d="M320 102V44a58 58 0 0 1 50 29Z" fill="${A}" opacity=".3"/>
+    <path d="M320 102V54M320 102l38 22" stroke="${A}" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="320" cy="102" r="7" fill="${A}"/>
+    <path d="M320 26v10M396 102h-10M320 178v-10M244 102h10" stroke="${A}" stroke-width="4" stroke-linecap="round"/>`,
+
+  // Sectores circulares: reparto de impuestos
+  'tarta': `
+    <circle cx="320" cy="102" r="70" fill="${S}" stroke="${A}" stroke-width="3"/>
+    <path d="M320 102V32a70 70 0 0 1 60 106Z" fill="${A}"/>
+    <path d="M320 102l60 36a70 70 0 0 1-104 26Z" fill="${A}" opacity=".55"/>
+    <path d="M320 102l-44 62A70 70 0 0 1 320 32Z" fill="${A}" opacity=".25"/>
+    <circle cx="320" cy="102" r="16" fill="var(--superficie)"/>`,
+
+  // Velas de cotización: la bolsa
+  'velas': `
+    <path d="M170 168h300" stroke="${A}" stroke-width="2" opacity=".35"/>
+    <path d="M204 52v104M258 74v82M312 40v116M366 86v70M420 30v126" stroke="${A}" stroke-width="2" opacity=".5"/>
+    <rect x="192" y="76" width="24" height="52" rx="3" fill="${A}" opacity=".35"/>
+    <rect x="246" y="96" width="24" height="40" rx="3" fill="${A}" opacity=".5"/>
+    <rect x="300" y="62" width="24" height="62" rx="3" fill="${A}"/>
+    <rect x="354" y="104" width="24" height="34" rx="3" fill="${A}" opacity=".5"/>
+    <rect x="408" y="52" width="24" height="72" rx="3" fill="${A}" opacity=".75"/>`,
+
+  // Dial o mando: los tipos de interés, que se fijan
+  'dial': `
+    <path d="M212 150a108 108 0 0 1 216 0" fill="none" stroke="${A}" stroke-width="4" opacity=".3"/>
+    <path d="M212 150a108 108 0 0 1 54-93" fill="none" stroke="${A}" stroke-width="10" stroke-linecap="round" opacity=".35"/>
+    <path d="M266 57a108 108 0 0 1 108 0" fill="none" stroke="${A}" stroke-width="10" stroke-linecap="round" opacity=".65"/>
+    <path d="M374 57a108 108 0 0 1 54 93" fill="none" stroke="${A}" stroke-width="10" stroke-linecap="round"/>
+    <path d="M320 150 372 86" stroke="${A}" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="320" cy="150" r="12" fill="${A}"/>`,
+
   // Pasos numerados: guías paso a paso
   'pasos': `
     <circle cx="200" cy="102" r="26" fill="${A}"/>

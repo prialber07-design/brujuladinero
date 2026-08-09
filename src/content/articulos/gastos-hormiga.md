@@ -7,8 +7,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'gastos hormiga'
-ilustracion: 'monedas'
-ilustracionAlt: 'Montones de monedas pequeñas apiladas'
+ilustracion: 'goteo'
+ilustracionAlt: 'Grifo goteando sobre un charco, que representa las fugas pequeñas y constantes'
 resumen: >-
   Los gastos hormiga son pequeños desembolsos repetidos que pasan
   desapercibidos y suman mucho al año. Se detectan revisando tres meses de

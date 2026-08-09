@@ -8,8 +8,8 @@ autor: 'Alberto'
 borrador: false
 faltaAporteReal: true
 palabraClave: 'tipos de interés'
-ilustracion: 'onda'
-ilustracionAlt: 'Onda que sube y baja, como la evolución de los tipos'
+ilustracion: 'dial'
+ilustracionAlt: 'Dial o mando graduado con la aguja en una posición concreta'
 resumen: >-
   Los tipos de interés del Banco Central Europeo son el precio al que los
   bancos obtienen dinero, y arrastran al euríbor, que es la referencia de la
