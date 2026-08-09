@@ -65,11 +65,11 @@ export const SITE = {
  */
 export const TITULAR = {
   /** Nombre y apellidos completos, como en tu DNI. */
-  nombre: '',
+  nombre: 'Alberto Pérez Lafuente',
   /** NIF / DNI con la letra. */
-  nif: '',
+  nif: '73469819E',
   /** Domicilio a efectos de notificaciones. Basta municipio y provincia. */
-  direccion: '',
+  direccion: 'Alférez Rojas 52, 50017 Zaragoza',
   /** Correo de contacto. Debe funcionar: es por donde se ejercen los derechos RGPD. */
   email: 'hola@brujuladinero.com',
   /** Quién aloja el sitio. Cámbialo si dejas GitHub Pages. */
