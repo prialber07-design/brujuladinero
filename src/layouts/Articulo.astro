@@ -72,7 +72,7 @@ const jsonLd = {
   articleSection: cat?.nombre,
   wordCount: palabras,
   timeRequired: `PT${minutos}M`,
-  image: new URL(SITE.imagenSocial, SITE.url).href,
+  image: new URL(`/og/${slug}.png`, SITE.url).href,
   isAccessibleForFree: true,
   ...(temas.length > 0 && {
     keywords: temas.join(', '),
@@ -97,6 +97,7 @@ const enDesarrollo = import.meta.env.DEV;
   noIndexar={borrador}
   publicado={fecha}
   modificado={actualizado}
+  imagen={`/og/${slug}.png`}
   conProgreso
 >
   <MigaDePan categoria={cat} actual={titulo} />
