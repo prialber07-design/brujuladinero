@@ -13,7 +13,8 @@
     "nuevo": "node scripts/nuevo.mjs",
     "astro": "astro",
     "pines": "node scripts/generar-pines.mjs",
-    "fotos": "node scripts/fotos.mjs"
+    "fotos": "node scripts/fotos.mjs",
+    "fotos:pexels": "node scripts/fotos-pexels.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",

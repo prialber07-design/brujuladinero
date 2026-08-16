@@ -8,3 +8,6 @@ npm-debug.log*
 
 # Hojas de contactos para elegir foto: material de trabajo
 .fotos-trabajo/
+
+# Claves de API: nunca al repositorio
+.env.local
