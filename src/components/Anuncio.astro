@@ -4,6 +4,10 @@
 //  · Delimitado y separado del contenido, para que no se confunda con el texto
 //  · Altura reservada, de modo que el texto no salte al cargar (CLS)
 //  · Nunca junto a menús ni enlaces, para evitar clics accidentales
+//
+// Si no hay unidades activas, en producción NO se renderiza nada: un
+// rectángulo gris vacío de 250 o 600 px de alto afea la página y no aporta.
+// En desarrollo sí se muestra, para poder maquetar viendo el espacio real.
 import { SITE } from '../../site.config';
 
 interface Props {
@@ -11,24 +15,27 @@ interface Props {
   slot?: string;
 }
 const { formato = 'rectangulo', slot } = Astro.props;
+
 const activo = SITE.adsense.unidadesActivas && SITE.adsense.publisherId && slot;
+const mostrarHueco = import.meta.env.DEV;
 ---
 
-<aside class={`anuncio anuncio-${formato}`} aria-label="Publicidad">
-  <span class="anuncio-etiqueta">Publicidad</span>
-  {activo ? (
-    <Fragment>
-      <ins
-        class="adsbygoogle anuncio-hueco"
-        style="display:block"
-        data-ad-client={SITE.adsense.publisherId}
-        data-ad-slot={slot}
-        data-ad-format="auto"
-        data-full-width-responsive="true"
-      />
-      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
-    </Fragment>
-  ) : (
-    <div class="anuncio-hueco">Espacio publicitario</div>
-  )}
-</aside>
+{activo ? (
+  <aside class={`anuncio anuncio-${formato}`} aria-label="Publicidad">
+    <span class="anuncio-etiqueta">Publicidad</span>
+    <ins
+      class="adsbygoogle anuncio-hueco"
+      style="display:block"
+      data-ad-client={SITE.adsense.publisherId}
+      data-ad-slot={slot}
+      data-ad-format="auto"
+      data-full-width-responsive="true"
+    />
+    <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </aside>
+) : mostrarHueco ? (
+  <aside class={`anuncio anuncio-${formato}`} aria-label="Publicidad">
+    <span class="anuncio-etiqueta">Publicidad</span>
+    <div class="anuncio-hueco">Espacio publicitario (solo visible en local)</div>
+  </aside>
+) : null}

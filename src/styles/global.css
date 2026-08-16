@@ -319,18 +319,52 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
    desplazamiento de diseño al cargar. */
 .ilustracion {
   margin: 0 0 var(--e8);
-  padding: var(--e4);
+  padding: var(--e6) var(--e4);
   background: var(--superficie-baja);
   border: 1px solid var(--borde);
   border-radius: var(--radio);
+  display: flex;
+  justify-content: center;
 }
-.ilustracion svg { display: block; width: 100%; height: auto; aspect-ratio: 640 / 200; }
+/* Tope de altura: el dibujo gana presencia pero no empuja el texto
+   fuera de la primera pantalla. */
+.ilustracion svg {
+  display: block;
+  width: 100%;
+  max-width: 560px;
+  height: auto;
+  aspect-ratio: 350 / 200;
+}
+
+/* Grano de papel: una sola definición para todo el sitio. Rompe el plano
+   digital y aleja el resultado del render corporativo sin textura. */
+.ilustracion { position: relative; }
+.ilustracion::after {
+  content: ''; position: absolute; inset: 0; pointer-events: none;
+  border-radius: inherit;
+  opacity: .5;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)' opacity='.28'/%3E%3C/svg%3E");
+}
+
+/* Dentro de una tarjeta la ilustración es la imagen: a sangre, sin marco */
+.ilustracion-hero, .ilustracion-mini {
+  margin: 0; padding: 0; border: 0; border-radius: 0;
+  background: var(--acento-suave);
+  display: block;
+}
+.ilustracion-hero svg, .ilustracion-mini svg {
+  max-width: none; width: 100%;
+}
+/* Apilada (móvil/tablet) la apertura ocupa todo el ancho: en 4/3 se comía
+   la pantalla entera. Solo recupera el formato alto en dos columnas. */
+.ilustracion-hero svg { aspect-ratio: 16 / 9; }
+@media (min-width: 860px) { .ilustracion-hero svg { aspect-ratio: 4 / 3; } }
+.ilustracion-mini svg { aspect-ratio: 4 / 3; }
 
 /* ── Resumen (respuesta directa, clave para GEO) ─────────── */
 .resumen {
-  background: var(--acento-suave);
-  border-radius: var(--radio);
-  padding: var(--e4) var(--e6);
+  border-left: 4px solid var(--acento);
+  padding: var(--e2) 0 var(--e2) var(--e6);
   margin: var(--e8) 0;
 }
 .resumen h2 {
@@ -405,6 +439,20 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 }
 .lateral-caja a:hover { color: var(--acento); border-left-color: var(--acento); }
 .lateral-caja .nivel-3 a { padding-left: var(--e6); font-size: 13px; }
+
+.lista-lateral { list-style: none; margin: 0; padding: 0; }
+.lista-lateral li { margin: 0 0 var(--e3); }
+.lista-lateral a {
+  display: block; font-size: 14px; line-height: 1.4;
+  color: var(--texto); text-decoration: none;
+}
+.lista-lateral a:hover { color: var(--acento); }
+.lateral-ver-todo {
+  display: inline-block; margin-top: var(--e2); padding-top: var(--e3);
+  border-top: 1px solid var(--borde-sutil); width: 100%;
+  font-size: 13px; font-weight: 600; text-decoration: none;
+}
+.lateral-ver-todo:hover { text-decoration: underline; }
 
 /* ── Espacios publicitarios ──────────────────────────────── */
 /* Etiquetados, delimitados y con altura reservada para no provocar
@@ -522,43 +570,135 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 .rejilla-tarjeta h3 a { color: var(--texto); text-decoration: none; }
 .rejilla-tarjeta h3 a:hover { color: var(--acento); }
 
-.lista-articulos { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--e3); }
-@media (min-width: 720px) {
-  .lista-articulos { grid-template-columns: repeat(2, 1fr); gap: var(--e4); }
-  .destacados .lista-articulos { grid-template-columns: repeat(2, 1fr); }
+/* ── Tarjetas editoriales ─────────────────────────────────────
+   Tres variantes con pesos distintos. Una rejilla de tarjetas
+   idénticas no jerarquiza: el ojo no sabe por dónde empezar.     */
+
+.lista-apertura, .lista-horizontal, .lista-compacta, .lista-articulos {
+  list-style: none; padding: 0; margin: 0;
+}
+.lista-apertura { margin-bottom: var(--e12); }
+.lista-horizontal { display: grid; gap: var(--e8); }
+.lista-compacta { display: grid; gap: var(--e6); }
+
+.tarjeta { position: relative; }
+
+/* Metadatos de revista: categoría en versalitas muy espaciadas */
+.tarjeta-meta {
+  display: flex; flex-wrap: wrap; align-items: center;
+  gap: var(--e3); margin-bottom: var(--e3);
+  font-family: var(--sans); font-size: 11px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--texto-suave);
+}
+.tarjeta-meta .meta-categoria {
+  color: var(--acento); font-weight: 700; text-decoration: none;
+}
+.tarjeta-meta .meta-categoria:hover { text-decoration: underline; }
+.tarjeta-meta time { letter-spacing: inherit; }
+.tarjeta-meta .meta-minutos { opacity: .75; }
+.tarjeta-meta .meta-minutos::before { content: '·'; margin-right: var(--e3); opacity: .6; }
+
+/* Título: subrayado que crece de izquierda a derecha al pasar el cursor */
+.tarjeta-titulo { margin: 0 0 var(--e3); }
+.tarjeta-titulo a {
+  color: var(--texto); text-decoration: none;
+  background-image: linear-gradient(var(--acento), var(--acento));
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size .45s cubic-bezier(.2, .7, .3, 1), color .25s;
+}
+.tarjeta:hover .tarjeta-titulo a { background-size: 100% 1px; color: var(--acento); }
+
+.tarjeta-entradilla {
+  margin: 0; font-family: var(--sans); color: var(--texto-suave);
 }
 
-.tarjeta {
-  padding: var(--e4) var(--e4) var(--e4) var(--e6);
-  background: var(--superficie);
-  border: 1px solid var(--borde);
+/* Imagen: zoom muy leve, sin sombras duras */
+.tarjeta-imagen {
+  display: block; overflow: hidden;
   border-radius: var(--radio);
-  position: relative;
-  transition: border-color .15s, transform .15s;
+  border: 1px solid var(--borde-sutil);
 }
-/* Filete de color de la categoría, a la izquierda */
-.tarjeta::before {
-  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-  width: 4px; border-radius: var(--radio) 0 0 var(--radio);
-  background: var(--acento);
+.tarjeta-imagen .ilustracion {
+  margin: 0; border: 0; border-radius: 0;
+  transition: transform .5s cubic-bezier(.2, .7, .3, 1);
 }
-.tarjeta:hover { border-color: var(--acento); transform: translateY(-2px); }
+.tarjeta:hover .tarjeta-imagen .ilustracion { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-imagen .ilustracion, .tarjeta-titulo a { transition: none; }
+  .tarjeta:hover .tarjeta-imagen .ilustracion { transform: none; }
+}
 
-.tarjeta-destacada { grid-column: 1 / -1; padding: var(--e6) var(--e6) var(--e6) var(--e8); }
-@media (min-width: 720px) {
-  .tarjeta-destacada { grid-column: span 1; }
+/* — Variante principal: apertura a todo el ancho — */
+.tarjeta-principal { display: grid; gap: var(--e6); }
+@media (min-width: 860px) {
+  .tarjeta-principal {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--e12); align-items: center;
+  }
 }
-.tarjeta-destacada h3 { font-size: 24px; line-height: 1.25; }
+.tarjeta-principal .tarjeta-titulo {
+  font-size: 30px; line-height: 1.15; letter-spacing: -0.02em;
+}
+@media (min-width: 860px) {
+  .tarjeta-principal .tarjeta-titulo { font-size: 40px; line-height: 1.1; }
+}
+.tarjeta-principal .tarjeta-entradilla { font-size: 17px; line-height: 1.65; }
+.tarjeta-llamada {
+  display: inline-block; margin-top: var(--e4);
+  font-family: var(--sans); font-size: 12px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--acento);
+}
+.tarjeta-llamada::after {
+  content: ' →'; display: inline-block;
+  transition: transform .3s cubic-bezier(.2, .7, .3, 1);
+}
+.tarjeta-principal:hover .tarjeta-llamada::after { transform: translateX(4px); }
 
-.tarjeta-meta { display: flex; flex-wrap: wrap; align-items: center; gap: var(--e3); margin-bottom: var(--e2); }
-.tarjeta-meta time {
-  font-family: var(--sans); font-size: 12px; letter-spacing: 0.05em;
-  text-transform: uppercase; color: var(--texto-suave);
+/* — Variante horizontal: miniatura a la izquierda — */
+.tarjeta-horizontal {
+  display: grid; gap: var(--e4);
+  padding-bottom: var(--e8);
+  border-bottom: 1px solid var(--borde-sutil);
 }
-.tarjeta h3 { margin: 0 0 var(--e2); font-size: 19px; line-height: 1.3; }
-.tarjeta h3 a { color: var(--texto); text-decoration: none; }
-.tarjeta h3 a:hover { color: var(--acento); }
-.tarjeta p { margin: 0; font-family: var(--sans); font-size: 15px; line-height: 1.5; color: var(--texto-suave); }
+@media (min-width: 640px) {
+  .tarjeta-horizontal {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: var(--e6); align-items: start;
+  }
+}
+.tarjeta-horizontal .tarjeta-titulo { font-size: 21px; line-height: 1.25; }
+.tarjeta-horizontal .tarjeta-entradilla { font-size: 15px; line-height: 1.6; }
+
+/* — Variante compacta: solo texto, con filete de categoría — */
+.tarjeta-compacta {
+  padding-left: var(--e6);
+  border-left: 2px solid var(--borde-sutil);
+  transition: border-color .3s;
+}
+.tarjeta-compacta:hover { border-left-color: var(--acento); }
+.tarjeta-compacta .tarjeta-titulo { font-size: 17px; line-height: 1.3; }
+.tarjeta-compacta .tarjeta-entradilla {
+  font-size: 14px; line-height: 1.55;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Rejilla asimétrica de sección: la pieza con imagen manda */
+.rejilla-seccion { display: grid; gap: var(--e8); }
+@media (min-width: 1000px) {
+  .rejilla-seccion {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    gap: var(--e12); align-items: start;
+  }
+  .rejilla-seccion .lista-apertura { margin-bottom: 0; }
+  .rejilla-seccion .tarjeta-horizontal {
+    grid-template-columns: 1fr; border-bottom: 0; padding-bottom: 0;
+  }
+  .rejilla-seccion .tarjeta-horizontal .tarjeta-titulo { font-size: 25px; }
+}
 
 /* ── Portada ─────────────────────────────────────────────── */
 .portada-intro {

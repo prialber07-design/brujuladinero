@@ -15,6 +15,7 @@ import AvisoAfiliado from '../components/AvisoAfiliado.astro';
 import Fuentes from '../components/Fuentes.astro';
 import CajaAutor from '../components/CajaAutor.astro';
 import Relacionados from '../components/Relacionados.astro';
+import MasDeLaSeccion from '../components/MasDeLaSeccion.astro';
 
 interface Props {
   slug: string;
@@ -177,6 +178,7 @@ const enDesarrollo = import.meta.env.DEV;
 
     <aside class="lateral">
       <Indice encabezados={encabezados} variante="lateral" />
+      <MasDeLaSeccion actual={slug} categoria={categoria} />
       <Anuncio formato="lateral" />
     </aside>
   </div>

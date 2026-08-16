@@ -13,8 +13,11 @@
 interface Props {
   nombre: string;
   alt: string;
+  /** `articulo` = cabecera del artículo · `hero` = pieza principal de portada
+   *  `mini` = miniatura de tarjeta horizontal */
+  variante?: 'articulo' | 'hero' | 'mini';
 }
-const { nombre, alt } = Astro.props;
+const { nombre, alt, variante = 'articulo' } = Astro.props;
 
 const A = 'var(--acento)';
 const S = 'var(--acento-suave)';
@@ -289,8 +292,22 @@ const dibujos: Record<string, string> = {
 const dibujo = dibujos[nombre] ?? dibujos['crecimiento'];
 ---
 
-<figure class="ilustracion">
-  <svg viewBox="0 0 640 200" role="img" aria-label={alt} preserveAspectRatio="xMidYMid meet">
+{/* El viewBox recorta a la zona donde viven los dibujos (x 150-490, y 20-215)
+    en lugar de usar el lienzo completo de 640x200. Con el lienzo entero, el
+    dibujo ocupaba la mitad central y quedaba pequeño y perdido dentro de una
+    caja enorme. */}
+<figure class={`ilustracion ilustracion-${variante}`}>
+  <svg viewBox="145 18 350 200" role="img" aria-label={alt} preserveAspectRatio="xMidYMid meet">
+    {/* Lavado de color en degradado: da profundidad y evita el look de
+        "diagrama plano". El grano de papel se aplica en CSS, una sola vez
+        para todo el sitio, en lugar de un filtro SVG por ilustración. */}
+    <defs>
+      <linearGradient id={`lavado-${variante}-${nombre}`} x1="0" y1="0" x2="0.35" y2="1">
+        <stop offset="0" stop-color="var(--acento)" stop-opacity="0.13" />
+        <stop offset="1" stop-color="var(--acento)" stop-opacity="0" />
+      </linearGradient>
+    </defs>
+    <rect x="145" y="18" width="350" height="200" fill={`url(#lavado-${variante}-${nombre})`} />
     <Fragment set:html={dibujo} />
   </svg>
 </figure>

@@ -1,34 +1,70 @@
 ---
 import { ruta } from '../lib/rutas';
 import { CATEGORIAS } from '../../site.config';
+import Ilustracion from './Ilustracion.astro';
 
+/**
+ * Tres variantes, no una rejilla de clones:
+ *  · `principal`  pieza de apertura, a todo el ancho, imagen grande al lado
+ *  · `horizontal` lista editorial: miniatura a la izquierda, texto a la derecha
+ *  · `compacta`   solo texto, para los últimos puestos de una sección
+ * El ritmo lo da la mezcla, no el tamaño de una sola de ellas.
+ */
 interface Props {
   slug: string;
   titulo: string;
   descripcion: string;
   categoria: string;
   fecha: Date;
+  minutos?: number;
+  ilustracion?: string;
+  ilustracionAlt?: string;
   mostrarCategoria?: boolean;
-  destacado?: boolean;
+  variante?: 'principal' | 'horizontal' | 'compacta';
 }
 
 const {
-  slug, titulo, descripcion, categoria, fecha,
-  mostrarCategoria = true, destacado = false,
+  slug, titulo, descripcion, categoria, fecha, minutos,
+  ilustracion, ilustracionAlt,
+  mostrarCategoria = true, variante = 'compacta',
 } = Astro.props;
 
 const cat = CATEGORIAS.find((c) => c.slug === categoria);
+const href = ruta(`/${slug}/`);
+const conImagen = variante !== 'compacta' && Boolean(ilustracion);
+const fechaCorta = fecha.toLocaleDateString('es-ES', {
+  day: '2-digit', month: 'short', year: 'numeric',
+});
 ---
 
-<li class={destacado ? 'tarjeta tarjeta-destacada' : 'tarjeta'} data-cat={categoria}>
-  <div class="tarjeta-meta">
-    {mostrarCategoria && cat && (
-      <a class="etiqueta" href={ruta(`/categoria/${cat.slug}/`)}>{cat.nombre}</a>
+<li class={`tarjeta tarjeta-${variante}`} data-cat={categoria}>
+  {conImagen && (
+    <a class="tarjeta-imagen" href={href} tabindex="-1" aria-hidden="true">
+      <Ilustracion
+        nombre={ilustracion!}
+        alt={ilustracionAlt ?? titulo}
+        variante={variante === 'principal' ? 'hero' : 'mini'}
+      />
+    </a>
+  )}
+
+  <div class="tarjeta-cuerpo">
+    <div class="tarjeta-meta">
+      {mostrarCategoria && cat && (
+        <a class="meta-categoria" href={ruta(`/categoria/${cat.slug}/`)}>{cat.nombre}</a>
+      )}
+      <time datetime={fecha.toISOString()}>{fechaCorta}</time>
+      {minutos && <span class="meta-minutos">{minutos} min</span>}
+    </div>
+
+    {variante === 'principal'
+      ? <h2 class="tarjeta-titulo"><a href={href}>{titulo}</a></h2>
+      : <h3 class="tarjeta-titulo"><a href={href}>{titulo}</a></h3>}
+
+    <p class="tarjeta-entradilla">{descripcion}</p>
+
+    {variante === 'principal' && (
+      <span class="tarjeta-llamada">Leer el artículo</span>
     )}
-    <time datetime={fecha.toISOString()}>
-      {fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' })}
-    </time>
   </div>
-  <h3><a href={ruta(`/${slug}/`)}>{titulo}</a></h3>
-  <p>{descripcion}</p>
 </li>

@@ -1,0 +1,35 @@
+---
+import { ruta } from '../lib/rutas';
+import { CATEGORIAS } from '../../site.config';
+import { articulosDeCategoria } from '../lib/articulos';
+
+/**
+ * Bloque de la barra lateral. Ocupa el espacio que dejaría un hueco
+ * publicitario vacío y, de paso, sube las páginas por sesión: cuanto más
+ * navega el visitante, mejor para el posicionamiento y para la monetización.
+ */
+interface Props {
+  actual: string;
+  categoria: string;
+}
+const { actual, categoria } = Astro.props;
+
+const cat = CATEGORIAS.find((c) => c.slug === categoria);
+const otros = (await articulosDeCategoria(categoria))
+  .filter((a) => a.id !== actual)
+  .slice(0, 5);
+---
+
+{otros.length > 0 && cat && (
+  <nav class="lateral-caja" aria-labelledby="mas-seccion-titulo">
+    <h2 id="mas-seccion-titulo">Más de {cat.nombre.toLowerCase()}</h2>
+    <ul class="lista-lateral">
+      {otros.map((a) => (
+        <li><a href={ruta(`/${a.id}/`)}>{a.data.titulo}</a></li>
+      ))}
+    </ul>
+    <a class="lateral-ver-todo" href={ruta(`/categoria/${cat.slug}/`)}>
+      Ver la sección completa →
+    </a>
+  </nav>
+)}

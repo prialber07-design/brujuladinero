@@ -17,3 +17,9 @@ export async function articulosDeCategoria(slug: string): Promise<Articulo[]> {
   const todos = await articulosPublicados();
   return todos.filter((a) => a.data.categoria === slug);
 }
+
+/** Tiempo de lectura estimado: ~200 palabras por minuto en castellano. */
+export function minutosDeLectura(articulo: Articulo): number {
+  const palabras = articulo.body?.split(/\s+/).filter(Boolean).length ?? 0;
+  return Math.max(1, Math.round(palabras / 200));
+}
