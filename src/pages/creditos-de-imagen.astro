@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import { ruta } from '../lib/rutas';
+import creditos from '../data/fotos.json';
+import { articulosPublicados } from '../lib/articulos';
+
+/**
+ * Atribución centralizada. Las licencias CC-BY obligan a citar autor y
+ * licencia; en el artículo va al pie de la foto, y aquí está la lista
+ * completa para quien quiera comprobarlo de un vistazo.
+ */
+const articulos = await articulosPublicados();
+const titulos = new Map(articulos.map((a) => [a.id, a.data.titulo]));
+
+const filas = Object.entries(creditos as Record<string, any>)
+  .filter(([slug]) => titulos.has(slug))
+  .sort((a, b) => (titulos.get(a[0]) ?? '').localeCompare(titulos.get(b[0]) ?? '', 'es'));
+---
+
+<Base
+  titulo="Créditos de las imágenes"
+  descripcion="Autoría y licencia de cada fotografía usada en Brújula Dinero."
+>
+  <div class="lectura pagina-legal">
+    <h1>Créditos de las imágenes</h1>
+
+    <p>
+      Las fotografías de este sitio proceden de <a href="https://openverse.org/" rel="nofollow noopener">Openverse</a>,
+      que agrupa obras con licencia Creative Commons. Solo se usan licencias que
+      permiten el uso comercial y la obra derivada, porque las fotos se recortan
+      para adaptarlas a cada formato.
+    </p>
+    <p>
+      Cada foto lleva su atribución debajo, en el artículo donde aparece. Esta
+      es la lista completa. Si eres el autor de alguna y ves algo mal citado,
+      escríbeme y lo corrijo.
+    </p>
+
+    <div class="tabla-envoltorio">
+      <table>
+        <thead>
+          <tr><th>Artículo</th><th>Autoría</th><th>Licencia</th></tr>
+        </thead>
+        <tbody>
+          {filas.map(([slug, c]) => (
+            <tr>
+              <td><a href={ruta(`/${slug}/`)}>{titulos.get(slug)}</a></td>
+              <td>
+                {c.autorUrl
+                  ? <a href={c.autorUrl} rel="nofollow noopener">{c.autor}</a>
+                  : c.autor}
+                {c.origen && <> · <a href={c.origen} rel="nofollow noopener">original</a></>}
+              </td>
+              <td>
+                {c.licenciaUrl
+                  ? <a href={c.licenciaUrl} rel="license nofollow noopener">{c.licencia}</a>
+                  : c.licencia}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</Base>

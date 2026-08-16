@@ -1,0 +1,76 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import Ilustracion from './Ilustracion.astro';
+import creditos from '../data/fotos.json';
+
+/**
+ * Fotografía de cabecera del artículo.
+ *
+ * Astro la procesa con sharp: recorta al formato pedido, genera varios
+ * anchos y sirve WebP. El original de 5 MB nunca llega al navegador.
+ *
+ * Si un artículo no tiene foto, cae a la ilustración de siempre en lugar de
+ * dejar un hueco: es preferible a una foto que no diga nada.
+ */
+interface Props {
+  slug: string;
+  alt: string;
+  /** `articulo` cabecera · `hero` apertura de portada · `mini` miniatura */
+  variante?: 'articulo' | 'hero' | 'mini';
+  /** La atribución solo se imprime donde la foto es la pieza principal */
+  conCredito?: boolean;
+  /** Reserva para la ilustración si no hay foto */
+  ilustracion?: string;
+}
+
+const { slug, alt, variante = 'articulo', conCredito = false, ilustracion } = Astro.props;
+
+const archivos = import.meta.glob<{ default: ImageMetadata }>(
+  '../assets/fotos/*.jpg',
+  { eager: true },
+);
+const entrada = archivos[`../assets/fotos/${slug}.jpg`];
+const credito = (creditos as Record<string, any>)[slug];
+
+// Anchos servidos según el sitio que ocupa la foto. Pedir 1600 px para una
+// miniatura de 190 sería tirar el ancho de banda del visitante.
+const medidas = {
+  articulo: { proporcion: 16 / 9, anchos: [640, 960, 1280], sizes: '(min-width: 1024px) 720px, 100vw' },
+  hero:     { proporcion: 4 / 3,  anchos: [480, 720, 1080], sizes: '(min-width: 860px) 620px, 100vw' },
+  mini:     { proporcion: 4 / 3,  anchos: [200, 400],       sizes: '190px' },
+}[variante];
+
+const ancho = Math.max(...medidas.anchos);
+---
+
+{entrada ? (
+  <figure class={`foto foto-${variante}`}>
+    <Image
+      src={entrada.default}
+      alt={alt}
+      width={ancho}
+      height={Math.round(ancho / medidas.proporcion)}
+      widths={medidas.anchos}
+      sizes={medidas.sizes}
+      format="webp"
+      quality={72}
+      loading={variante === 'mini' ? 'lazy' : 'eager'}
+      fetchpriority={variante === 'articulo' ? 'high' : undefined}
+    />
+    {conCredito && credito && (
+      <figcaption class="foto-credito">
+        Foto de{' '}
+        {credito.autorUrl
+          ? <a href={credito.autorUrl} rel="nofollow noopener">{credito.autor}</a>
+          : <span>{credito.autor}</span>}
+        {' · '}
+        {credito.licenciaUrl
+          ? <a href={credito.licenciaUrl} rel="license nofollow noopener">{credito.licencia}</a>
+          : <span>{credito.licencia}</span>}
+      </figcaption>
+    )}
+  </figure>
+) : ilustracion ? (
+  <Ilustracion nombre={ilustracion} alt={alt} variante={variante} />
+) : null}

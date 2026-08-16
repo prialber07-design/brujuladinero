@@ -570,6 +570,40 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
 .rejilla-tarjeta h3 a { color: var(--texto); text-decoration: none; }
 .rejilla-tarjeta h3 a:hover { color: var(--acento); }
 
+/* ── Fotografía ───────────────────────────────────────────────
+   Fotos documentales, sin marco ni sombra dura: el borde de 1px y el
+   recorte hacen el trabajo. La imagen es contenido, no decoración.     */
+.foto { margin: 0; }
+.foto img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--radio);
+  border: 1px solid var(--borde-sutil);
+  object-fit: cover;
+}
+.foto-articulo { margin: 0 0 var(--e6); }
+.foto-articulo img { aspect-ratio: 16 / 9; }
+.foto-hero img, .foto-mini img { border: 0; border-radius: 0; aspect-ratio: 4 / 3; }
+.foto-hero img { aspect-ratio: 16 / 9; }
+@media (min-width: 860px) { .foto-hero img { aspect-ratio: 4 / 3; } }
+
+/* Atribución: las licencias CC-BY la exigen, pero no debe competir
+   con el titular. Tamaño mínimo legible y color apagado. */
+.foto-credito {
+  margin-top: var(--e2);
+  font-family: var(--sans); font-size: 12px; line-height: 1.4;
+  color: var(--texto-suave);
+}
+.foto-credito a { color: inherit; text-decoration: underline; text-decoration-color: var(--borde); }
+.foto-credito a:hover { color: var(--acento); }
+
+/* El zoom al pasar el cursor va sobre la foto igual que iba sobre el SVG */
+.tarjeta:hover .tarjeta-imagen .foto img { transform: scale(1.04); }
+.tarjeta-imagen .foto img { transition: transform .5s cubic-bezier(.2, .7, .3, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta-imagen .foto img { transition: none; }
+  .tarjeta:hover .tarjeta-imagen .foto img { transform: none; }
+}
+
 /* ── Tarjetas editoriales ─────────────────────────────────────
    Tres variantes con pesos distintos. Una rejilla de tarjetas
    idénticas no jerarquiza: el ojo no sabe por dónde empezar.     */

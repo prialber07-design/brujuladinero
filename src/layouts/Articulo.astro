@@ -5,7 +5,7 @@ import { SITE, CATEGORIAS } from '../../site.config';
 import Base from './Base.astro';
 import Icono from '../components/Icono.astro';
 import MigaDePan from '../components/MigaDePan.astro';
-import Ilustracion from '../components/Ilustracion.astro';
+import Foto from '../components/Foto.astro';
 import PuntosClave from '../components/PuntosClave.astro';
 import Resumen from '../components/Resumen.astro';
 import Faq from '../components/Faq.astro';
@@ -138,9 +138,13 @@ const enDesarrollo = import.meta.env.DEV;
       </header>
 
       <div class="lectura">
-        {ilustracion && (
-          <Ilustracion nombre={ilustracion} alt={ilustracionAlt ?? titulo} />
-        )}
+        <Foto
+          slug={slug}
+          alt={ilustracionAlt ?? titulo}
+          variante="articulo"
+          ilustracion={ilustracion}
+          conCredito
+        />
         {resumen && <Resumen texto={resumen} />}
         <PuntosClave puntos={puntosClave} />
 

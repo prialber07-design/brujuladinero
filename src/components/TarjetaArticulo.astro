@@ -1,7 +1,7 @@
 ---
 import { ruta } from '../lib/rutas';
 import { CATEGORIAS } from '../../site.config';
-import Ilustracion from './Ilustracion.astro';
+import Foto from './Foto.astro';
 
 /**
  * Tres variantes, no una rejilla de clones:
@@ -31,7 +31,7 @@ const {
 
 const cat = CATEGORIAS.find((c) => c.slug === categoria);
 const href = ruta(`/${slug}/`);
-const conImagen = variante !== 'compacta' && Boolean(ilustracion);
+const conImagen = variante !== 'compacta';
 const fechaCorta = fecha.toLocaleDateString('es-ES', {
   day: '2-digit', month: 'short', year: 'numeric',
 });
@@ -40,10 +40,11 @@ const fechaCorta = fecha.toLocaleDateString('es-ES', {
 <li class={`tarjeta tarjeta-${variante}`} data-cat={categoria}>
   {conImagen && (
     <a class="tarjeta-imagen" href={href} tabindex="-1" aria-hidden="true">
-      <Ilustracion
-        nombre={ilustracion!}
+      <Foto
+        slug={slug}
         alt={ilustracionAlt ?? titulo}
         variante={variante === 'principal' ? 'hero' : 'mini'}
+        ilustracion={ilustracion}
       />
     </a>
   )}
