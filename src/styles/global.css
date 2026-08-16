@@ -681,6 +681,28 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
   margin: 0 0 var(--e4);
   font-size: 17px; line-height: 1.7; color: var(--texto);
 }
+.presentacion-puntos {
+  list-style: none; margin: 0 0 var(--e6); padding: 0;
+  display: grid; gap: var(--e3);
+}
+.presentacion-puntos li {
+  position: relative; padding-left: var(--e6);
+  font-size: 15px; line-height: 1.6; color: var(--texto-suave);
+}
+.presentacion-puntos li::before {
+  content: ''; position: absolute; left: 0; top: 9px;
+  width: 7px; height: 7px; border-radius: 50%; background: var(--acento);
+}
+.presentacion-puntos strong { color: var(--texto); }
+
+/* Dos columnas de titulares: seis artículos ocupan lo que antes tres.
+   La sección siguiente entra en pantalla sin tener que buscarla. */
+.lista-doble {
+  list-style: none; margin: var(--e8) 0 0; padding: 0;
+  display: grid; gap: var(--e6) var(--e8);
+}
+@media (min-width: 620px) { .lista-doble { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
 .presentacion-datos {
   margin: 0;
   font-family: var(--sans); font-size: 13px; letter-spacing: .04em;

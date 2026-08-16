@@ -50,12 +50,29 @@ const ultimos = articulos.slice(0, 5);
         <p class="presentacion-texto">
           Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
           Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto
-          cuesta de verdad y qué pasos dar, con las cifras contrastadas contra la
-          Agencia Tributaria, el Banco de España, la CNMV y el INE.
+          cuesta de verdad y qué pasos dar.
         </p>
+
+        <ul class="presentacion-puntos">
+          <li>
+            <strong>Escrito para España.</strong> Los tramos, los plazos y los organismos
+            son los de aquí, no una traducción de una web estadounidense.
+          </li>
+          <li>
+            <strong>Con las cifras contrastadas.</strong> Cada artículo cita sus fuentes:
+            Agencia Tributaria, Banco de España, CNMV, INE y BCE, con la fecha en que
+            se consultaron.
+          </li>
+          <li>
+            <strong>Sin dar por sabido nada.</strong> Si aparece un término técnico, se
+            explica la primera vez que sale.
+          </li>
+        </ul>
+
         <p class="presentacion-datos">
-          <strong>{articulos.length} artículos</strong> repartidos en {secciones.length} secciones ·
-          Escribe <a href={ruta('/sobre-mi/')}>{SITE.autor.nombre}</a>
+          <strong>{articulos.length} artículos</strong> en {secciones.length} secciones ·
+          Escribe <a href={ruta('/sobre-mi/')}>{SITE.autor.nombre}</a> ·
+          <a href={ruta('/rss.xml')}>Sigue por RSS</a>
         </p>
       </section>
 
@@ -101,8 +118,12 @@ const ultimos = articulos.slice(0, 5);
                 </a>
               </header>
 
+              {/* Una pieza de entrada con foto y el resto en dos columnas de
+                  texto. Cuatro tarjetas horizontales seguidas ocupaban 800px
+                  por sección: había que hacer scroll para ver que existía la
+                  siguiente. Así entran seis en el mismo alto. */}
               <ul class="lista-horizontal">
-                {s.resto.slice(0, 4).map((a) => (
+                {s.resto.slice(0, 1).map((a) => (
                   <TarjetaArticulo
                     slug={a.id}
                     titulo={a.data.titulo}
@@ -118,7 +139,22 @@ const ultimos = articulos.slice(0, 5);
                 ))}
               </ul>
 
-              {s.total > 5 && (
+              <ul class="lista-doble">
+                {s.resto.slice(1, 7).map((a) => (
+                  <TarjetaArticulo
+                    slug={a.id}
+                    titulo={a.data.titulo}
+                    descripcion={a.data.descripcion}
+                    categoria={a.data.categoria}
+                    fecha={a.data.fecha}
+                    minutos={minutosDeLectura(a)}
+                    mostrarCategoria={false}
+                    variante="compacta"
+                  />
+                ))}
+              </ul>
+
+              {s.total > 8 && (
                 <a class="seccion-pie-enlace" href={ruta(`/categoria/${s.slug}/`)}>
                   Ver los {s.total} artículos de {s.nombre.toLowerCase()} →
                 </a>
