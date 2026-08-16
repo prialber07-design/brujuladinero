@@ -665,14 +665,46 @@ h4 { font-size: 18px; line-height: 26px; font-weight: 700; margin: 0; }
   .tarjeta:hover .tarjeta-imagen .ilustracion { transform: none; }
 }
 
-/* — Franja de destacados: la imagen manda, el titular va pequeño —
-   Es el patrón de la parte de arriba de las portadas de economía: tres
-   piezas iguales que se leen de un vistazo, sin jerarquía entre ellas. */
-.franja-destacados { margin-bottom: var(--e12); }
-.lista-destacados { display: grid; gap: var(--e6); }
-@media (min-width: 700px) {
-  .lista-destacados { grid-template-columns: repeat(3, 1fr); gap: var(--e8); }
+/* — Presentación: qué es esto, antes de nada — */
+.portada-presentacion {
+  max-width: 760px;
+  margin: var(--e12) 0 var(--e16);
+  padding-left: var(--e6);
+  border-left: 4px solid var(--acento);
 }
+.portada-presentacion h1 { margin: 0 0 var(--e2); }
+.portada-presentacion .lema {
+  margin: 0 0 var(--e4);
+  font-family: var(--serif); font-size: 20px; line-height: 1.4; color: var(--acento);
+}
+.presentacion-texto {
+  margin: 0 0 var(--e4);
+  font-size: 17px; line-height: 1.7; color: var(--texto);
+}
+.presentacion-datos {
+  margin: 0;
+  font-family: var(--sans); font-size: 13px; letter-spacing: .04em;
+  color: var(--texto-suave);
+}
+
+/* — Un destacado por sección: se ve de un vistazo que hay cuatro áreas —
+   La imagen manda y el titular va pequeño, como en la franja superior de
+   cualquier portada de economía. */
+.franja-destacados { margin-bottom: var(--e16); }
+.lista-destacados { display: grid; gap: var(--e8); list-style: none; margin: 0; padding: 0; }
+@media (min-width: 640px) { .lista-destacados { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .lista-destacados { grid-template-columns: repeat(4, 1fr); gap: var(--e6); } }
+
+.lista-destacados-interna { list-style: none; margin: 0; padding: 0; }
+.destacado-etiqueta {
+  display: inline-flex; align-items: center; gap: var(--e1);
+  margin-bottom: var(--e3);
+  font-family: var(--sans); font-size: 11px; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase;
+  color: var(--acento); text-decoration: none;
+  padding-bottom: var(--e1); border-bottom: 2px solid var(--acento);
+}
+.destacado-etiqueta:hover { color: var(--acento-fuerte); }
 .tarjeta-portada .tarjeta-imagen { margin-bottom: var(--e4); }
 .tarjeta-portada .tarjeta-titulo { font-size: 18px; line-height: 1.3; }
 .tarjeta-portada .tarjeta-entradilla {

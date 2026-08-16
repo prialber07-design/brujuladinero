@@ -17,31 +17,23 @@ const iconos = {
 } as const;
 
 /*
- * Estructura copiada de cómo montan la portada los medios de economía
- * (El Blog Salmón y similares), que es lo que el lector ya sabe leer:
+ * Portada en tres piezas:
+ *   1. Qué es esto, dicho en dos frases.
+ *   2. Un destacado por sección: se ve de un vistazo que hay cuatro áreas.
+ *   3. Cada sección con el resto, y los índices en la barra lateral.
  *
- *   1. Franja de tres destacados: la imagen manda, el titular va pequeño.
- *   2. Río en columna principal con barra lateral fija al lado.
- *
- * Antes había una presentación larga antes de cualquier artículo. Una
- * portada no se abre con una declaración de intenciones: se abre con lo
- * que hay para leer.
+ * El destacado de cada sección es el primero por orden de lectura, no el
+ * más reciente: es la puerta de entrada al tema, y quien llega de fuera
+ * necesita empezar por ahí y no por la última novedad.
  */
-const destacados = articulos.slice(0, 3);
-const yaArriba = new Set(destacados.map((a) => a.id));
-
 const secciones = CATEGORIAS.map((c) => {
-  const suyos = articulos.filter((a) => a.data.categoria === c.slug);
-  return {
-    ...c,
-    total: suyos.length,
-    // Dentro de cada sección manda el orden de lectura, no la fecha:
-    // quien entra en "cripto desde cero" quiere empezar por el principio.
-    articulos: suyos
-      .filter((a) => !yaArriba.has(a.id))
-      .sort((a, b) => a.data.orden - b.data.orden || b.data.fecha.valueOf() - a.data.fecha.valueOf()),
-  };
+  const suyos = articulos
+    .filter((a) => a.data.categoria === c.slug)
+    .sort((a, b) => a.data.orden - b.data.orden || b.data.fecha.valueOf() - a.data.fecha.valueOf());
+  return { ...c, total: suyos.length, destacado: suyos[0], resto: suyos.slice(1) };
 }).filter((s) => s.total > 0);
+
+const ultimos = articulos.slice(0, 5);
 ---
 
 <Base titulo={SITE.nombre} descripcion={SITE.descripcion}>
@@ -52,21 +44,44 @@ const secciones = CATEGORIAS.map((c) => {
     </div>
   ) : (
     <Fragment>
-      <section class="franja-destacados" aria-labelledby="ultimo-titulo">
-        <h2 id="ultimo-titulo" class="titulo-bloque">Lo último</h2>
+      <section class="portada-presentacion">
+        <h1>{SITE.nombre}</h1>
+        <p class="lema">Finanzas personales y criptomonedas, explicadas para España</p>
+        <p class="presentacion-texto">
+          Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
+          Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto
+          cuesta de verdad y qué pasos dar, con las cifras contrastadas contra la
+          Agencia Tributaria, el Banco de España, la CNMV y el INE.
+        </p>
+        <p class="presentacion-datos">
+          <strong>{articulos.length} artículos</strong> repartidos en {secciones.length} secciones ·
+          Escribe <a href={ruta('/sobre-mi/')}>{SITE.autor.nombre}</a>
+        </p>
+      </section>
+
+      <section class="franja-destacados" aria-labelledby="destacados-titulo">
+        <h2 id="destacados-titulo" class="titulo-bloque">Por dónde empezar</h2>
         <ul class="lista-destacados">
-          {destacados.map((a) => (
-            <TarjetaArticulo
-              slug={a.id}
-              titulo={a.data.titulo}
-              descripcion={a.data.descripcion}
-              categoria={a.data.categoria}
-              fecha={a.data.fecha}
-              minutos={minutosDeLectura(a)}
-              ilustracion={a.data.ilustracion}
-              ilustracionAlt={a.data.ilustracionAlt}
-              variante="portada"
-            />
+          {secciones.map((s) => (
+            <li class="destacado-seccion" data-cat={s.slug}>
+              <a class="destacado-etiqueta" href={ruta(`/categoria/${s.slug}/`)}>
+                <Icono nombre={iconos[s.slug]} tam={14} /> {s.nombre}
+              </a>
+              <ul class="lista-destacados-interna">
+                <TarjetaArticulo
+                  slug={s.destacado.id}
+                  titulo={s.destacado.data.titulo}
+                  descripcion={s.destacado.data.descripcion}
+                  categoria={s.destacado.data.categoria}
+                  fecha={s.destacado.data.fecha}
+                  minutos={minutosDeLectura(s.destacado)}
+                  ilustracion={s.destacado.data.ilustracion}
+                  ilustracionAlt={s.destacado.data.ilustracionAlt}
+                  mostrarCategoria={false}
+                  variante="portada"
+                />
+              </ul>
+            </li>
           ))}
         </ul>
       </section>
@@ -87,7 +102,7 @@ const secciones = CATEGORIAS.map((c) => {
               </header>
 
               <ul class="lista-horizontal">
-                {s.articulos.slice(0, 4).map((a) => (
+                {s.resto.slice(0, 4).map((a) => (
                   <TarjetaArticulo
                     slug={a.id}
                     titulo={a.data.titulo}
@@ -103,7 +118,7 @@ const secciones = CATEGORIAS.map((c) => {
                 ))}
               </ul>
 
-              {s.total > 4 && (
+              {s.total > 5 && (
                 <a class="seccion-pie-enlace" href={ruta(`/categoria/${s.slug}/`)}>
                   Ver los {s.total} artículos de {s.nombre.toLowerCase()} →
                 </a>
@@ -131,15 +146,14 @@ const secciones = CATEGORIAS.map((c) => {
             </ul>
           </nav>
 
-          <section class="lateral-caja lateral-presentacion">
-            <h2>Qué vas a encontrar</h2>
-            <p>
-              Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
-              Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto
-              cuesta de verdad y qué pasos dar.
-            </p>
-            <a class="lateral-ver-todo" href={ruta('/sobre-mi/')}>Quién hay detrás →</a>
-          </section>
+          <nav class="lateral-caja" aria-labelledby="ultimos-titulo">
+            <h2 id="ultimos-titulo">Lo último</h2>
+            <ul class="lista-lateral">
+              {ultimos.map((a) => (
+                <li><a href={ruta(`/${a.id}/`)}>{a.data.titulo}</a></li>
+              ))}
+            </ul>
+          </nav>
 
           <Anuncio formato="lateral" />
         </aside>
