@@ -5,3 +5,6 @@ dist/
 .env.production
 .DS_Store
 npm-debug.log*
+
+# Hojas de contactos para elegir foto: material de trabajo
+.fotos-trabajo/
