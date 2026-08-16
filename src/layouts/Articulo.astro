@@ -146,7 +146,6 @@ const enDesarrollo = import.meta.env.DEV;
           conCredito
         />
         {resumen && <Resumen texto={resumen} />}
-        <PuntosClave puntos={puntosClave} />
 
         {/* Índice plegable: solo en móvil y tablet. En escritorio va fijo en la lateral. */}
         <div style="display:block" class="indice-movil">
@@ -156,6 +155,8 @@ const enDesarrollo = import.meta.env.DEV;
         <div class="cuerpo">
           <slot />
         </div>
+
+        <PuntosClave puntos={puntosClave} titulo="Para quedarte con esto" />
 
         {tieneAfiliados && <AvisoAfiliado />}
 

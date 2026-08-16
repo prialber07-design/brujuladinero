@@ -4,6 +4,7 @@ descripcion: 'El método para hacer un presupuesto que sobreviva más de un mes:
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 10
 borrador: false
 faltaAporteReal: true
 palabraClave: 'presupuesto mensual'

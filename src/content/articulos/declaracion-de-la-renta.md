@@ -4,6 +4,7 @@ descripcion: 'Qué es la declaración de la renta, por qué sale a devolver o a 
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 10
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declaración de la renta'

@@ -4,6 +4,7 @@ descripcion: 'El mapa de los impuestos que paga una persona corriente en España
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 25
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué impuestos pago en España'

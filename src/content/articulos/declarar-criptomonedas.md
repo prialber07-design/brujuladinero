@@ -4,6 +4,7 @@ descripcion: 'Qué operaciones con criptomonedas generan obligación de tributar
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 20
 borrador: false
 faltaAporteReal: true
 palabraClave: 'declarar criptomonedas'

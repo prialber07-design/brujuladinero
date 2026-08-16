@@ -4,6 +4,7 @@ descripcion: 'Por qué ahorrar sin destino no funciona, cómo separar objetivos 
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 30
 borrador: false
 faltaAporteReal: true
 palabraClave: 'ahorrar para objetivos'

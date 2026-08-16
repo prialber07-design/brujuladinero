@@ -4,6 +4,7 @@ descripcion: 'Qué es la inflación, cómo se mide con el IPC, por qué tu infla
 categoria: 'actualidad-explicada'
 fecha: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 10
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la inflación'

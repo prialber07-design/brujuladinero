@@ -4,6 +4,7 @@ descripcion: 'Qué es una recesión, cómo se mide, por qué el paro sube despu�
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 20
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es una recesión'

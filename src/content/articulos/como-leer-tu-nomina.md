@@ -4,6 +4,7 @@ descripcion: 'Entiende tu nómina línea a línea: devengos, bases de cotizació
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 40
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo leer la nómina'

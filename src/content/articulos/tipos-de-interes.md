@@ -5,6 +5,7 @@ categoria: 'actualidad-explicada'
 fecha: 2026-08-06
 actualizado: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 15
 borrador: false
 faltaAporteReal: true
 palabraClave: 'tipos de interés'

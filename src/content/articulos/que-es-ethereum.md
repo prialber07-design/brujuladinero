@@ -4,6 +4,7 @@ descripcion: 'Qué es Ethereum, en qué se diferencia de Bitcoin, qué son los c
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 15
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es ethereum'

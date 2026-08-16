@@ -17,6 +17,11 @@ const articulos = defineCollection({
     autor: z.string().default('Alberto'),
 
     // Borrador: no se publica ni aparece en sitemap/RSS.
+    // Orden de lectura dentro de su sección. La fecha sirve para "lo último",
+    // pero en guías atemporales no dice nada: quien llega a "cripto desde
+    // cero" quiere empezar por qué es Bitcoin, no por lo último publicado.
+    // Menor va antes. 50 es el valor de en medio, para los que dan igual.
+    orden: z.number().int().min(1).max(99).default(50),
     borrador: z.boolean().default(false),
     // Marca los artículos que aún NO tienen tu experiencia personal añadida.
     // Es tu red de seguridad: no publiques nada con esto en true.

@@ -4,6 +4,7 @@ descripcion: 'Qué significa realmente "sin comisiones", las condiciones que sue
 categoria: 'finanzas-personales'
 fecha: 2026-08-06
 autor: 'Alberto Pérez Lafuente'
+orden: 45
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cuenta sin comisiones'

@@ -4,11 +4,15 @@ import { CATEGORIAS } from '../../site.config';
 import Foto from './Foto.astro';
 
 /**
- * Tres variantes, no una rejilla de clones:
- *  · `principal`  pieza de apertura, a todo el ancho, imagen grande al lado
- *  · `horizontal` lista editorial: miniatura a la izquierda, texto a la derecha
+ * Cuatro variantes, no una rejilla de clones. La estrategia está copiada de
+ * cómo montan la portada los medios que viven de esto (El Blog Salmón, BBVA):
+ * una franja de destacados con la imagen mandando y el titular pequeño, y
+ * debajo un río de piezas horizontales con el titular ya grande.
+ *
+ *  · `portada`    franja superior: imagen arriba, titular pequeño
+ *  · `principal`  apertura a todo el ancho, imagen grande al lado
+ *  · `horizontal` río: miniatura a un lado, titular grande al otro
  *  · `compacta`   solo texto, para los últimos puestos de una sección
- * El ritmo lo da la mezcla, no el tamaño de una sola de ellas.
  */
 interface Props {
   slug: string;
@@ -20,7 +24,7 @@ interface Props {
   ilustracion?: string;
   ilustracionAlt?: string;
   mostrarCategoria?: boolean;
-  variante?: 'principal' | 'horizontal' | 'compacta';
+  variante?: 'portada' | 'principal' | 'horizontal' | 'compacta';
 }
 
 const {
@@ -43,7 +47,7 @@ const fechaCorta = fecha.toLocaleDateString('es-ES', {
       <Foto
         slug={slug}
         alt={ilustracionAlt ?? titulo}
-        variante={variante === 'principal' ? 'hero' : 'mini'}
+        variante={variante === 'principal' ? 'hero' : variante === 'portada' ? 'destacada' : 'mini'}
         ilustracion={ilustracion}
       />
     </a>

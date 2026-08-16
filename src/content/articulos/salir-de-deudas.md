@@ -4,6 +4,7 @@ descripcion: 'Los dos métodos para amortizar deudas, cuál ahorra más dinero y
 categoria: 'finanzas-personales'
 fecha: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 50
 borrador: false
 faltaAporteReal: true
 palabraClave: 'salir de deudas'

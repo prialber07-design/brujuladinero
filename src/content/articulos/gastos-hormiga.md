@@ -4,6 +4,7 @@ descripcion: 'Qué son los gastos hormiga, cómo detectarlos en tu extracto en v
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 20
 borrador: false
 faltaAporteReal: true
 palabraClave: 'gastos hormiga'

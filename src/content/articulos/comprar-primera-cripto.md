@@ -4,6 +4,7 @@ descripcion: 'El proceso completo para comprar criptomonedas desde España: qué
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 35
 borrador: false
 faltaAporteReal: true
 palabraClave: 'cómo comprar criptomonedas'

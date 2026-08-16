@@ -4,6 +4,7 @@ descripcion: 'Las causas reales de la volatilidad de las criptomonedas, por qué
 categoria: 'cripto-desde-cero'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 25
 borrador: false
 faltaAporteReal: true
 palabraClave: 'volatilidad criptomonedas'

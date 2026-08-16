@@ -17,7 +17,7 @@ interface Props {
   slug: string;
   alt: string;
   /** `articulo` cabecera · `hero` apertura de portada · `mini` miniatura */
-  variante?: 'articulo' | 'hero' | 'mini';
+  variante?: 'articulo' | 'hero' | 'destacada' | 'mini';
   /** La atribución solo se imprime donde la foto es la pieza principal */
   conCredito?: boolean;
   /** Reserva para la ilustración si no hay foto */
@@ -38,6 +38,7 @@ const credito = (creditos as Record<string, any>)[slug];
 const medidas = {
   articulo: { proporcion: 16 / 9, anchos: [640, 960, 1280], sizes: '(min-width: 1024px) 720px, 100vw' },
   hero:     { proporcion: 4 / 3,  anchos: [480, 720, 1080], sizes: '(min-width: 860px) 620px, 100vw' },
+  destacada:{ proporcion: 4 / 3,  anchos: [360, 720],       sizes: '(min-width: 900px) 350px, 100vw' },
   mini:     { proporcion: 4 / 3,  anchos: [200, 400],       sizes: '190px' },
 }[variante];
 
@@ -55,7 +56,7 @@ const ancho = Math.max(...medidas.anchos);
       sizes={medidas.sizes}
       format="webp"
       quality={72}
-      loading={variante === 'mini' ? 'lazy' : 'eager'}
+      loading={variante === 'articulo' || variante === 'destacada' ? 'eager' : 'lazy'}
       fetchpriority={variante === 'articulo' ? 'high' : undefined}
     />
     {conCredito && credito && (

@@ -4,6 +4,7 @@ descripcion: 'Qué información recibe la Agencia Tributaria de bancos, platafor
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 15
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué sabe Hacienda de mis cuentas'

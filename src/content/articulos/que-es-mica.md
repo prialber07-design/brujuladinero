@@ -4,6 +4,7 @@ descripcion: 'MiCA es el reglamento europeo de criptoactivos, plenamente aplicab
 categoria: 'actualidad-explicada'
 fecha: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 35
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es MiCA'

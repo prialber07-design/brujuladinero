@@ -5,6 +5,7 @@ categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-06
 actualizado: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 30
 borrador: false
 faltaAporteReal: true
 palabraClave: 'estafas cripto'

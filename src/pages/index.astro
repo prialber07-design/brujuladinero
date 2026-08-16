@@ -16,35 +16,35 @@ const iconos = {
   'actualidad-explicada': 'periodico',
 } as const;
 
-// Ritmo editorial: una apertura a todo el ancho y tres piezas en lista.
-// Una rejilla de tarjetas iguales no distingue lo importante de lo demás.
-const apertura = articulos[0];
-const secundarios = articulos.slice(1, 4);
-const yaArriba = new Set([apertura, ...secundarios].filter(Boolean).map((a) => a.id));
+/*
+ * Estructura copiada de cómo montan la portada los medios de economía
+ * (El Blog Salmón y similares), que es lo que el lector ya sabe leer:
+ *
+ *   1. Franja de tres destacados: la imagen manda, el titular va pequeño.
+ *   2. Río en columna principal con barra lateral fija al lado.
+ *
+ * Antes había una presentación larga antes de cualquier artículo. Una
+ * portada no se abre con una declaración de intenciones: se abre con lo
+ * que hay para leer.
+ */
+const destacados = articulos.slice(0, 3);
+const yaArriba = new Set(destacados.map((a) => a.id));
 
-// Después, cada sección con sus artículos más recientes. Con 30 artículos,
-// una lista plana no deja ver que hay cuatro áreas distintas.
 const secciones = CATEGORIAS.map((c) => {
   const suyos = articulos.filter((a) => a.data.categoria === c.slug);
   return {
     ...c,
     total: suyos.length,
-    articulos: suyos.filter((a) => !yaArriba.has(a.id)),
+    // Dentro de cada sección manda el orden de lectura, no la fecha:
+    // quien entra en "cripto desde cero" quiere empezar por el principio.
+    articulos: suyos
+      .filter((a) => !yaArriba.has(a.id))
+      .sort((a, b) => a.data.orden - b.data.orden || b.data.fecha.valueOf() - a.data.fecha.valueOf()),
   };
 }).filter((s) => s.total > 0);
 ---
 
 <Base titulo={SITE.nombre} descripcion={SITE.descripcion}>
-  <section class="portada-intro">
-    <h1>{SITE.nombre}</h1>
-    <p class="lema">Tu guía serena en finanzas personales y criptomonedas</p>
-    <p class="intro-texto">
-      Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
-      Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto cuesta
-      de verdad y qué pasos dar.
-    </p>
-  </section>
-
   {articulos.length === 0 ? (
     <div class="vacio">
       <h2>Todavía no hay artículos publicados</h2>
@@ -52,25 +52,10 @@ const secciones = CATEGORIAS.map((c) => {
     </div>
   ) : (
     <Fragment>
-      <section class="bloque-apertura" aria-labelledby="ultimo-titulo">
+      <section class="franja-destacados" aria-labelledby="ultimo-titulo">
         <h2 id="ultimo-titulo" class="titulo-bloque">Lo último</h2>
-
-        <ul class="lista-apertura">
-          <TarjetaArticulo
-            slug={apertura.id}
-            titulo={apertura.data.titulo}
-            descripcion={apertura.data.descripcion}
-            categoria={apertura.data.categoria}
-            fecha={apertura.data.fecha}
-            minutos={minutosDeLectura(apertura)}
-            ilustracion={apertura.data.ilustracion}
-            ilustracionAlt={apertura.data.ilustracionAlt}
-            variante="principal"
-          />
-        </ul>
-
-        <ul class="lista-horizontal">
-          {secundarios.map((a) => (
+        <ul class="lista-destacados">
+          {destacados.map((a) => (
             <TarjetaArticulo
               slug={a.id}
               titulo={a.data.titulo}
@@ -80,84 +65,85 @@ const secciones = CATEGORIAS.map((c) => {
               minutos={minutosDeLectura(a)}
               ilustracion={a.data.ilustracion}
               ilustracionAlt={a.data.ilustracionAlt}
-              variante="horizontal"
+              variante="portada"
             />
           ))}
         </ul>
       </section>
 
-      {/* Mapa de secciones: para orientarse una vez visto de qué va la casa */}
-      <nav class="mapa-secciones" aria-label="Secciones">
-        {secciones.map((s) => (
-          <a href={`#${s.slug}`} data-cat={s.slug} class="mapa-tarjeta">
-            <span class="mapa-icono"><Icono nombre={iconos[s.slug]} tam={22} /></span>
-            <span class="mapa-texto">
-              <strong>{s.nombre}</strong>
-              <span>{s.gancho}</span>
-            </span>
-            <span class="mapa-cuenta">{s.total}</span>
-          </a>
-        ))}
-      </nav>
+      <div class="rejilla-portada">
+        <div class="rio">
+          {secciones.map((s) => (
+            <section class="seccion-categoria" id={s.slug} data-cat={s.slug} aria-labelledby={`t-${s.slug}`}>
+              <header class="seccion-cabecera">
+                <span class="seccion-icono"><Icono nombre={iconos[s.slug]} tam={24} /></span>
+                <div>
+                  <h2 id={`t-${s.slug}`}>{s.nombre}</h2>
+                  <p>{s.descripcion}</p>
+                </div>
+                <a class="seccion-ver-todo" href={ruta(`/categoria/${s.slug}/`)}>
+                  Ver los {s.total} →
+                </a>
+              </header>
 
-      <Anuncio formato="banner" />
-
-      {secciones.map((s) => (
-        <section class="seccion-categoria" id={s.slug} data-cat={s.slug} aria-labelledby={`t-${s.slug}`}>
-          <header class="seccion-cabecera">
-            <span class="seccion-icono"><Icono nombre={iconos[s.slug]} tam={24} /></span>
-            <div>
-              <h2 id={`t-${s.slug}`}>{s.nombre}</h2>
-              <p>{s.descripcion}</p>
-            </div>
-            <a class="seccion-ver-todo" href={ruta(`/categoria/${s.slug}/`)}>
-              Ver los {s.total} →
-            </a>
-          </header>
-
-          {/* El primero de la sección lleva imagen y ocupa la columna ancha;
-              el resto van en lista compacta al lado. Rejilla asimétrica. */}
-          <div class="rejilla-seccion">
-            {s.articulos[0] && (
-              <ul class="lista-apertura">
-                <TarjetaArticulo
-                  slug={s.articulos[0].id}
-                  titulo={s.articulos[0].data.titulo}
-                  descripcion={s.articulos[0].data.descripcion}
-                  categoria={s.articulos[0].data.categoria}
-                  fecha={s.articulos[0].data.fecha}
-                  minutos={minutosDeLectura(s.articulos[0])}
-                  ilustracion={s.articulos[0].data.ilustracion}
-                  ilustracionAlt={s.articulos[0].data.ilustracionAlt}
-                  mostrarCategoria={false}
-                  variante="horizontal"
-                />
+              <ul class="lista-horizontal">
+                {s.articulos.slice(0, 4).map((a) => (
+                  <TarjetaArticulo
+                    slug={a.id}
+                    titulo={a.data.titulo}
+                    descripcion={a.data.descripcion}
+                    categoria={a.data.categoria}
+                    fecha={a.data.fecha}
+                    minutos={minutosDeLectura(a)}
+                    ilustracion={a.data.ilustracion}
+                    ilustracionAlt={a.data.ilustracionAlt}
+                    mostrarCategoria={false}
+                    variante="horizontal"
+                  />
+                ))}
               </ul>
-            )}
 
-            <ul class="lista-compacta">
-              {s.articulos.slice(1, 5).map((a) => (
-                <TarjetaArticulo
-                  slug={a.id}
-                  titulo={a.data.titulo}
-                  descripcion={a.data.descripcion}
-                  categoria={a.data.categoria}
-                  fecha={a.data.fecha}
-                  minutos={minutosDeLectura(a)}
-                  mostrarCategoria={false}
-                  variante="compacta"
-                />
+              {s.total > 4 && (
+                <a class="seccion-pie-enlace" href={ruta(`/categoria/${s.slug}/`)}>
+                  Ver los {s.total} artículos de {s.nombre.toLowerCase()} →
+                </a>
+              )}
+            </section>
+          ))}
+        </div>
+
+        <aside class="lateral">
+          <nav class="lateral-caja" aria-labelledby="secciones-titulo">
+            <h2 id="secciones-titulo">Secciones</h2>
+            <ul class="lista-secciones">
+              {secciones.map((s) => (
+                <li data-cat={s.slug}>
+                  <a href={ruta(`/categoria/${s.slug}/`)}>
+                    <span class="mapa-icono"><Icono nombre={iconos[s.slug]} tam={18} /></span>
+                    <span class="lista-secciones-texto">
+                      <strong>{s.nombre}</strong>
+                      <span>{s.gancho}</span>
+                    </span>
+                    <span class="mapa-cuenta">{s.total}</span>
+                  </a>
+                </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
-          {s.total > 5 && (
-            <a class="seccion-pie-enlace" href={ruta(`/categoria/${s.slug}/`)}>
-              Ver los {s.total} artículos de {s.nombre.toLowerCase()} →
-            </a>
-          )}
-        </section>
-      ))}
+          <section class="lateral-caja lateral-presentacion">
+            <h2>Qué vas a encontrar</h2>
+            <p>
+              Aquí no vas a encontrar consejos de inversión ni promesas de hacerte rico.
+              Encontrarás <strong>procedimientos</strong>: cómo funciona cada cosa, cuánto
+              cuesta de verdad y qué pasos dar.
+            </p>
+            <a class="lateral-ver-todo" href={ruta('/sobre-mi/')}>Quién hay detrás →</a>
+          </section>
+
+          <Anuncio formato="lateral" />
+        </aside>
+      </div>
     </Fragment>
   )}
 </Base>

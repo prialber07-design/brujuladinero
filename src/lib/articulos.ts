@@ -13,9 +13,19 @@ export async function articulosPublicados(): Promise<Articulo[]> {
   return todos.sort((a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf());
 }
 
+/**
+ * Artículos de una sección, en orden de lectura: primero lo básico y
+ * después lo específico. A igualdad de orden manda la fecha.
+ */
 export async function articulosDeCategoria(slug: string): Promise<Articulo[]> {
   const todos = await articulosPublicados();
-  return todos.filter((a) => a.data.categoria === slug);
+  return todos
+    .filter((a) => a.data.categoria === slug)
+    .sort(
+      (a, b) =>
+        a.data.orden - b.data.orden ||
+        b.data.fecha.valueOf() - a.data.fecha.valueOf(),
+    );
 }
 
 /** Tiempo de lectura estimado: ~200 palabras por minuto en castellano. */

@@ -4,6 +4,7 @@ descripcion: 'Qué es una acción, qué es un índice, de dónde sale la rentabi
 categoria: 'actualidad-explicada'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 30
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es la bolsa'

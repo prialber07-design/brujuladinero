@@ -4,6 +4,7 @@ descripcion: 'Los pasos concretos tras sufrir un fraude bancario o con criptomon
 categoria: 'fiscalidad-y-seguridad'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 35
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué hacer si me han estafado'

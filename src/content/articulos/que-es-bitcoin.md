@@ -5,6 +5,7 @@ categoria: 'cripto-desde-cero'
 fecha: 2026-08-06
 actualizado: 2026-08-07
 autor: 'Alberto Pérez Lafuente'
+orden: 10
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué es bitcoin'

@@ -4,6 +4,7 @@ descripcion: 'Qué es el interés compuesto, cómo calcularlo con números reale
 categoria: 'finanzas-personales'
 fecha: 2026-08-06
 autor: 'Alberto Pérez Lafuente'
+orden: 35
 borrador: false
 faltaAporteReal: true
 palabraClave: 'interés compuesto'

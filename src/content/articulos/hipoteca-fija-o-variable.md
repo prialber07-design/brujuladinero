@@ -4,6 +4,7 @@ descripcion: 'Diferencias entre hipoteca fija, variable y mixta, y por qué la d
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 55
 borrador: false
 faltaAporteReal: true
 palabraClave: 'hipoteca fija o variable'

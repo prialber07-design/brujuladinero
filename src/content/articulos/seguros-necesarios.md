@@ -4,6 +4,7 @@ descripcion: 'Cómo decidir qué seguros contratar: la regla para distinguir un 
 categoria: 'finanzas-personales'
 fecha: 2026-08-08
 autor: 'Alberto Pérez Lafuente'
+orden: 60
 borrador: false
 faltaAporteReal: true
 palabraClave: 'qué seguros necesito'
