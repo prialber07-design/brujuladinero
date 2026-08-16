@@ -11,7 +11,8 @@
     "revisar": "node scripts/revisar.mjs",
     "vigilar": "node scripts/vigilar.mjs",
     "nuevo": "node scripts/nuevo.mjs",
-    "astro": "astro"
+    "astro": "astro",
+    "pines": "node scripts/generar-pines.mjs"
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.12",
